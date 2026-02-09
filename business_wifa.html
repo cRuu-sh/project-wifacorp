@@ -72,7 +72,6 @@
 
       /* ===== MOBILE MENU FULLSCREEN + BACKGROUND ===== */
       #mobileMenu {
-        -webkit-overflow-scrolling: touch;
         position: fixed;
         inset: 0;
         z-index: 40;
@@ -212,7 +211,8 @@
                   href="./about_us.html#our-story"
                   class="block text-2xl font-light hover:text-red-500 transition"
                   >Our Story</a
-                ><a
+                >
+                <a
                   href="./about_us.html#visi-misi"
                   class="block font-light text-2xl hover:text-red-500 transition"
                   >Visi Misi</a
@@ -299,14 +299,14 @@
 
             <!-- Menu lain -->
             <a
-              href="#partner"
+              href="./business_wifa.html#partner"
               class="block text-3xl font-light text-white hover:text-red-500 transition"
             >
               Partner
             </a>
 
             <a
-              href="#contact"
+              href="./business_wifa.html#contact"
               class="block text-3xl font-light text-white hover:text-red-500 transition"
             >
               Contact Us
@@ -446,308 +446,164 @@
       </div>
     </div>
 
-    <!-- Beranda -->
-    <section
-      id="beranda"
-      class="relative w-full h-screen overflow-hidden hidden md:block"
-    >
-      <!-- VIDEO BACKGROUND -->
-      <video
-        src="https://adhi.co.id/wp-content/uploads/2024/08/Website-Home.mp4"
-        autoplay
-        muted
-        loop
-        playsinline
-        class="absolute top-0 left-0 w-full h-full object-cover"
-      ></video>
-
-      <!-- OVERLAY GELAP AGAR TEKS TERBACA -->
-      <div class="absolute inset-0 bg-black/50"></div>
-
-      <!-- TEKS DI TENGAH -->
+    <!-- ABOUT US SECTION -->
+    <section id="about" class="relative w-full overflow-hidden bg-white">
+      <!-- BACKGROUND FIXED -->
       <div
-        class="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6"
+        class="relative w-full min-h-[450px] md:h-[80vh] bg-cover bg-center bg-fixed"
+        style="
+          background-image: linear-gradient(
+              180deg,
+              rgba(0, 0, 0, 0.45) 0%,
+              rgba(0, 0, 0, 0.3) 30%,
+              rgba(255, 255, 255, 0) 100%
+            ),
+            url('https://adhi.co.id/wp-content/uploads/2024/06/ADHI-Tower.png');
+        "
       >
-        <h1
-          class="text-4xl lg:text-6xl font-extrabold tracking-wide drop-shadow-lg"
+        <!-- Overlay Hitam Transparan -->
+        <div class="absolute inset-0 bg-black/30"></div>
+
+        <!-- Teks di Atas Gambar -->
+        <div
+          class="relative z-10 flex flex-col items-center justify-center text-center text-white py-24 px-6"
         >
-          PT Wifa Corporation Tbk
-        </h1>
-        <p class="text-lg lg:text-2xl mt-3 font-medium tracking-widest italic">
-          Beyond Construction
-        </p>
-      </div>
-    </section>
-
-    <!-- Tentang Wifa -->
-    <section id="about" class="relative bg-white py-24 overflow-hidden">
-      <div class="absolute inset-0">
-        <img
-          src="./src/img/about_bg.png"
-          alt="About background"
-          class="w-full h-full object-cover opacity-20"
-        />
+          <h1
+            class="text-4xl md:text-6xl font-extrabold tracking-wide drop-shadow-lg"
+          >
+            BISNIS WIFA
+          </h1>
+          <p
+            class="text-lg md:text-2xl mt-3 font-medium italic tracking-widest text-gray-200"
+          >
+            Beyond Construction
+          </p>
+        </div>
       </div>
 
-      <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <!-- Left: Image -->
-          <div class="relative">
-            <div
-              class="w-full h-[400px] bg-gray-200 rounded-2xl overflow-hidden shadow-lg"
+      <!-- KONTEN PUTIH -->
+      <div class="relative z-20 -mt-24 md:-mt-32 px-6 flex justify-center">
+        <div
+          class="bg-white border border-gray-200 rounded-3xl shadow-xl w-[95%] md:w-[75%] max-w-6xl p-8 md:p-10 relative overflow-hidden"
+        >
+          <!-- Divider merah mengikuti lebar box putih -->
+          <div
+            class="absolute top-0 left-0 w-full h-2 bg-red-600 rounded-t-3xl"
+          ></div>
+          <!-- Tombol Navigasi -->
+          <div class="flex flex-wrap text-white justify-center gap-3 mb-10">
+            <button
+              class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
+              data-target="konstruksi"
             >
-              <img
-                src="./src/img/team.png"
-                alt="Team"
-                class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-            <div
-              class="absolute -bottom-6 -right-6 bg-red-600 text-white px-6 py-3 rounded-xl shadow-lg"
+              Konstruksi
+            </button>
+            <button
+              class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
+              data-target="manufaktur"
             >
-              <p class="text-xl font-semibold">
-                <span
-                  id="experience-counter"
-                  class="text-5xl font-bold text-white"
-                  >0</span
-                >+ Tahun Pengalaman
+              Manufaktur
+            </button>
+            <button
+              class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
+              data-target="investmen"
+            >
+              Investmen
+            </button>
+            <button
+              class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
+              data-target="rumahsakit"
+            >
+              Rumah Sakit
+            </button>
+          </div>
+
+          <!-- Konten Dinamis -->
+          <div id="bisnis-content" class="text-center">
+            <!-- Konstukrsi -->
+            <div id="konstruksi" class="tab-content">
+              <h2 class="text-2xl font-bold mb-4 text-gray-800">Konstruksi</h2>
+              <p class="text-gray-700 leading-relaxed">
+                Konstruksi Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Laboriosam, dignissimos. Beatae sunt rem debitis est
+                deleniti! Harum, consectetur officiis accusantium eveniet
+                distinctio molestiae voluptas dolorem corrupti! Totam deleniti
+                maxime minus assumenda nesciunt vero eius ducimus sit harum
+                architecto voluptas alias, quas velit accusantium est odit
+                incidunt laborum quae! Consectetur exercitationem ad odio
+                officia. Ipsum autem inventore eos ullam consequuntur aliquam
+                esse cupiditate, perferendis provident harum eum veritatis
+                dolores voluptates natus cumque, voluptas illum at laborum
+                debitis dolor molestiae distinctio. Nobis tenetur laudantium
+                corporis quam natus iste ab tempora? Incidunt reprehenderit
+                similique ut magnam delectus ipsum odit nam necessitatibus unde
+                nesciunt.
               </p>
             </div>
-          </div>
 
-          <!-- Right: Text -->
-          <div class="space-y-6">
-            <h2
-              class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight border-l-4 border-red-600 pl-4"
-            >
-              Tentang Kami
-            </h2>
-            <p class="text-gray-600 text-lg leading-relaxed">
-              Kami adalah perusahaan yang berkomitmen untuk memberikan layanan
-              terbaik dalam bidang kami. Dengan pengalaman lebih dari satu
-              dekade, kami terus berinovasi dan beradaptasi dengan perkembangan
-              teknologi untuk memenuhi kebutuhan klien secara profesional dan
-              berkelanjutan.
-            </p>
-            <p class="text-gray-600 text-lg leading-relaxed">
-              Nilai utama kami adalah integritas, kualitas, dan kepuasan
-              pelanggan. Kami percaya bahwa kolaborasi dan kepercayaan adalah
-              fondasi utama untuk membangun hubungan jangka panjang yang sukses.
-            </p>
+            <!-- VISI & MISI -->
+            <div id="manufaktur" class="tab-content hidden">
+              <h2 class="text-2xl font-bold mb-4 text-gray-800">Manufaktur</h2>
+              <div class="space-y-6 text-left">
+                <div class="flex items-start gap-4">
+                  <p class="text-gray-700 leading-relaxed text-center">
+                    Manufaktur Lorem ipsum dolor, sit amet consectetur
+                    adipisicing elit. Aliquam soluta expedita voluptatum, vitae
+                    ut neque iste. Sequi facere nam, deleniti ea atque quaerat
+                    quis recusandae culpa ab iste eligendi, officiis temporibus
+                    veniam tenetur. Autem ad ratione qui voluptatibus, animi
+                    doloribus corrupti deleniti quis atque minima illo nulla
+                    vitae iste, accusantium sequi eius repudiandae cumque
+                    voluptates error inventore? Harum eligendi sequi quibusdam
+                    unde natus maxime laboriosam tempora ipsam exercitationem.
+                    Nemo rerum maxime ullam veniam neque repellat voluptates,
+                    voluptate eius, ex tempora amet. Iure harum veritatis
+                    maiores in, quibusdam asperiores! Quaerat tempore nostrum in
+                    nihil nobis, corrupti magni commodi nisi rerum eius.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-            <a
-              href="about_us.html"
-              class="group inline-block mt-4 bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-red-700 transition duration-300"
-            >
-              Baca Selengkapnya
-              <span
-                class="inline-block transform transition-transform duration-300 group-hover:translate-x-1"
-              >
-                →
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+            <!-- Investmen -->
+            <div id="investmen" class="tab-content hidden">
+              <h2 class="text-2xl font-bold mb-4 text-gray-800">Investmen</h2>
+              <p class="text-gray-700 leading-relaxed">
+                Investmen Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Provident dolor corporis quos adipisci nemo sunt omnis
+                culpa libero. Doloribus, ducimus aut, tempora voluptatibus
+                libero quisquam voluptatem sapiente incidunt quae natus quidem
+                molestiae autem dolores minima amet enim sequi minus harum,
+                molestias modi cum? Itaque adipisci placeat soluta possimus eius
+                iusto, laudantium veniam dicta suscipit quaerat assumenda
+                incidunt architecto animi reprehenderit vero sunt maxime quos
+                quis eveniet illo ut saepe. Fugit eos tenetur dolor aliquid
+                neque sequi ipsum laboriosam necessitatibus hic sint nam
+                pariatur corporis, quod nostrum commodi saepe alias quibusdam
+                explicabo ad, earum fuga, sit dolorem. Perspiciatis nisi
+                consequatur laborum?
+              </p>
+            </div>
 
-    <!-- Bisnis Wifa -->
-    <section
-      class="relative bg-cover bg-center bg-no-repeat py-24"
-      style="background-image: url('./src/img/bg_bisnis.png')"
-    >
-      <!-- Overlay -->
-      <div class="absolute inset-0 bg-black/40"></div>
-
-      <!-- Judul Section -->
-      <div class="relative z-10 text-center text-white mb-16">
-        <h2 class="text-4xl font-bold">Bisnis WIFA</h2>
-        <p class="mt-2 text-lg">
-          Mewujudkan keunggulan di berbagai sektor usaha
-        </p>
-      </div>
-
-      <!-- Grid -->
-      <div
-        class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6"
-      >
-        <!-- Item -->
-        <div
-          class="group bg-white/10 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center text-white border border-white/10 shadow-lg transition-all duration-700 md:hover:-translate-y-3 md:hover:bg-white/15 overflow-hidden"
-        >
-          <div
-            class="w-40 h-40 rounded-full overflow-hidden border border-white/20 shadow-md mb-6 transform transition-all duration-700 md:group-hover:-translate-y-2"
-          >
-            <img
-              src="./src/img/konstruksi.png"
-              alt="Konstruksi"
-              class="object-cover w-full h-full"
-            />
-          </div>
-
-          <div
-            class="transition-all duration-700 ease-out md:opacity-0 md:translate-y-8 md:group-hover:opacity-100 md:group-hover:translate-y-0 flex flex-col items-center"
-          >
-            <h3 class="text-xl font-semibold mb-2">Konstruksi</h3>
-            <p class="text-sm mb-6 text-gray-200">
-              WIFA berkomitmen menghadirkan hasil terbaik di bidang konstruksi
-              dan infrastruktur modern.
-            </p>
-            <a href="./business_wifa.html#konstruksi"
-              ><button
-                class="flex items-center gap-2 bg-transparent border border-white text-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300"
-              >
-                See More
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M7 17L17 7M7 7h10v10"
-                  />
-                </svg></button
-            ></a>
-          </div>
-        </div>
-
-        <!-- Item -->
-        <div
-          class="group bg-white/10 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center text-white border border-white/10 shadow-lg transition-all duration-700 md:hover:-translate-y-3 md:hover:bg-white/15 overflow-hidden"
-        >
-          <div
-            class="w-40 h-40 rounded-full overflow-hidden border border-white/20 shadow-md mb-6 transform transition-all duration-700 md:group-hover:-translate-y-2"
-          >
-            <img
-              src="./src/img/manufaktur.png"
-              alt="Manufaktur"
-              class="object-cover w-full h-full"
-            />
-          </div>
-
-          <div
-            class="transition-all duration-700 ease-out md:opacity-0 md:translate-y-8 md:group-hover:opacity-100 md:group-hover:translate-y-0 flex flex-col items-center"
-          >
-            <h3 class="text-xl font-semibold mb-2">Manufaktur</h3>
-            <p class="text-sm mb-6 text-gray-200">
-              Inovasi dalam produksi berkualitas tinggi dengan teknologi modern
-              dan efisiensi tinggi.
-            </p>
-            <a href="./business_wifa.html#manufaktur"
-              ><button
-                class="flex items-center gap-2 bg-transparent border border-white text-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300"
-              >
-                See More
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M7 17L17 7M7 7h10v10"
-                  />
-                </svg></button
-            ></a>
-          </div>
-        </div>
-
-        <!-- Item -->
-        <div
-          class="group bg-white/10 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center text-white border border-white/10 shadow-lg transition-all duration-700 md:hover:-translate-y-3 md:hover:bg-white/15 overflow-hidden"
-        >
-          <div
-            class="w-40 h-40 rounded-full overflow-hidden border border-white/20 shadow-md mb-6 transform transition-all duration-700 md:group-hover:-translate-y-2"
-          >
-            <img
-              src="./src/img/investmen.png"
-              alt="Investmen"
-              class="object-cover w-full h-full"
-            />
-          </div>
-
-          <div
-            class="transition-all duration-700 ease-out md:opacity-0 md:translate-y-8 md:group-hover:opacity-100 md:group-hover:translate-y-0 flex flex-col items-center"
-          >
-            <h3 class="text-xl font-semibold mb-2">Investmen</h3>
-            <p class="text-sm mb-6 text-gray-200">
-              Berfokus pada Investmen strategis untuk pertumbuhan jangka panjang
-              yang berkelanjutan.
-            </p>
-            <a href="./business_wifa.html#investmen"
-              ><button
-                class="flex items-center gap-2 bg-transparent border border-white text-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300"
-              >
-                See More
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M7 17L17 7M7 7h10v10"
-                  />
-                </svg></button
-            ></a>
-          </div>
-        </div>
-
-        <!-- Item -->
-        <div
-          class="group bg-white/10 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center text-center text-white border border-white/10 shadow-lg transition-all duration-700 md:hover:-translate-y-3 md:hover:bg-white/15 overflow-hidden"
-        >
-          <div
-            class="w-40 h-40 rounded-full overflow-hidden border border-white/20 shadow-md mb-6 transform transition-all duration-700 md:group-hover:-translate-y-2"
-          >
-            <img
-              src="./src/img/rumah_sakit.png"
-              alt="Rumah Sakit"
-              class="object-cover w-full h-full"
-            />
-          </div>
-
-          <div
-            class="transition-all duration-700 ease-out md:opacity-0 md:translate-y-8 md:group-hover:opacity-100 md:group-hover:translate-y-0 flex flex-col items-center"
-          >
-            <h3 class="text-xl font-semibold mb-2">Rumah Sakit</h3>
-            <p class="text-sm mb-6 text-gray-200">
-              Pelayanan kesehatan terpercaya dengan fasilitas modern dan tenaga
-              ahli profesional.
-            </p>
-            <a href="business_wifa.html#rumahsakit">
-              <button
-                class="flex items-center gap-2 bg-transparent border border-white text-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300"
-              >
-                See More
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M7 17L17 7M7 7h10v10"
-                  />
-                </svg></button
-            ></a>
+            <!-- rumahsakit -->
+            <div id="rumahsakit" class="tab-content hidden">
+              <h2 class="text-2xl font-bold mb-4 text-gray-800">Rumah Sakit</h2>
+              <p class="text-gray-700 leading-relaxed">
+                Rumah Sakit Lorem ipsum dolor sit amet, consectetur adipisicing
+                elit. Dolor, aut facilis. Quasi ex dolorum natus ipsam eius
+                recusandae reiciendis debitis! Tempore, eaque. Aut dolorem error
+                magnam cumque! Voluptate harum consequatur ea distinctio
+                nesciunt, non ducimus facilis quam expedita, asperiores
+                explicabo iste aliquam quae dolorem. Quidem iusto esse commodi
+                unde saepe nihil obcaecati dicta delectus expedita ad animi,
+                magnam praesentium error autem facilis sunt culpa beatae
+                distinctio amet consequatur eos. Aliquam id eveniet aliquid iure
+                tempore dolorem nulla maiores fugit temporibus, eos rerum eum
+                cumque totam ab ex sed perferendis blanditiis similique nostrum
+                provident voluptate ratione architecto? Perferendis et ullam
+                odio!
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -906,99 +762,18 @@
               </p>
             </div>
 
-            <div class="space-y-4 text-lg text-white">
+            <div class="space-y-4 text-lg">
               <p class="flex items-center gap-3">
-                <span
-                  class="flex items-center justify-center w-8 h-8 rounded-full bg-white"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="red"
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                  >
-                    <path
-                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 
-        0-2.5-1.12-2.5-2.5s1.12-2.5 
-        2.5-2.5 2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
-                    />
-                  </svg>
-                </span>
-                <span>Jl. Fatmawati No. 60A, Kota Pangkal Pinang</span>
+                📍 <span>Jalan Fatmawati No. 60A, Pangkal Pinang</span>
               </p>
-
               <p class="flex items-center gap-3">
-                <span
-                  class="flex items-center justify-center w-8 h-8 rounded-full bg-white"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="red"
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                  >
-                    <path
-                      d="M20 4H4c-1.1 0-1.99.9-1.99 
-        2L2 18c0 1.1.9 2 2 
-        2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 
-        4-8 5-8-5V6l8 5 8-5v2z"
-                    />
-                  </svg>
-                </span>
-                <span>info@wifacorp.co.id</span>
+                📧 <span>info@wifacorp.co.id</span>
               </p>
-
               <p class="flex items-center gap-3">
-                <span
-                  class="flex items-center justify-center w-8 h-8 rounded-full bg-white"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="red"
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                  >
-                    <path
-                      d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 
-        1 0 011.05-.24c1.12.37 2.33.57 
-        3.54.57a1 1 0 011 1v3.5a1 
-        1 0 01-1 1C10.07 22 2 13.93 
-        2 3.5a1 1 0 011-1H6.5a1 
-        1 0 011 1c0 1.21.2 2.42.57 
-        3.54a1 1 0 01-.25 1.05l-2.2 2.2z"
-                    />
-                  </svg>
-                </span>
-                <span>(0274) 123456</span>
+                ☎️ <span>(0274) 123456</span>
               </p>
-
               <p class="flex items-center gap-3">
-                <span
-                  class="flex items-center justify-center w-8 h-8 rounded-full bg-white"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="red"
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                  >
-                    <path
-                      d="M16.57 12.6c-.27-.13-1.58-.77-1.82-.86-.24-.09-.42-.13-.6.13-.18.27-.69.86-.85 
-        1.03-.16.18-.31.2-.58.07-.27-.13-1.14-.42-2.18-1.33-.81-.72-1.36-1.6-1.52-1.87-.16-.27-.02-.42.12-.55.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.33-.02-.47-.07-.13-.6-1.45-.82-1.99-.22-.53-.44-.45-.6-.46-.16-.01-.33-.01-.5-.01-.18 
-        0-.47.07-.72.33-.24.27-.94.91-.94 
-        2.21s.97 2.57 1.1 2.75c.13.18 
-        1.91 2.92 4.63 4.1.65.28 1.16.45 
-        1.56.57.65.21 1.25.18 
-        1.72.11.52-.08 1.58-.65 
-        1.8-1.28.22-.63.22-1.16.16-1.28-.06-.11-.24-.18-.51-.31z"
-                    />
-                  </svg>
-                </span>
-                <span>+62 812-3456-7890</span>
+                💬 <span>+62 812-3456-7890</span>
               </p>
             </div>
           </div>
@@ -1038,9 +813,7 @@
               <h3 class="text-xl font-semibold mb-4 text-red-700">Navigasi</h3>
               <ul class="space-y-2">
                 <li>
-                  <a
-                    href="./index.html#home"
-                    class="hover:text-red-500 transition"
+                  <a href="./index.html" class="hover:text-red-500 transition"
                     >Beranda</a
                   >
                 </li>
@@ -1059,16 +832,12 @@
                   >
                 </li>
                 <li>
-                  <a
-                    href="./index.html#partner"
-                    class="hover:text-red-500 transition"
+                  <a href="#partner" class="hover:text-red-500 transition"
                     >Partner</a
                   >
                 </li>
                 <li>
-                  <a
-                    href="./index.html#contact"
-                    class="hover:text-red-500 transition"
+                  <a href="#contact" class="hover:text-red-500 transition"
                     >Kontak</a
                   >
                 </li>
@@ -1146,6 +915,9 @@
     </footer>
 
     <script>
+      // ===========================
+      // BURGER MENU
+      // ===========================
       const burger = document.getElementById("burger");
       const menu = document.getElementById("mobileMenu");
 
@@ -1161,73 +933,24 @@
             menu.classList.add("opacity-100", "scale-y-100");
           });
         } else {
-          menu.classList.remove("opacity-100", "scale-y-100");
-          menu.classList.add("opacity-0", "scale-y-0");
-          setTimeout(() => {
-            menu.classList.add("hidden");
-            menu.classList.remove("bg-image");
-          }, 350);
+          closeMenu();
         }
       });
 
-      // Hero
-      const slides = ["slide1", "slide2", "slide3"];
-      let currentIndex = 0;
-
-      function showNextSlide() {
-        slides.forEach((id) => {
-          const el = document.getElementById(id);
-          el.classList.add("opacity-0");
-          el.classList.remove("opacity-100");
-        });
-        const nextIndex = (currentIndex + 1) % slides.length;
-        const nextSlide = document.getElementById(slides[nextIndex]);
-        nextSlide.classList.remove("opacity-0");
-        nextSlide.classList.add("opacity-100");
-        currentIndex = nextIndex;
-      }
-      setInterval(showNextSlide, 3000);
-
-      // Count Number
-      function animateCounter(id, target, duration) {
-        const counter = document.getElementById(id);
-        let start = 0;
-        const increment = target / (duration / 16); // kira2 60fps
-        const timer = setInterval(() => {
-          start += increment;
-          if (start >= target) {
-            start = target;
-            clearInterval(timer);
-          }
-          counter.textContent = Math.floor(start);
-        }, 16);
+      // Fungsi untuk menutup menu
+      function closeMenu() {
+        menu.classList.remove("opacity-100", "scale-y-100");
+        menu.classList.add("opacity-0", "scale-y-0");
+        burger.classList.remove("open");
+        setTimeout(() => {
+          menu.classList.add("hidden");
+          menu.classList.remove("bg-image");
+        }, 350);
       }
 
-      // Jalankan saat elemen muncul di layar
-      document.addEventListener("DOMContentLoaded", () => {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                animateCounter("experience-counter", 10, 500); // dari 0 ke 10 selama 0,5 detik
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.5 }
-        );
-
-        const target = document.querySelector("#experience-counter");
-        observer.observe(target);
-      });
-
-      /**
-       * setupDropdown
-       * @param {string} btnId     - id tombol yang diklik
-       * @param {string} dropdownId- id elemen dropdown (position: absolute)
-       * @param {string} arrowId   - id ikon panah (akan diberi/tidak kelas rotate-180)
-       * @param {string} spacerId  - id elemen spacer yang berada di DOM di bawah dropdown
-       */
+      // ===========================
+      // DROPDOWN MENU
+      // ===========================
       function setupDropdown(btnId, dropdownId, arrowId, spacerId) {
         const btn = document.getElementById(btnId);
         const dropdown = document.getElementById(dropdownId);
@@ -1236,11 +959,9 @@
 
         if (!btn || !dropdown || !spacer) return;
 
-        // helper untuk menutup dropdown ini
         const closeThis = () => {
-          if (!dropdown.classList.contains("hidden")) {
+          if (!dropdown.classList.contains("hidden"))
             dropdown.classList.add("hidden");
-          }
           if (arrow) arrow.classList.remove("rotate-180");
           spacer.style.height = "0px";
         };
@@ -1248,47 +969,35 @@
         btn.addEventListener("click", (e) => {
           e.stopPropagation();
 
-          // tutup dropdown lain sebelum buka yang baru
+          // Tutup dropdown lain
           document.querySelectorAll("[data-dropdown]").forEach((d) => {
-            if (d.id !== dropdownId) {
-              d.classList.add("hidden");
-            }
+            if (d.id !== dropdownId) d.classList.add("hidden");
           });
           document.querySelectorAll("[data-arrow]").forEach((a) => {
-            if (a.id !== arrowId) {
-              a.classList.remove("rotate-180");
-            }
+            if (a.id !== arrowId) a.classList.remove("rotate-180");
           });
           document.querySelectorAll("[data-spacer]").forEach((s) => {
-            if (s.id !== spacerId) {
-              s.style.height = "0px";
-            }
+            if (s.id !== spacerId) s.style.height = "0px";
           });
 
           const isHidden = dropdown.classList.contains("hidden");
 
           if (isHidden) {
-            // tunjukkan dropdown dan set spacer ke tinggi dropdown sebenarnya (px)
             dropdown.classList.remove("hidden");
             if (arrow) arrow.classList.add("rotate-180");
 
-            // force reflow supaya transition height bekerja lebih mulus
             const realHeight = dropdown.scrollHeight;
             spacer.style.height = realHeight + "px";
           } else {
-            // sembunyikan
             closeThis();
           }
         });
 
-        // klik di luar akan menutup dropdown ini
         document.addEventListener("click", (e) => {
-          if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+          if (!btn.contains(e.target) && !dropdown.contains(e.target))
             closeThis();
-          }
         });
 
-        // optional: jika window resize, update spacer height bila dropdown terbuka
         window.addEventListener("resize", () => {
           if (!dropdown.classList.contains("hidden")) {
             spacer.style.height = dropdown.scrollHeight + "px";
@@ -1296,7 +1005,7 @@
         });
       }
 
-      // INISIALISASI (sesuaikan id sesuai html-mu)
+      // Inisialisasi dropdown
       setupDropdown(
         "aboutBtn",
         "aboutDropdown",
@@ -1310,62 +1019,74 @@
         "dropdownSpacerBisnis"
       );
 
-      const mobileMenu = document.getElementById("mobileMenu");
-      const menuToggleBtn = document.getElementById("menu-toggle"); // tombol buka menu
-      const body = document.body;
+      // ===========================
+      // TAB NAVIGASI (Bisnis)
+      // ===========================
+      const buttons = document.querySelectorAll(".tab-btn");
+      const contents = document.querySelectorAll(".tab-content");
 
-      // === Fungsi buka/tutup menu ===
-      function openMenu() {
-        mobileMenu.classList.remove("hidden", "opacity-0", "scale-y-0");
-        mobileMenu.classList.add("opacity-100", "scale-y-100");
-        body.style.overflow = "hidden"; // cegah scroll background
+      function showTab(targetId) {
+        // Sembunyikan semua tab
+        contents.forEach((c) => c.classList.add("hidden"));
+        // Tampilkan tab yang dipilih
+        const target = document.getElementById(targetId);
+        if (target) target.classList.remove("hidden");
+
+        // Reset style tombol
+        buttons.forEach((b) => b.classList.remove("bg-red-600", "text-white"));
+        // Aktifkan tombol yang sesuai
+        const activeBtn = document.querySelector(`[data-target="${targetId}"]`);
+        if (activeBtn) activeBtn.classList.add("bg-red-600", "text-white");
       }
 
-      function closeMenu() {
-        mobileMenu.classList.add("opacity-0", "scale-y-0");
-        mobileMenu.classList.remove("opacity-100", "scale-y-100");
-        setTimeout(() => {
-          mobileMenu.classList.add("hidden");
-          body.style.overflow = "auto";
-        }, 300); // durasi sesuai transition-all duration-300
-      }
-
-      // === Tombol toggle (biasanya ikon hamburger) ===
-      if (menuToggleBtn) {
-        menuToggleBtn.addEventListener("click", () => {
-          if (mobileMenu.classList.contains("hidden")) {
-            openMenu();
-          } else {
-            closeMenu();
-          }
-        });
-      }
-
-      // === Klik link di dalam menu ===
-      document.querySelectorAll("#mobileMenu a").forEach((link) => {
-        link.addEventListener("click", (e) => {
-          const href = link.getAttribute("href");
-
-          // Tutup menu dengan animasi
-          closeMenu();
-
-          // Tunggu animasi selesai sebelum pindah/scroll
-          setTimeout(() => {
-            if (href.startsWith("#")) {
-              // Kalau target ada di halaman yang sama
-              const target = document.querySelector(href);
-              if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: "smooth" });
-              }
-            } else if (href.startsWith("./index.html#")) {
-              // Kalau dari halaman lain
-              e.preventDefault();
-              window.location.href = href;
-            }
-          }, 300);
+      // Klik tab manual
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = btn.getAttribute("data-target");
+          showTab(target);
+          // Simpan hash agar bisa reload ke tab itu
+          history.replaceState(null, "", "#" + target);
         });
       });
+
+      // ===========================
+      // AKTIFKAN TAB BERDASARKAN HASH (URL)
+      // ===========================
+      window.addEventListener("load", () => {
+        const hash = window.location.hash.substring(1); // contoh: "konstruksi"
+        const defaultTab = "konstruksi"; // kalau tidak ada hash, default buka konstruksi
+
+        if (hash) {
+          showTab(hash);
+          const el = document.getElementById(hash);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        } else {
+          showTab(defaultTab);
+        }
+      });
+
+      // ===========================
+      // TUTUP MENU & ARAHKAN KE TAB DINAMIS
+      // ===========================
+      document
+        .querySelectorAll('#mobileMenu a[href^="./business_wifa.html#"]')
+        .forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute("href").split("#")[1];
+
+            // Tutup nav menu (mobile)
+            closeMenu();
+
+            // Tunda sedikit agar animasi tutup selesai dulu
+            setTimeout(() => {
+              showTab(targetId);
+              history.replaceState(null, "", "#" + targetId);
+              const el = document.getElementById(targetId);
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }, 400);
+          });
+        });
     </script>
   </body>
 </html>
