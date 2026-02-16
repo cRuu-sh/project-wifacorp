@@ -1,449 +1,657 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wifa Corporation</title>
+    <link href="./src/css/output.css" rel="stylesheet" />
+    <link
+      rel="shortcut icon"
+      href="./src/img/wifa_icon.png"
+      type="image/x-icon"
+    />
+    <style>
+      /* ===== BURGER PRESISI & ANIMASI ===== */
+      .burger {
+        width: 32px;
+        height: 24px;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wifa Corporation</title>
-  <link href="./src/css/output.css" rel="stylesheet" />
-  <link rel="shortcut icon" href="./src/img/wifa_icon.png" type="image/x-icon" />
-  <style>
-    /* ===== BURGER PRESISI & ANIMASI ===== */
-    .burger {
-      width: 32px;
-      height: 24px;
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-    }
+      .burger-line {
+        position: absolute;
+        left: 50%;
+        width: 24px;
+        height: 2px;
+        background: white;
+        border-radius: 2px;
+        transform-origin: center;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(-50%);
+      }
 
-    .burger-line {
-      position: absolute;
-      left: 50%;
-      width: 24px;
-      height: 2px;
-      background: white;
-      border-radius: 2px;
-      transform-origin: center;
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      transform: translateX(-50%);
-    }
+      .line-top {
+        top: 4px;
+      }
 
-    .line-top {
-      top: 4px;
-    }
+      .line-middle {
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
 
-    .line-middle {
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
+      .line-bottom {
+        bottom: 4px;
+      }
 
-    .line-bottom {
-      bottom: 4px;
-    }
+      .burger.open .line-top {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
 
-    .burger.open .line-top {
-      top: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
+      .burger.open .line-middle {
+        opacity: 0;
+      }
 
-    .burger.open .line-middle {
-      opacity: 0;
-    }
+      .burger.open .line-bottom {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
 
-    .burger.open .line-bottom {
-      top: 50%;
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
+      /* ===== NAVBAR GARIS HORIZONTAL ===== */
+      .navbar-divider {
+        position: absolute;
+        top: 50%;
+        left: 47%;
+        width: calc(50% - 80px);
+        height: 1px;
+        background-color: #dc2626;
+        /* warna red-600 Tailwind */
+        transform: translateY(-50%);
+      }
 
-    /* ===== NAVBAR GARIS HORIZONTAL ===== */
-    .navbar-divider {
-      position: absolute;
-      top: 50%;
-      left: 47%;
-      width: calc(50% - 80px);
-      height: 1px;
-      background-color: #dc2626;
-      /* warna red-600 Tailwind */
-      transform: translateY(-50%);
-    }
+      /* ===== MOBILE MENU FULLSCREEN + BACKGROUND ===== */
+      #mobileMenu {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        background-color: rgba(255, 255, 255, 0.98);
+        transform-origin: top;
+        transition: all 0.35s ease;
+      }
 
-    /* ===== MOBILE MENU FULLSCREEN + BACKGROUND ===== */
-    #mobileMenu {
-      position: fixed;
-      inset: 0;
-      z-index: 40;
-      background-color: rgba(255, 255, 255, 0.98);
-      transform-origin: top;
-      transition: all 0.35s ease;
-    }
+      #mobileMenu.bg-image {
+        background-image: url("./src/img/bg_nav.png");
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+      }
 
-    #mobileMenu.bg-image {
-      background-image: url("./src/img/bg_nav.png");
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-    }
+      #mobileMenu.bg-image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 0;
+      }
 
-    #mobileMenu.bg-image::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 0;
-    }
+      #mobileMenu .mobile-content {
+        position: relative;
+        z-index: 10;
+      }
+    </style>
+  </head>
 
-    #mobileMenu .mobile-content {
-      position: relative;
-      z-index: 10;
-    }
-  </style>
-</head>
+  <body class="bg-gray-100">
+    <!-- Navbar Menu -->
+    <nav
+      id="mainNav"
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex-shrink-0 flex items-center">
+            <img
+              src="./src/img/logo_wifa.png"
+              alt="Logo Wifa"
+              class="h-24 mt-6 w-auto object-contain"
+            />
+            <img
+              src="./src/img/logo_wifa.png"
+              alt="Logo Wifa"
+              class="h-24 mt-6 w-auto object-contain"
+            />
+          </div>
 
-<body class="bg-gray-100">
-  <!-- Navbar Menu -->
-  <nav id="mainNav" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="flex items-center justify-between h-16">
-        <div class="flex-shrink-0 flex items-center">
-          <img src="./src/img/logo_wifa.png" alt="Logo Wifa" class="h-24 mt-6 w-auto object-contain" />
-        </div>
+          <!-- Garis horizontal di tengah ke kanan -->
+          <div class="navbar-divider hidden sm:block"></div>
 
-        <!-- Garis horizontal di tengah ke kanan -->
-        <div class="navbar-divider hidden sm:block"></div>
-
-        <div class="flex items-center space-x-4">
-          <button class="text-white hover:scale-110 transition-transform duration-200" aria-label="search">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M21 21l-4.35-4.35M16.65 10.65a6 6 0 11-12 0 6 6 0 0112 0z" />
-            </svg>
-          </button>
-
-          <!-- BURGER -->
-          <button id="burger" aria-controls="mobileMenu" aria-expanded="false" class="burger focus:outline-none">
-            <span class="burger-line line-top"></span>
-            <span class="burger-line line-middle"></span>
-            <span class="burger-line line-bottom"></span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu"
-    class="hidden opacity-0 scale-y-0 text-gray-800 transform transition-all duration-300 origin-top fixed inset-0 bg-[#111]/90 backdrop-blur-md z-40 overflow-y-auto">
-    <div
-      class="mobile-content grid grid-cols-1 md:grid-cols-2 min-h-screen px-6 py-12 md:py-24 gap-12 md:gap-16 overflow-y-auto md:max-h-[90vh]">
-      <!-- Kolom Menu -->
-      <div
-        class="flex flex-col items-center md:items-start justify-center space-y-6 text-center md:text-left relative z-10">
-        <div class="w-full flex flex-col items-center md:items-start">
-          <p class="text-3xl font-semibold text-white">Menu</p>
-          <div class="h-[2px] bg-red-600 mt-6 w-[50vw] md:w-1/2"></div>
-        </div>
-
-        <div class="space-y-1 text-white text-lg relative flex flex-col justify-center">
-          <!-- About Us -->
-          <div class="relative md:ml-0 ml-2">
-            <button id="aboutBtn"
-              class="inline-flex items-center gap-2 text-3xl font-light text-white hover:text-red-500 transition">
-              <span>About Us</span>
-              <svg id="arrowIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <div class="flex items-center space-x-4">
+            <button
+              class="text-white hover:scale-110 transition-transform duration-200"
+              aria-label="search"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-4.35-4.35M16.65 10.65a6 6 0 11-12 0 6 6 0 0112 0z"
+                />
               </svg>
             </button>
 
-            <!-- Dropdown -->
-            <div id="aboutDropdown"
-              class="hidden absolute lg:ml-4 mt-1 space-y-2 text-gray-200 w-40 transition-all duration-300 max-h-[50vh] overflow-y-auto">
-              <a href="./about_us.html#our-story" class="block text-2xl font-light hover:text-red-500 transition">Our
-                Story</a>
-              <a href="./about_us.html#visi-misi" class="block font-light text-2xl hover:text-red-500 transition">Visi
-                Misi</a>
-              <a href="./about_us.html#value" class="block font-light text-2xl hover:text-red-500 transition">Value</a>
-              <a href="./about_us.html#team" class="block font-light text-2xl hover:text-red-500 transition">Team</a>
-              <!-- <a
+            <!-- BURGER -->
+            <button
+              id="burger"
+              aria-controls="mobileMenu"
+              aria-expanded="false"
+              class="burger focus:outline-none"
+            >
+              <span class="burger-line line-top"></span>
+              <span class="burger-line line-middle"></span>
+              <span class="burger-line line-bottom"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div
+      id="mobileMenu"
+      class="hidden opacity-0 scale-y-0 text-gray-800 transform transition-all duration-300 origin-top fixed inset-0 bg-[#111]/90 backdrop-blur-md z-40 overflow-y-auto"
+    >
+      <div
+        class="mobile-content grid grid-cols-1 md:grid-cols-2 min-h-screen px-6 py-12 md:py-24 gap-12 md:gap-16 overflow-y-auto md:max-h-[90vh]"
+      >
+        <!-- Kolom Menu -->
+        <div
+          class="flex flex-col items-center md:items-start justify-center space-y-6 text-center md:text-left relative z-10"
+        >
+          <div class="w-full flex flex-col items-center md:items-start">
+            <p class="text-3xl font-semibold text-white">Menu</p>
+            <div class="h-[2px] bg-red-600 mt-6 w-[50vw] md:w-1/2"></div>
+          </div>
+
+          <div
+            class="space-y-1 text-white text-lg relative flex flex-col justify-center"
+          >
+            <!-- About Us -->
+            <div class="relative md:ml-0 ml-2">
+              <button
+                id="aboutBtn"
+                class="inline-flex items-center gap-2 text-3xl font-light text-white hover:text-red-500 transition"
+              >
+                <span>About Us</span>
+                <svg
+                  id="arrowIcon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 transition-transform duration-300"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              <!-- Dropdown -->
+              <div
+                id="aboutDropdown"
+                class="hidden absolute lg:ml-4 mt-1 space-y-2 text-gray-200 w-40 transition-all duration-300 max-h-[50vh] overflow-y-auto"
+              >
+                <a
+                  href="./about_us.html#our-story"
+                  class="block text-2xl font-light hover:text-red-500 transition"
+                  >Our Story</a
+                >
+                <a
+                  href="./about_us.html#visi-misi"
+                  class="block font-light text-2xl hover:text-red-500 transition"
+                  >Visi Misi</a
+                >
+                <a
+                  href="./about_us.html#value"
+                  class="block font-light text-2xl hover:text-red-500 transition"
+                  >Value</a
+                >
+                <a
+                  href="./about_us.html#team"
+                  class="block font-light text-2xl hover:text-red-500 transition"
+                  >Team</a
+                >
+                <!-- <a
                   href="./about_us.html#awards"
                   class="block font-light text-2xl hover:text-red-500 transition"
                   >Awards</a
                 > -->
+              </div>
             </div>
-          </div>
 
-          <div id="dropdownSpacerAbout" class="h-0 transition-all duration-300"></div>
+            <div
+              id="dropdownSpacerAbout"
+              class="h-0 transition-all duration-300"
+            ></div>
 
-          <!-- Bisnis Wifa -->
-          <div class="relative md:ml-0 ml-2">
-            <button id="bisnisBtn"
-              class="flex items-center gap-2 text-3xl font-light text-white hover:text-red-500 transition">
-              <span>Bisnis Wifa</span>
-              <svg id="arrowIconBisnis" xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+            <!-- Bisnis Wifa -->
+            <div class="relative md:ml-0 ml-2">
+              <button
+                id="bisnisBtn"
+                class="flex items-center gap-2 text-3xl font-light text-white hover:text-red-500 transition"
+              >
+                <span>Bisnis Wifa</span>
+                <svg
+                  id="arrowIconBisnis"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 transition-transform duration-300"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
 
-            <!-- Dropdown -->
-            <div id="bisnisDropdown"
-              class="hidden absolute lg:ml-4 mt-1 space-y-2 text-gray-200 w-40 transition-all duration-300 max-h-[50vh] overflow-y-auto">
-              <a href="./business_wifa.html#konstruksi"
-                class="block text-2xl font-light hover:text-red-500 transition">Konstruksi</a>
-              <a href="./business_wifa.html#manufaktur"
-                class="block text-2xl font-light hover:text-red-500 transition">Manufaktur</a>
-              <a href="./business_wifa.html#investmen"
-                class="block text-2xl font-light hover:text-red-500 transition">Investmen</a>
-              <a href="./business_wifa.html#rumahsakit"
-                class="block text-2xl font-light hover:text-red-500 transition">Rumah Sakit</a>
+              <!-- Dropdown -->
+              <div
+                id="bisnisDropdown"
+                class="hidden absolute lg:ml-4 mt-1 space-y-2 text-gray-200 w-40 transition-all duration-300 max-h-[50vh] overflow-y-auto"
+              >
+                <a
+                  href="./business_wifa.html#konstruksi"
+                  class="block text-2xl font-light hover:text-red-500 transition"
+                  >Konstruksi</a
+                >
+                <a
+                  href="./business_wifa.html#manufaktur"
+                  class="block text-2xl font-light hover:text-red-500 transition"
+                  >Manufaktur</a
+                >
+                <a
+                  href="./business_wifa.html#investmen"
+                  class="block text-2xl font-light hover:text-red-500 transition"
+                  >Investmen</a
+                >
+                <a
+                  href="./business_wifa.html#rumahsakit"
+                  class="block text-2xl font-light hover:text-red-500 transition"
+                  >Rumah Sakit</a
+                >
+              </div>
             </div>
-          </div>
 
-          <div id="dropdownSpacerBisnis" class="h-0 transition-all duration-300"></div>
+            <div
+              id="dropdownSpacerBisnis"
+              class="h-0 transition-all duration-300"
+            ></div>
 
-          <!-- Menu lain -->
-          <a href="./index.html#partner" class="block text-3xl font-light text-white hover:text-red-500 transition">
-            Partner
-          </a>
+            <!-- Menu lain -->
+            <a
+              href="./index.html#partner"
+              class="block text-3xl font-light text-white hover:text-red-500 transition"
+            >
+              Partner
+            </a>
 
-          <a href="./index.html#contact" class="block text-3xl font-light text-white hover:text-red-500 transition">
-            Contact Us
-          </a>
-        </div>
-      </div>
-
-      <!-- Kolom Kontak -->
-      <div class="flex flex-col items-center md:items-start justify-center text-center md:text-left space-y-6 sm:mt-8">
-        <div class="w-full flex flex-col items-center md:items-start">
-          <h3 class="text-3xl font-semibold text-white">Get In Touch</h3>
-          <div class="h-[2px] bg-red-600 mt-6 w-[50vw] md:w-1/2"></div>
-        </div>
-
-        <!-- Informasi kontak -->
-        <div class="space-y-3 text-white text-lg">
-          <!-- Email -->
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-red-600">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6">
-                <path
-                  d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
-              </svg>
-            </div>
-            <p class="text-xl font-light hover:text-red-500 transition">
-              info@example.com
-            </p>
-          </div>
-
-          <!-- WhatsApp -->
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-red-600">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" class="w-6 h-6">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12a9.94 9.94 0 001.39 5.12L2 22l5.03-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 17.93c-1.6 0-3.13-.47-4.46-1.36l-.32-.21-2.98.78.8-2.88-.22-.33A7.94 7.94 0 014 12c0-4.42 3.58-8 8-8s8 3.58 8 8-3.58 7.93-8 7.93zm4.26-5.38c-.23-.12-1.36-.67-1.57-.75-.21-.08-.36-.12-.51.12s-.59.74-.72.89c-.13.15-.27.17-.5.06a6.52 6.52 0 01-1.93-1.19 7.43 7.43 0 01-1.27-1.59c-.13-.22-.01-.35.1-.47.1-.1.23-.27.35-.4.12-.13.15-.23.23-.38.08-.15.03-.29-.01-.41-.04-.12-.52-1.24-.72-1.7-.19-.46-.4-.4-.55-.4h-.47c-.15 0-.41.06-.63.29-.22.23-.83.79-.83 1.91s.85 2.21.97 2.36c.12.15 1.66 2.55 4.02 3.56.57.25 1.02.39 1.38.5.58.18 1.12.15 1.55.09.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.05.15-1.16-.05-.11-.22-.17-.47-.29z" />
-              </svg>
-            </div>
-            <p class="text-xl font-light hover:text-red-500 transition">
-              +62 812-3456-7890
-            </p>
-          </div>
-
-          <!-- Telepon Rumah -->
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-red-600">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6">
-                <path
-                  d="M6.62 10.79a15.05 15.05 0 006.59 6.59l1.65-1.65a1 1 0 011.06-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h2.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.24 1.06l-1.65 1.65z" />
-              </svg>
-            </div>
-            <p class="text-xl font-light hover:text-red-500 transition">
-              (0274) 123456
-            </p>
+            <a
+              href="./index.html#contact"
+              class="block text-3xl font-light text-white hover:text-red-500 transition"
+            >
+              Contact Us
+            </a>
           </div>
         </div>
 
-        <!-- Sosial Media -->
-        <div class="flex items-center space-x-6 mt-4">
-          <a href="#" class="text-white hover:text-red-500 transition" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm5.75.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
-            </svg>
-          </a>
+        <!-- Kolom Kontak -->
+        <div
+          class="flex flex-col items-center md:items-start justify-center text-center md:text-left space-y-6 sm:mt-8"
+        >
+          <div class="w-full flex flex-col items-center md:items-start">
+            <h3 class="text-3xl font-semibold text-white">Get In Touch</h3>
+            <div class="h-[2px] bg-red-600 mt-6 w-[50vw] md:w-1/2"></div>
+          </div>
 
-          <a href="#" class="text-white hover:text-red-500 transition" aria-label="YouTube">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M19.6 3.2H4.4A4.4 4.4 0 0 0 0 7.6v8.8a4.4 4.4 0 0 0 4.4 4.4h15.2a4.4 4.4 0 0 0 4.4-4.4V7.6a4.4 4.4 0 0 0-4.4-4.4zM9.75 15.02V8.98l6.13 3.02-6.13 3.02z" />
-            </svg>
-          </a>
+          <!-- Informasi kontak -->
+          <div class="space-y-3 text-white text-lg">
+            <!-- Email -->
+            <div class="flex items-center gap-3">
+              <div
+                class="w-8 h-8 flex items-center justify-center rounded-full bg-red-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="white"
+                  class="w-6 h-6"
+                >
+                  <path
+                    d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"
+                  />
+                </svg>
+              </div>
+              <p class="text-xl font-light hover:text-red-500 transition">
+                info@example.com
+              </p>
+            </div>
 
-          <a href="#" class="text-white hover:text-red-500 transition" aria-label="X (Twitter)">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M18.244 2.25h3.308l-7.227 8.26 8.505 11.24h-6.675l-5.22-6.824-5.973 6.824H1.656l7.727-8.823L1.15 2.25h6.844l4.713 6.19 5.537-6.19zM17.1 19.555h1.832L7.045 4.39H5.078l12.022 15.165z" />
-            </svg>
-          </a>
+            <!-- WhatsApp -->
+            <div class="flex items-center gap-3">
+              <div
+                class="w-8 h-8 flex items-center justify-center rounded-full bg-red-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="white"
+                  viewBox="0 0 24 24"
+                  class="w-6 h-6"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12a9.94 9.94 0 001.39 5.12L2 22l5.03-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 17.93c-1.6 0-3.13-.47-4.46-1.36l-.32-.21-2.98.78.8-2.88-.22-.33A7.94 7.94 0 014 12c0-4.42 3.58-8 8-8s8 3.58 8 8-3.58 7.93-8 7.93zm4.26-5.38c-.23-.12-1.36-.67-1.57-.75-.21-.08-.36-.12-.51.12s-.59.74-.72.89c-.13.15-.27.17-.5.06a6.52 6.52 0 01-1.93-1.19 7.43 7.43 0 01-1.27-1.59c-.13-.22-.01-.35.1-.47.1-.1.23-.27.35-.4.12-.13.15-.23.23-.38.08-.15.03-.29-.01-.41-.04-.12-.52-1.24-.72-1.7-.19-.46-.4-.4-.55-.4h-.47c-.15 0-.41.06-.63.29-.22.23-.83.79-.83 1.91s.85 2.21.97 2.36c.12.15 1.66 2.55 4.02 3.56.57.25 1.02.39 1.38.5.58.18 1.12.15 1.55.09.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.05.15-1.16-.05-.11-.22-.17-.47-.29z"
+                  />
+                </svg>
+              </div>
+              <p class="text-xl font-light hover:text-red-500 transition">
+                +62 812-3456-7890
+              </p>
+            </div>
+
+            <!-- Telepon Rumah -->
+            <div class="flex items-center gap-3">
+              <div
+                class="w-8 h-8 flex items-center justify-center rounded-full bg-red-600"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="white"
+                  class="w-6 h-6"
+                >
+                  <path
+                    d="M6.62 10.79a15.05 15.05 0 006.59 6.59l1.65-1.65a1 1 0 011.06-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h2.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.24 1.06l-1.65 1.65z"
+                  />
+                </svg>
+              </div>
+              <p class="text-xl font-light hover:text-red-500 transition">
+                (0274) 123456
+              </p>
+            </div>
+          </div>
+
+          <!-- Sosial Media -->
+          <div class="flex items-center space-x-6 mt-4">
+            <a
+              href="#"
+              class="text-white hover:text-red-500 transition"
+              aria-label="Instagram"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm5.75.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"
+                />
+              </svg>
+            </a>
+
+            <a
+              href="#"
+              class="text-white hover:text-red-500 transition"
+              aria-label="YouTube"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19.6 3.2H4.4A4.4 4.4 0 0 0 0 7.6v8.8a4.4 4.4 0 0 0 4.4 4.4h15.2a4.4 4.4 0 0 0 4.4-4.4V7.6a4.4 4.4 0 0 0-4.4-4.4zM9.75 15.02V8.98l6.13 3.02-6.13 3.02z"
+                />
+              </svg>
+            </a>
+
+            <a
+              href="#"
+              class="text-white hover:text-red-500 transition"
+              aria-label="X (Twitter)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.505 11.24h-6.675l-5.22-6.824-5.973 6.824H1.656l7.727-8.823L1.15 2.25h6.844l4.713 6.19 5.537-6.19zM17.1 19.555h1.832L7.045 4.39H5.078l12.022 15.165z"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ABOUT US SECTION -->
-  <section id="about" class="relative w-full overflow-hidden bg-white">
-    <!-- BACKGROUND FIXED -->
-    <div class="relative w-full min-h-[450px] md:h-[80vh] bg-cover bg-center bg-fixed" style="
-          background-image: linear-gradient(
+    <!-- ABOUT US SECTION -->
+    <section id="about" class="relative w-full overflow-hidden bg-white">
+      <!-- BACKGROUND FIXED -->
+      <div
+        class="relative w-full min-h-[450px] md:h-[80vh] bg-cover bg-center bg-fixed"
+        style="
+          background-image:
+            linear-gradient(
               180deg,
               rgba(0, 0, 0, 0.45) 0%,
               rgba(0, 0, 0, 0.3) 30%,
               rgba(255, 255, 255, 0) 100%
             ),
-            url('https://adhi.co.id/wp-content/uploads/2024/06/ADHI-Tower.png');
-        ">
-      <!-- Overlay Hitam Transparan -->
-      <div class="absolute inset-0 bg-black/30"></div>
+            url(&quot;https://adhi.co.id/wp-content/uploads/2024/06/ADHI-Tower.png&quot;);
+        "
+      >
+        <!-- Overlay Hitam Transparan -->
+        <div class="absolute inset-0 bg-black/30"></div>
 
-      <!-- Teks di Atas Gambar -->
-      <div class="relative z-10 flex flex-col items-center justify-center text-center text-white py-24 px-6">
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-wide drop-shadow-lg">
-          TENTANG WIFA
-        </h1>
-        <p class="text-lg md:text-2xl mt-3 font-medium italic tracking-widest text-gray-200">
-          Beyond Construction
-        </p>
+        <!-- Teks di Atas Gambar -->
+        <div
+          class="relative z-10 flex flex-col items-center justify-center text-center text-white py-24 px-6"
+        >
+          <h1
+            class="text-4xl md:text-6xl font-extrabold tracking-wide drop-shadow-lg"
+          >
+            TENTANG WIFA
+          </h1>
+          <p
+            class="text-lg md:text-2xl mt-3 font-medium italic tracking-widest text-gray-200"
+          >
+            Beyond Construction
+          </p>
+        </div>
       </div>
-    </div>
 
-    <!-- KONTEN PUTIH -->
-    <div class="relative z-20 -mt-24 md:-mt-32 px-6 flex justify-center">
-      <div
-        class="bg-white border border-gray-200 rounded-3xl shadow-xl w-[95%] md:w-[75%] max-w-6xl p-8 md:p-10 relative overflow-hidden">
-        <!-- Divider merah mengikuti lebar box putih -->
-        <div class="absolute top-0 left-0 w-full h-2 bg-red-600 rounded-t-3xl"></div>
-        <!-- Tombol Navigasi -->
-        <div class="flex flex-wrap justify-center gap-3 mb-10 text-white">
-          <button
-            class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
-            data-target="our-story">
-            Our Story
-          </button>
-          <button
-            class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
-            data-target="visi-misi">
-            Visi & Misi
-          </button>
-          <button
-            class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
-            data-target="value">
-            Value
-          </button>
-          <button
-            class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
-            data-target="team">
-            Team
-          </button>
-          <!-- <button
+      <!-- KONTEN PUTIH -->
+      <div class="relative z-20 -mt-24 md:-mt-32 px-6 flex justify-center">
+        <div
+          class="bg-white border border-gray-200 rounded-3xl shadow-xl w-[95%] md:w-[75%] max-w-6xl p-8 md:p-10 relative overflow-hidden"
+        >
+          <!-- Divider merah mengikuti lebar box putih -->
+          <div
+            class="absolute top-0 left-0 w-full h-2 bg-red-600 rounded-t-3xl"
+          ></div>
+          <!-- Tombol Navigasi -->
+          <div class="flex flex-wrap justify-center gap-3 mb-10 text-white">
+            <button
+              class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
+              data-target="our-story"
+            >
+              Our Story
+            </button>
+            <button
+              class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
+              data-target="visi-misi"
+            >
+              Visi & Misi
+            </button>
+            <button
+              class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
+              data-target="value"
+            >
+              Value
+            </button>
+            <button
+              class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
+              data-target="team"
+            >
+              Team
+            </button>
+            <!-- <button
               class="tab-btn bg-gray-700 text-white font-semibold px-6 py-2 rounded-full hover:bg-red-600 hover:text-white transition"
               data-target="awards"
             >
               Awards
             </button> -->
-        </div>
-
-        <!-- Konten Dinamis -->
-        <div id="about-content" class="text-center">
-          <!-- OUR STORY -->
-          <div id="our-story" class="tab-content">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Our Story</h2>
-            <p class="text-gray-700 leading-relaxed">
-              PT Wifa Corporation Tbk berawal dari visi untuk menghadirkan
-              solusi konstruksi inovatif dan berkelanjutan. Kami tumbuh dari
-              komitmen terhadap kualitas, profesionalisme, dan nilai
-              kemanusiaan dalam setiap proyek yang kami jalankan.
-            </p>
           </div>
 
-          <!-- VISI & MISI -->
-          <div id="visi-misi" class="tab-content hidden">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">
-              Visi dan Misi
-            </h2>
-            <div class="space-y-6 text-left">
-              <div class="flex items-start gap-4">
-                <div class="bg-red-600 text-white rounded-2xl p-4 flex items-center justify-center w-14 h-14 shadow-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-semibold mb-2 text-gray-800">
-                    VISI
-                  </h3>
-                  <p class="text-gray-700 leading-relaxed">
-                    Menjadi korporasi inovatif dan berbudaya unggul untuk
-                    pertumbuhan berkelanjutan.
-                  </p>
-                </div>
-              </div>
+          <!-- Konten Dinamis -->
+          <div id="about-content" class="text-center">
+            <!-- OUR STORY -->
+            <div id="our-story" class="tab-content">
+              <h2 class="text-2xl font-bold mb-4 text-gray-800">Our Story</h2>
+              <p class="text-gray-700 leading-relaxed">
+                PT Wifa Corporation Tbk berawal dari visi untuk menghadirkan
+                solusi konstruksi inovatif dan berkelanjutan. Kami tumbuh dari
+                komitmen terhadap kualitas, profesionalisme, dan nilai
+                kemanusiaan dalam setiap proyek yang kami jalankan.
+              </p>
+            </div>
 
-              <div class="flex items-start gap-4">
-                <div class="bg-red-600 text-white rounded-2xl flex items-center justify-center w-14 h-14 shadow-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7"
-                    style="margin-top: 1px">
-                    <circle cx="12" cy="12" r="9" stroke="currentColor"></circle>
-                    <path d="M12 8v8M8 12h8" stroke="currentColor"></path>
-                  </svg>
+            <!-- VISI & MISI -->
+            <div id="visi-misi" class="tab-content hidden">
+              <h2 class="text-2xl font-bold mb-4 text-gray-800">
+                Visi dan Misi
+              </h2>
+              <div class="space-y-6 text-left">
+                <div class="flex items-start gap-4">
+                  <div
+                    class="bg-red-600 text-white rounded-2xl p-4 flex items-center justify-center w-14 h-14 shadow-md"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-7 h-7"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
+                      VISI
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed">
+                      Menjadi korporasi inovatif dan berbudaya unggul untuk
+                      pertumbuhan berkelanjutan.
+                    </p>
+                  </div>
                 </div>
 
-                <div>
-                  <h3 class="text-lg font-semibold mb-2 text-gray-800">
-                    MISI
-                  </h3>
-                  <ul class="list-disc ml-5 text-gray-700 leading-relaxed space-y-1">
-                    <li>
-                      Mengembangkan kompetensi unggul di bidang konstruksi dan
-                      infrastruktur.
-                    </li>
-                    <li>
-                      Menjaga integritas, profesionalisme, dan tanggung jawab
-                      sosial.
-                    </li>
-                    <li>
-                      Mendorong inovasi berkelanjutan demi kemajuan
-                      masyarakat.
-                    </li>
-                  </ul>
+                <div class="flex items-start gap-4">
+                  <div
+                    class="bg-red-600 text-white rounded-2xl flex items-center justify-center w-14 h-14 shadow-md"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-7 h-7"
+                      style="margin-top: 1px"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="9"
+                        stroke="currentColor"
+                      ></circle>
+                      <path d="M12 8v8M8 12h8" stroke="currentColor"></path>
+                    </svg>
+                  </div>
+
+                  <div>
+                    <h3 class="text-lg font-semibold mb-2 text-gray-800">
+                      MISI
+                    </h3>
+                    <ul
+                      class="list-disc ml-5 text-gray-700 leading-relaxed space-y-1"
+                    >
+                      <li>
+                        Mengembangkan kompetensi unggul di bidang konstruksi dan
+                        infrastruktur.
+                      </li>
+                      <li>
+                        Menjaga integritas, profesionalisme, dan tanggung jawab
+                        sosial.
+                      </li>
+                      <li>
+                        Mendorong inovasi berkelanjutan demi kemajuan
+                        masyarakat.
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- VALUE -->
-          <div id="value" class="tab-content hidden">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">
-              Value Perusahaan
-            </h2>
-            <p class="text-gray-700 leading-relaxed">
-              Integritas, kolaborasi, dan inovasi menjadi nilai utama kami
-              dalam menciptakan hasil terbaik bagi klien dan masyarakat.
-            </p>
-          </div>
+            <!-- VALUE -->
+            <div id="value" class="tab-content hidden">
+              <h2 class="text-2xl font-bold mb-4 text-gray-800">
+                Value Perusahaan
+              </h2>
+              <p class="text-gray-700 leading-relaxed">
+                Integritas, kolaborasi, dan inovasi menjadi nilai utama kami
+                dalam menciptakan hasil terbaik bagi klien dan masyarakat.
+              </p>
+            </div>
 
-          <!-- TEAM -->
-          <div id="team" class="tab-content hidden">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Tim Kami</h2>
-            <p class="text-gray-700 leading-relaxed">
-              Kami terdiri dari para profesional berpengalaman yang
-              berdedikasi menghadirkan proyek unggulan dari setiap bidang
-              konstruksi.
-            </p>
-          </div>
+            <!-- TEAM -->
+            <div id="team" class="tab-content hidden">
+              <h2 class="text-2xl font-bold mb-4 text-gray-800">Tim Kami</h2>
+              <p class="text-gray-700 leading-relaxed">
+                Kami terdiri dari para profesional berpengalaman yang
+                berdedikasi menghadirkan proyek unggulan dari setiap bidang
+                konstruksi.
+              </p>
+            </div>
 
-          <!-- AWARDS
+            <!-- AWARDS
             <div id="awards" class="tab-content hidden">
               <h2 class="text-2xl font-bold mb-4 text-gray-800">Penghargaan</h2>
               <p class="text-gray-700 leading-relaxed">
@@ -451,370 +659,482 @@
                 dan komitmen pada pembangunan berkelanjutan.
               </p>
             </div> -->
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Section partner -->
-  <section id="partner" class="relative bg-white py-20">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 text-center">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-        Partner Kami
-      </h2>
-      <div class="h-[2px] bg-red-600 w-100 mx-auto mb-10"></div>
-      <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-12">
-        Kami bangga bekerja sama dengan berbagai perusahaan dan organisasi
-        ternama yang turut mendukung kami dalam memberikan layanan terbaik dan
-        berkelanjutan bagi pelanggan kami.
-      </p>
-
-      <!-- Baris pertama: 3 logo -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 items-center justify-center mb-10">
-        <div class="transition-transform duration-300 transform hover:scale-110">
-          <img src="./src/img/partner_1.png" alt="Partner 1" class="mx-auto h-20 object-contain" />
-        </div>
-        <div class="transition-transform duration-300 transform hover:scale-110">
-          <img src="./src/img/partner_2.png" alt="Partner 2" class="mx-auto h-20 object-contain" />
-        </div>
-        <div class="transition-transform duration-300 transform hover:scale-110">
-          <img src="./src/img/partner_3.png" alt="Partner 3" class="mx-auto h-20 object-contain" />
-        </div>
-      </div>
-
-      <!-- Baris kedua: 2 logo di tengah -->
-      <div class="flex flex-wrap justify-center gap-10 items-center">
-        <div class="transition-transform duration-300 transform hover:scale-110">
-          <img src="./src/img/partner_4.png" alt="Partner 4" class="mx-auto h-20 object-contain" />
-        </div>
-        <div class="transition-transform duration-300 transform hover:scale-110">
-          <img src="./src/img/partner_5.png" alt="Partner 5" class="mx-auto h-20 object-contain" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="relative bg-gradient-to-r from-red-700 to-red-600 py-24">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-      <!-- Judul -->
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
-          Hubungi Kami
+    <!-- Section partner -->
+    <section id="partner" class="relative bg-white py-20">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Partner Kami
         </h2>
-        <div class="h-[2px] bg-white w-24 mx-auto mb-6"></div>
-        <p class="text-gray-100 text-lg max-w-2xl mx-auto">
-          Kami siap membantu Anda! Silakan hubungi kami melalui formulir di
-          bawah ini atau melalui kontak langsung yang tersedia.
+        <div class="h-[2px] bg-red-600 w-100 mx-auto mb-10"></div>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-12">
+          Kami bangga bekerja sama dengan berbagai perusahaan dan organisasi
+          ternama yang turut mendukung kami dalam memberikan layanan terbaik dan
+          berkelanjutan bagi pelanggan kami.
         </p>
-      </div>
 
-      <div class="grid md:grid-cols-2 gap-12 items-start">
-        <!-- Formulir Kontak -->
-        <div class="bg-white rounded-2xl shadow-lg p-8 transform hover:-translate-y-1 transition duration-300">
-          <form class="space-y-6">
-            <div>
-              <label for="name" class="block text-gray-800 font-semibold mb-2">Nama Lengkap</label>
-              <input type="text" id="name" placeholder="Masukkan nama Anda"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none" />
-            </div>
-
-            <div>
-              <label for="email" class="block text-gray-800 font-semibold mb-2">Email</label>
-              <input type="email" id="email" placeholder="Masukkan email Anda"
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none" />
-            </div>
-
-            <div>
-              <label for="message" class="block text-gray-800 font-semibold mb-2">Pesan</label>
-              <textarea id="message" rows="5" placeholder="Tulis pesan Anda..."
-                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none resize-none"></textarea>
-            </div>
-
-            <button type="submit"
-              class="w-full bg-red-600 text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition duration-300 shadow-md">
-              Kirim Pesan
-            </button>
-          </form>
-        </div>
-
-        <!-- Info Kontak -->
-        <div class="text-white space-y-8">
-          <div>
-            <h3 class="text-3xl font-bold mb-3">Kontak Langsung</h3>
-            <p class="text-gray-100 text-lg">
-              Anda juga bisa langsung menghubungi kami melalui detail di bawah
-              ini.
-            </p>
+        <!-- Baris pertama: 3 logo -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-3 gap-10 items-center justify-center mb-10"
+        >
+          <div
+            class="transition-transform duration-300 transform hover:scale-110"
+          >
+            <img
+              src="./src/img/partner_1.png"
+              alt="Partner 1"
+              class="mx-auto h-20 object-contain"
+            />
           </div>
-
-          <div class="space-y-4 text-lg">
-            <p class="flex items-center gap-3">
-              📍 <span>Jalan Fatmawati No. 60A, Pangkal Pinang</span>
-            </p>
-            <p class="flex items-center gap-3">
-              📧 <span>info@wifacorp.co.id</span>
-            </p>
-            <p class="flex items-center gap-3">
-              ☎️ <span>(0274) 123456</span>
-            </p>
-            <p class="flex items-center gap-3">
-              💬 <span>+62 812-3456-7890</span>
-            </p>
+          <div
+            class="transition-transform duration-300 transform hover:scale-110"
+          >
+            <img
+              src="./src/img/partner_2.png"
+              alt="Partner 2"
+              class="mx-auto h-20 object-contain"
+            />
+          </div>
+          <div
+            class="transition-transform duration-300 transform hover:scale-110"
+          >
+            <img
+              src="./src/img/partner_3.png"
+              alt="Partner 3"
+              class="mx-auto h-20 object-contain"
+            />
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    <!-- Bagian atas: putih -->
-    <div class="bg-white text-gray-800 pt-16 pb-10">
+        <!-- Baris kedua: 2 logo di tengah -->
+        <div class="flex flex-wrap justify-center gap-10 items-center">
+          <div
+            class="transition-transform duration-300 transform hover:scale-110"
+          >
+            <img
+              src="./src/img/partner_4.png"
+              alt="Partner 4"
+              class="mx-auto h-20 object-contain"
+            />
+          </div>
+          <div
+            class="transition-transform duration-300 transform hover:scale-110"
+          >
+            <img
+              src="./src/img/partner_5.png"
+              alt="Partner 5"
+              class="mx-auto h-20 object-contain"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="relative bg-gradient-to-r from-red-700 to-red-600 py-24"
+    >
       <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 mb-12">
-          <!-- Kolom 1: Logo & Deskripsi -->
-          <div>
-            <div class="flex items-center gap-3 mb-4">
-              <img src="./src/img/logo_wifa.png" alt="Logo" class="h-12 w-auto" />
-              <span class="text-2xl font-bold tracking-wide text-red-700">WIFA</span>
+        <!-- Judul -->
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            Hubungi Kami
+          </h2>
+          <div class="h-[2px] bg-white w-24 mx-auto mb-6"></div>
+          <p class="text-gray-100 text-lg max-w-2xl mx-auto">
+            Kami siap membantu Anda! Silakan hubungi kami melalui formulir di
+            bawah ini atau melalui kontak langsung yang tersedia.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+          <!-- Formulir Kontak -->
+          <div
+            class="bg-white rounded-2xl shadow-lg p-8 transform hover:-translate-y-1 transition duration-300"
+          >
+            <form class="space-y-6">
+              <div>
+                <label for="name" class="block text-gray-800 font-semibold mb-2"
+                  >Nama Lengkap</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Masukkan nama Anda"
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="email"
+                  class="block text-gray-800 font-semibold mb-2"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Masukkan email Anda"
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="message"
+                  class="block text-gray-800 font-semibold mb-2"
+                  >Pesan</label
+                >
+                <textarea
+                  id="message"
+                  rows="5"
+                  placeholder="Tulis pesan Anda..."
+                  class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none resize-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-red-600 text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition duration-300 shadow-md"
+              >
+                Kirim Pesan
+              </button>
+            </form>
+          </div>
+
+          <!-- Info Kontak -->
+          <div class="text-white space-y-8">
+            <div>
+              <h3 class="text-3xl font-bold mb-3">Kontak Langsung</h3>
+              <p class="text-gray-100 text-lg">
+                Anda juga bisa langsung menghubungi kami melalui detail di bawah
+                ini.
+              </p>
             </div>
-            <p class="text-gray-600 leading-relaxed">
-              Kami berkomitmen untuk memberikan layanan terbaik dan
-              berkelanjutan kepada pelanggan kami, dengan dukungan partner dan
-              tim profesional yang terpercaya.
-            </p>
-          </div>
 
-          <!-- Kolom 2: Menu Navigasi -->
-          <div class="lg:ml-24">
-            <h3 class="text-xl font-semibold mb-4 text-red-700">Navigasi</h3>
-            <ul class="space-y-2">
-              <li>
-                <a href="./index.html" class="hover:text-red-500 transition">Beranda</a>
-              </li>
-              <li>
-                <a href="./about_us.html" class="hover:text-red-500 transition">Tentang Kami</a>
-              </li>
-              <li>
-                <a href="./business_wifa.html" class="hover:text-red-500 transition">Bisnis Wifa</a>
-              </li>
-              <li>
-                <a href="#partner" class="hover:text-red-500 transition">Partner</a>
-              </li>
-              <li>
-                <a href="#contact" class="hover:text-red-500 transition">Kontak</a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Kolom 3: Ikuti Kami -->
-          <div>
-            <h3 class="text-xl font-semibold mb-4 text-red-700">
-              Ikuti Kami
-            </h3>
-            <div class="flex items-center gap-5">
-              <!-- Instagram -->
-              <a href="#" class="text-gray-700 hover:text-red-500 transition" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm5.75.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
-                </svg>
-              </a>
-              <!-- YouTube -->
-              <a href="#" class="text-gray-700 hover:text-red-500 transition" aria-label="YouTube">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M19.6 3.2H4.4A4.4 4.4 0 0 0 0 7.6v8.8a4.4 4.4 0 0 0 4.4 4.4h15.2a4.4 4.4 0 0 0 4.4-4.4V7.6a4.4 4.4 0 0 0-4.4-4.4zM9.75 15.02V8.98l6.13 3.02-6.13 3.02z" />
-                </svg>
-              </a>
-              <a href="#" class="text-gray-700 hover:text-red-500 transition" aria-label="X (Twitter)">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M18.244 2.25h3.308l-7.227 8.26 8.505 11.24h-6.675l-5.22-6.824-5.973 6.824H1.656l7.727-8.823L1.15 2.25h6.844l4.713 6.19 5.537-6.19zM17.1 19.555h1.832L7.045 4.39H5.078l12.022 15.165z" />
-                </svg>
-              </a>
+            <div class="space-y-4 text-lg">
+              <p class="flex items-center gap-3">
+                📍 <span>Jalan Fatmawati No. 60A, Pangkal Pinang</span>
+              </p>
+              <p class="flex items-center gap-3">
+                📧 <span>info@wifacorp.co.id</span>
+              </p>
+              <p class="flex items-center gap-3">
+                ☎️ <span>(0274) 123456</span>
+              </p>
+              <p class="flex items-center gap-3">
+                💬 <span>+62 812-3456-7890</span>
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Bagian bawah: merah -->
-    <div class="bg-red-700 text-white py-4">
-      <div class="text-center text-sm">
-        © 2025 WIFA Corporation. All rights reserved.
+    <!-- Footer -->
+    <footer>
+      <!-- Bagian atas: putih -->
+      <div class="bg-white text-gray-800 pt-16 pb-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 mb-12"
+          >
+            <!-- Kolom 1: Logo & Deskripsi -->
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <img
+                  src="./src/img/logo_wifa.png"
+                  alt="Logo"
+                  class="h-12 w-auto"
+                />
+                <span class="text-2xl font-bold tracking-wide text-red-700"
+                  >WIFA</span
+                >
+              </div>
+              <p class="text-gray-600 leading-relaxed">
+                Kami berkomitmen untuk memberikan layanan terbaik dan
+                berkelanjutan kepada pelanggan kami, dengan dukungan partner dan
+                tim profesional yang terpercaya.
+              </p>
+            </div>
+
+            <!-- Kolom 2: Menu Navigasi -->
+            <div class="lg:ml-24">
+              <h3 class="text-xl font-semibold mb-4 text-red-700">Navigasi</h3>
+              <ul class="space-y-2">
+                <li>
+                  <a href="./index.html" class="hover:text-red-500 transition"
+                    >Beranda</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="./about_us.html"
+                    class="hover:text-red-500 transition"
+                    >Tentang Kami</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="./business_wifa.html"
+                    class="hover:text-red-500 transition"
+                    >Bisnis Wifa</a
+                  >
+                </li>
+                <li>
+                  <a href="#partner" class="hover:text-red-500 transition"
+                    >Partner</a
+                  >
+                </li>
+                <li>
+                  <a href="#contact" class="hover:text-red-500 transition"
+                    >Kontak</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Kolom 3: Ikuti Kami -->
+            <div>
+              <h3 class="text-xl font-semibold mb-4 text-red-700">
+                Ikuti Kami
+              </h3>
+              <div class="flex items-center gap-5">
+                <!-- Instagram -->
+                <a
+                  href="#"
+                  class="text-gray-700 hover:text-red-500 transition"
+                  aria-label="Instagram"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm5.75.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"
+                    />
+                  </svg>
+                </a>
+                <!-- YouTube -->
+                <a
+                  href="#"
+                  class="text-gray-700 hover:text-red-500 transition"
+                  aria-label="YouTube"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-7 w-7"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19.6 3.2H4.4A4.4 4.4 0 0 0 0 7.6v8.8a4.4 4.4 0 0 0 4.4 4.4h15.2a4.4 4.4 0 0 0 4.4-4.4V7.6a4.4 4.4 0 0 0-4.4-4.4zM9.75 15.02V8.98l6.13 3.02-6.13 3.02z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="#"
+                  class="text-gray-700 hover:text-red-500 transition"
+                  aria-label="X (Twitter)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M18.244 2.25h3.308l-7.227 8.26 8.505 11.24h-6.675l-5.22-6.824-5.973 6.824H1.656l7.727-8.823L1.15 2.25h6.844l4.713 6.19 5.537-6.19zM17.1 19.555h1.832L7.045 4.39H5.078l12.022 15.165z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </footer>
 
-  <script>
-    // ===========================
-    // BURGER MENU
-    // ===========================
-    const burger = document.getElementById("burger");
-    const menu = document.getElementById("mobileMenu");
+      <!-- Bagian bawah: merah -->
+      <div class="bg-red-700 text-white py-4">
+        <div class="text-center text-sm">
+          © 2025 WIFA Corporation. All rights reserved.
+        </div>
+      </div>
+    </footer>
 
-    burger.addEventListener("click", () => {
-      const isOpen = burger.classList.toggle("open");
-      burger.setAttribute("aria-expanded", isOpen);
+    <script>
+      // ===========================
+      // BURGER MENU
+      // ===========================
+      const burger = document.getElementById("burger");
+      const menu = document.getElementById("mobileMenu");
 
-      if (isOpen) {
-        menu.classList.remove("hidden");
-        menu.classList.add("bg-image");
-        requestAnimationFrame(() => {
-          menu.classList.remove("opacity-0", "scale-y-0");
-          menu.classList.add("opacity-100", "scale-y-100");
-        });
-      } else {
-        menu.classList.remove("opacity-100", "scale-y-100");
-        menu.classList.add("opacity-0", "scale-y-0");
-        setTimeout(() => {
-          menu.classList.add("hidden");
-          menu.classList.remove("bg-image");
-        }, 350);
-      }
-    });
+      burger.addEventListener("click", () => {
+        const isOpen = burger.classList.toggle("open");
+        burger.setAttribute("aria-expanded", isOpen);
 
-    // ===========================
-    // DROPDOWN MENU
-    // ===========================
-    function setupDropdown(btnId, dropdownId, arrowId, spacerId) {
-      const btn = document.getElementById(btnId);
-      const dropdown = document.getElementById(dropdownId);
-      const arrow = arrowId ? document.getElementById(arrowId) : null;
-      const spacer = spacerId ? document.getElementById(spacerId) : null;
-
-      if (!btn || !dropdown || !spacer) return;
-
-      const closeThis = () => {
-        if (!dropdown.classList.contains("hidden"))
-          dropdown.classList.add("hidden");
-        if (arrow) arrow.classList.remove("rotate-180");
-        spacer.style.height = "0px";
-      };
-
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-
-        // Tutup dropdown lain
-        document.querySelectorAll("[data-dropdown]").forEach((d) => {
-          if (d.id !== dropdownId) d.classList.add("hidden");
-        });
-        document.querySelectorAll("[data-arrow]").forEach((a) => {
-          if (a.id !== arrowId) a.classList.remove("rotate-180");
-        });
-        document.querySelectorAll("[data-spacer]").forEach((s) => {
-          if (s.id !== spacerId) s.style.height = "0px";
-        });
-
-        const isHidden = dropdown.classList.contains("hidden");
-
-        if (isHidden) {
-          dropdown.classList.remove("hidden");
-          if (arrow) arrow.classList.add("rotate-180");
-          spacer.style.height = dropdown.scrollHeight + "px";
+        if (isOpen) {
+          menu.classList.remove("hidden");
+          menu.classList.add("bg-image");
+          requestAnimationFrame(() => {
+            menu.classList.remove("opacity-0", "scale-y-0");
+            menu.classList.add("opacity-100", "scale-y-100");
+          });
         } else {
-          closeThis();
-        }
-      });
-
-      document.addEventListener("click", (e) => {
-        if (!btn.contains(e.target) && !dropdown.contains(e.target))
-          closeThis();
-      });
-
-      window.addEventListener("resize", () => {
-        if (!dropdown.classList.contains("hidden")) {
-          spacer.style.height = dropdown.scrollHeight + "px";
-        }
-      });
-    }
-
-    // Inisialisasi dropdown
-    setupDropdown(
-      "aboutBtn",
-      "aboutDropdown",
-      "arrowIconAbout",
-      "dropdownSpacerAbout"
-    );
-    setupDropdown(
-      "bisnisBtn",
-      "bisnisDropdown",
-      "arrowIconBisnis",
-      "dropdownSpacerBisnis"
-    );
-
-    // ===========================
-    // TAB KONTEN (Our Story, Visi Misi, dll)
-    // ===========================
-    const buttons = document.querySelectorAll(".tab-btn");
-    const contents = document.querySelectorAll(".tab-content");
-
-    function showTab(targetId) {
-      contents.forEach((c) => c.classList.add("hidden"));
-      const target = document.getElementById(targetId);
-      if (target) target.classList.remove("hidden");
-
-      buttons.forEach((b) => b.classList.remove("bg-red-600", "text-white"));
-      const activeBtn = document.querySelector(`[data-target="${targetId}"]`);
-      if (activeBtn) activeBtn.classList.add("bg-red-600", "text-white");
-    }
-
-    // Klik antar tab manual
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const target = btn.getAttribute("data-target");
-        showTab(target);
-        history.replaceState(null, "", "#" + target);
-      });
-    });
-
-    // ===========================
-    // CEK HASH DI URL (langsung buka tab terkait)
-    // ===========================
-    window.addEventListener("load", () => {
-      const hash = window.location.hash.substring(1);
-      const defaultTab = "our-story";
-      if (hash) {
-        showTab(hash);
-        const el = document.getElementById(hash);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      } else {
-        showTab(defaultTab);
-      }
-    });
-
-    // ===========================
-    // Tutup menu & arahkan ke konten dinamis About Us
-    // ===========================
-    document
-      .querySelectorAll('#mobileMenu a[href^="./about_us.html#"]')
-      .forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute("href").split("#")[1];
-          const targetElement = document.getElementById(targetId);
-
-          // Tutup menu
           menu.classList.remove("opacity-100", "scale-y-100");
           menu.classList.add("opacity-0", "scale-y-0");
-          burger.classList.remove("open");
-
           setTimeout(() => {
             menu.classList.add("hidden");
             menu.classList.remove("bg-image");
+          }, 350);
+        }
+      });
 
-            // Pindah ke konten dinamis
-            if (targetElement) {
-              showTab(targetId);
-              targetElement.scrollIntoView({ behavior: "smooth" });
-              history.replaceState(null, "", "#" + targetId);
-            }
-          }, 300);
+      // ===========================
+      // DROPDOWN MENU
+      // ===========================
+      function setupDropdown(btnId, dropdownId, arrowId, spacerId) {
+        const btn = document.getElementById(btnId);
+        const dropdown = document.getElementById(dropdownId);
+        const arrow = arrowId ? document.getElementById(arrowId) : null;
+        const spacer = spacerId ? document.getElementById(spacerId) : null;
+
+        if (!btn || !dropdown || !spacer) return;
+
+        const closeThis = () => {
+          if (!dropdown.classList.contains("hidden"))
+            dropdown.classList.add("hidden");
+          if (arrow) arrow.classList.remove("rotate-180");
+          spacer.style.height = "0px";
+        };
+
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+
+          // Tutup dropdown lain
+          document.querySelectorAll("[data-dropdown]").forEach((d) => {
+            if (d.id !== dropdownId) d.classList.add("hidden");
+          });
+          document.querySelectorAll("[data-arrow]").forEach((a) => {
+            if (a.id !== arrowId) a.classList.remove("rotate-180");
+          });
+          document.querySelectorAll("[data-spacer]").forEach((s) => {
+            if (s.id !== spacerId) s.style.height = "0px";
+          });
+
+          const isHidden = dropdown.classList.contains("hidden");
+
+          if (isHidden) {
+            dropdown.classList.remove("hidden");
+            if (arrow) arrow.classList.add("rotate-180");
+            spacer.style.height = dropdown.scrollHeight + "px";
+          } else {
+            closeThis();
+          }
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!btn.contains(e.target) && !dropdown.contains(e.target))
+            closeThis();
+        });
+
+        window.addEventListener("resize", () => {
+          if (!dropdown.classList.contains("hidden")) {
+            spacer.style.height = dropdown.scrollHeight + "px";
+          }
+        });
+      }
+
+      // Inisialisasi dropdown
+      setupDropdown(
+        "aboutBtn",
+        "aboutDropdown",
+        "arrowIconAbout",
+        "dropdownSpacerAbout",
+      );
+      setupDropdown(
+        "bisnisBtn",
+        "bisnisDropdown",
+        "arrowIconBisnis",
+        "dropdownSpacerBisnis",
+      );
+
+      // ===========================
+      // TAB KONTEN (Our Story, Visi Misi, dll)
+      // ===========================
+      const buttons = document.querySelectorAll(".tab-btn");
+      const contents = document.querySelectorAll(".tab-content");
+
+      function showTab(targetId) {
+        contents.forEach((c) => c.classList.add("hidden"));
+        const target = document.getElementById(targetId);
+        if (target) target.classList.remove("hidden");
+
+        buttons.forEach((b) => b.classList.remove("bg-red-600", "text-white"));
+        const activeBtn = document.querySelector(`[data-target="${targetId}"]`);
+        if (activeBtn) activeBtn.classList.add("bg-red-600", "text-white");
+      }
+
+      // Klik antar tab manual
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = btn.getAttribute("data-target");
+          showTab(target);
+          history.replaceState(null, "", "#" + target);
         });
       });
-  </script>
-</body>
 
+      // ===========================
+      // CEK HASH DI URL (langsung buka tab terkait)
+      // ===========================
+      window.addEventListener("load", () => {
+        const hash = window.location.hash.substring(1);
+        const defaultTab = "our-story";
+        if (hash) {
+          showTab(hash);
+          const el = document.getElementById(hash);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        } else {
+          showTab(defaultTab);
+        }
+      });
+
+      // ===========================
+      // Tutup menu & arahkan ke konten dinamis About Us
+      // ===========================
+      document
+        .querySelectorAll('#mobileMenu a[href^="./about_us.html#"]')
+        .forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute("href").split("#")[1];
+            const targetElement = document.getElementById(targetId);
+
+            // Tutup menu
+            menu.classList.remove("opacity-100", "scale-y-100");
+            menu.classList.add("opacity-0", "scale-y-0");
+            burger.classList.remove("open");
+
+            setTimeout(() => {
+              menu.classList.add("hidden");
+              menu.classList.remove("bg-image");
+
+              // Pindah ke konten dinamis
+              if (targetElement) {
+                showTab(targetId);
+                targetElement.scrollIntoView({ behavior: "smooth" });
+                history.replaceState(null, "", "#" + targetId);
+              }
+            }, 300);
+          });
+        });
+    </script>
+  </body>
 </html>
