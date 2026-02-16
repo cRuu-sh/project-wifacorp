@@ -1,15 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wifa Corporation</title>
+    <title>Wifacorp</title>
     <link href="./src/css/output.css" rel="stylesheet" />
-    <link
+    <!-- <link
       rel="shortcut icon"
       href="./src/img/wifa_icon.png"
       type="image/x-icon"
-    />
+    /> -->
+
     <style>
       /* ===== BURGER PRESISI & ANIMASI ===== */
       .burger {
@@ -107,16 +108,23 @@
     <!-- Navbar Menu -->
     <nav
       id="mainNav"
-      class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent"
+      class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-amber-50"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div class="flex items-center justify-between h-16">
           <div class="flex-shrink-0 flex items-center">
-            <img
+            <!-- <img
               src="./src/img/logo_wifa.png"
               alt="Logo Wifa"
               class="h-24 mt-6 w-auto object-contain"
-            />
+              /> -->
+            <a href="./index.html">
+              <img
+                src="./src/img/wifa_icon.png"
+                alt="Logo Wifa"
+                class="h-16 mt-4 w-auto object-contain"
+              />
+            </a>
           </div>
 
           <!-- Garis horizontal di tengah ke kanan -->
@@ -471,7 +479,7 @@
         <h1
           class="text-4xl lg:text-6xl font-extrabold tracking-wide drop-shadow-lg"
         >
-          PT Wifa Corporation Tbk
+          PT Wifacorp Tbk
         </h1>
         <p class="text-lg lg:text-2xl mt-3 font-medium tracking-widest italic">
           Beyond Construction
@@ -554,7 +562,7 @@
     <!-- Bisnis Wifa -->
     <section
       class="relative bg-cover bg-center bg-no-repeat py-24"
-      style="background-image: url('./src/img/bg_bisnis.png')"
+      style="background-image: url(&quot;./src/img/bg_bisnis.png&quot;)"
     >
       <!-- Overlay -->
       <div class="absolute inset-0 bg-black/40"></div>
@@ -1214,7 +1222,7 @@
               }
             });
           },
-          { threshold: 0.5 }
+          { threshold: 0.5 },
         );
 
         const target = document.querySelector("#experience-counter");
@@ -1301,13 +1309,13 @@
         "aboutBtn",
         "aboutDropdown",
         "arrowIconAbout",
-        "dropdownSpacerAbout"
+        "dropdownSpacerAbout",
       );
       setupDropdown(
         "bisnisBtn",
         "bisnisDropdown",
         "arrowIconBisnis",
-        "dropdownSpacerBisnis"
+        "dropdownSpacerBisnis",
       );
 
       const mobileMenu = document.getElementById("mobileMenu");
