@@ -1,115 +1,297 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Partners | WIFA CORP</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Partners | WIFA Corporation</title>
+    <link href="./src/css/output.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./src/img/wifa_icon.png" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* ===== BURGER ANIMASI ===== */
+        .burger {
+            width: 32px;
+            height: 24px;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            z-index: 50;
+        }
+
+        .burger-line {
+            position: absolute;
+            left: 50%;
+            width: 24px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.35s ease;
+            transform: translateX(-50%);
+        }
+
+        .line-top {
+            top: 4px;
+        }
+
+        .line-middle {
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .line-bottom {
+            bottom: 4px;
+        }
+
+        .burger.open .line-top {
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .burger.open .line-middle {
+            opacity: 0;
+        }
+
+        .burger.open .line-bottom {
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .navbar-divider {
+            position: absolute;
+            top: 50%;
+            left: 47%;
+            width: calc(50% - 80px);
+            height: 1px;
+            background-color: #dc2626;
+            transform: translateY(-50%);
+        }
+
+        .partner-card {
+            transition: all 0.3s ease;
+            border: 1px solid #f3f4f6;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: #fee2e2;
+        }
+    </style>
 </head>
 
-<body class="bg-white text-gray-800">
+<body class="bg-white font-sans text-gray-800">
 
-    <section class="bg-gray-900 py-20">
-        <div class="container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Partner Kami</h1>
-            <p class="text-gray-400 max-w-2xl mx-auto">Kami berkolaborasi dengan perusahaan-perusahaan terkemuka untuk
-                memastikan kualitas dan layanan terbaik bagi setiap klien kami.</p>
+    <nav id="mainNav" class="fixed top-0 left-0 w-full z-50 bg-gray-900 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="./index.html">
+                        <img src="./src/img/wifa_icon.png" alt="Logo Wifa" class="h-12 w-auto" />
+                    </a>
+                </div>
+                <div class="navbar-divider hidden sm:block"></div>
+                <div class="flex items-center space-x-4">
+                    <button id="burger" class="burger focus:outline-none">
+                        <span class="burger-line line-top"></span>
+                        <span class="burger-line line-middle"></span>
+                        <span class="burger-line line-bottom"></span>
+                    </button>
+                </div>
+            </div>
         </div>
-    </section>
+    </nav>
 
-    <main class="container mx-auto px-6 py-16">
+    <div id="mobileMenu"
+        class="hidden opacity-0 scale-y-0 fixed inset-0 bg-[#111]/95 backdrop-blur-md z-40 overflow-y-auto transition-all duration-300 origin-top">
+        <div class="mobile-content grid grid-cols-1 md:grid-cols-2 min-h-screen px-6 py-12 md:py-24 gap-12 md:gap-16">
+            <div class="flex flex-col items-center md:items-start justify-center space-y-6 text-center md:text-left">
+                <div class="w-full flex flex-col items-center md:items-start">
+                    <p class="text-3xl font-semibold text-white uppercase tracking-widest">Menu</p>
+                    <div class="h-[2px] bg-red-600 mt-6 w-24"></div>
+                </div>
+                <div class="space-y-4 text-white text-2xl font-light">
+                    <a href="./index.html" class="block hover:text-red-500 transition">Beranda</a>
+                    <a href="./about_us.html" class="block hover:text-red-500 transition">Tentang Kami</a>
+                    <a href="./business_wifa.html" class="block hover:text-red-500 transition">Bisnis Wifa</a>
+                    <a href="./partners.html" class="block text-red-500 transition">Partner</a>
+                    <a href="./index.html#contact" class="block hover:text-red-500 transition">Kontak</a>
+                </div>
+            </div>
+            <div class="flex flex-col items-center md:items-start justify-center text-center md:text-left space-y-6">
+                <div class="w-full flex flex-col items-center md:items-start">
+                    <h3 class="text-3xl font-semibold text-white">Hubungi Kami</h3>
+                    <div class="h-[2px] bg-red-600 mt-6 w-24"></div>
+                </div>
+                <div class="space-y-3 text-white text-lg font-light">
+                    <p class="hover:text-red-500 transition">info@example.com</p>
+                    <p class="hover:text-red-500 transition">+62 812-3456-7890</p>
+                    <p>(0274) 123456</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <section class="mb-20">
-            <h2 class="text-2xl font-bold text-red-700 mb-8 border-l-4 border-red-700 pl-4 uppercase tracking-wider">
+    <header class="bg-gray-900 pt-32 pb-20 text-center">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Partner Kami</h1>
+            <div class="w-20 h-1 bg-red-600 mx-auto mb-6"></div>
+            <p class="text-gray-400 max-w-2xl mx-auto font-light">Kami bangga bekerja sama dengan berbagai perusahaan
+                dan organisasi ternama yang turut mendukung kami dalam memberikan layanan terbaik dan berkelanjutan bagi
+                pelanggan kami.</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-16">
+
+        <section class="mb-24">
+            <h2 class="text-2xl font-bold text-red-700 mb-10 border-l-4 border-red-700 pl-4 uppercase tracking-widest">
                 Material Suppliers</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                <div
-                    class="p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-white flex flex-col items-center justify-center">
-                    <img src="https://via.placeholder.com/200x100?text=Krakatau+Steel" alt="Krakatau Steel"
-                        class="h-12 object-contain mb-2">
-                    <p class="text-[10px] font-medium text-gray-500 text-center">PT. Krakatau Steel Tbk.</p>
-                </div>
-                <div
-                    class="p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-white flex flex-col items-center justify-center">
-                    <img src="https://via.placeholder.com/200x100?text=PT+Timah" alt="PT Timah"
-                        class="h-12 object-contain mb-2">
-                    <p class="text-[10px] font-medium text-gray-500 text-center">PT. Timah Tbk.</p>
-                </div>
-                <div
-                    class="p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-white flex flex-col items-center justify-center">
-                    <img src="https://via.placeholder.com/200x100?text=Injourney" alt="Injourney"
-                        class="h-12 object-contain mb-2">
-                    <p class="text-[10px] font-medium text-gray-500 text-center">Injourney</p>
-                </div>
-                <div
-                    class="p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-white flex flex-col items-center justify-center">
-                    <img src="https://via.placeholder.com/200x100?text=GDS" alt="GDS" class="h-12 object-contain mb-2">
-                    <p class="text-[10px] font-medium text-gray-500 text-center">PT. Gunawan Dianjaya Steel Tbk.</p>
-                </div>
-                <div
-                    class="p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-white flex flex-col items-center justify-center">
-                    <img src="https://via.placeholder.com/200x100?text=Gunung+Rajapaksi" alt="Gunung Rajapaksi"
-                        class="h-12 object-contain mb-2">
-                    <p class="text-[10px] font-medium text-gray-500 text-center">PT. Gunung Rajapaksi</p>
-                </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                <script>
+                    const materials = [
+                        "PT. Krakatau Steel Tbk.", "PT. Timah Tbk.", "Injourney", "PT. Gunawan Dianjaya Steel Tbk.",
+                        "PT. Gunung Rajapaksi", "PT. Gunung Yamato Steel", "PT. Lautan Steel Indonesia", "PT. Aplus Pacific",
+                        "PT. Srirejeki Perdana Steel", "SPINDO", "Peroni Karya Sentra", "PT. SPVMB", "PT. ALEXINDO",
+                        "PT. Ispat Bukit Baja", "PT. Karlita Emas"
+                    ];
+                    materials.forEach(name => {
+                        document.write(`
+                            <div class="partner-card p-6 rounded-xl bg-white flex flex-col items-center justify-center text-center">
+                                <div class="h-12 w-full flex items-center justify-center mb-4">
+                                    <img src="https://via.placeholder.com/200x100?text=${name.split(' ').slice(0, 2).join('+')}" class="max-h-full grayscale hover:grayscale-0 transition-all duration-500">
+                                </div>
+                                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-tighter leading-tight">${name}</p>
+                            </div>
+                        `);
+                    });
+                </script>
             </div>
         </section>
 
-        <section class="mb-20">
-            <h2 class="text-2xl font-bold text-blue-800 mb-8 border-l-4 border-blue-800 pl-4 uppercase tracking-wider">
+        <section class="mb-24">
+            <h2 class="text-2xl font-bold text-red-700 mb-10 border-l-4 border-red-700 pl-4 uppercase tracking-widest">
                 Healthcare</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div
-                    class="p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-white flex flex-col items-center justify-center">
-                    <img src="https://via.placeholder.com/200x100?text=Lestari+Marketindo" alt="Lestari Marketindo"
-                        class="h-12 object-contain mb-2">
-                    <p class="text-[10px] font-medium text-gray-500 text-center uppercase">PT. Lestari Marketindo
-                        Surveitama</p>
-                </div>
-                <div
-                    class="p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-white flex flex-col items-center justify-center">
-                    <img src="https://via.placeholder.com/200x100?text=Promed" alt="Promed"
-                        class="h-12 object-contain mb-2">
-                    <p class="text-[10px] font-medium text-gray-500 text-center uppercase">Promed</p>
-                </div>
-                <div
-                    class="p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-white flex flex-col items-center justify-center">
-                    <img src="https://via.placeholder.com/200x100?text=Sanbe+Farma" alt="Sanbe"
-                        class="h-12 object-contain mb-2">
-                    <p class="text-[10px] font-medium text-gray-500 text-center uppercase">Sanbe Farma</p>
-                </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                <script>
+                    const healthcare = [
+                        "PT. Lestari Marketindo Surveitama", "Promed", "PT. Otto Pharmaceutical Industries",
+                        "PT. Surya Dermato Medica Laboratories", "PT. Pratapa Normala", "Sanbe Farma",
+                        "PT. Simex Pharmaceutical Indonesia", "PT. Interbat"
+                    ];
+                    healthcare.forEach(name => {
+                        document.write(`
+                            <div class="partner-card p-6 rounded-xl bg-white flex flex-col items-center justify-center text-center">
+                                <div class="h-12 w-full flex items-center justify-center mb-4">
+                                    <img src="https://via.placeholder.com/200x100?text=${name.split(' ').slice(0, 2).join('+')}" class="max-h-full grayscale hover:grayscale-0 transition-all duration-500">
+                                </div>
+                                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-tighter leading-tight">${name}</p>
+                            </div>
+                        `);
+                    });
+                </script>
             </div>
         </section>
 
-        <section class="mb-20">
-            <h2 class="text-2xl font-bold text-gray-700 mb-8 border-l-4 border-gray-700 pl-4 uppercase tracking-wider">
+        <section class="mb-24">
+            <h2 class="text-2xl font-bold text-red-700 mb-10 border-l-4 border-red-700 pl-4 uppercase tracking-widest">
                 General Trading</h2>
-            <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4">
-                <div
-                    class="p-3 border border-gray-50 rounded-lg flex flex-col items-center justify-center grayscale hover:grayscale-0 transition">
-                    <img src="https://via.placeholder.com/150?text=Antam" class="h-10 object-contain">
-                    <p class="text-[9px] mt-1 text-gray-400">ANTAM</p>
-                </div>
-                <div
-                    class="p-3 border border-gray-50 rounded-lg flex flex-col items-center justify-center grayscale hover:grayscale-0 transition">
-                    <img src="https://via.placeholder.com/150?text=Toto" class="h-10 object-contain">
-                    <p class="text-[9px] mt-1 text-gray-400">TOTO</p>
-                </div>
-                <div
-                    class="p-3 border border-gray-50 rounded-lg flex flex-col items-center justify-center grayscale hover:grayscale-0 transition">
-                    <img src="https://via.placeholder.com/150?text=Essenza" class="h-10 object-contain">
-                    <p class="text-[9px] mt-1 text-gray-400">ESSENZA</p>
-                </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-4">
+                <script>
+                    const trading = [
+                        "Krakatau Steel", "Krakatau Posco", "Krakatau Osaka Steel", "Krakatau Baja Konstruksi",
+                        "Krakatau Niaga Indonesia", "Sigma Mitra Sejati", "Timah", "Timah Industri", "Spindo",
+                        "SPVMB", "Gunawan Dianjaya Steel", "Sri Rejeki Perdana Steel", "Gunung Raja Paksi",
+                        "Garuda Yamato Steel", "Lautan Steel Indonesia", "Master Steel", "Antam", "Karlita Emas",
+                        "Murano Glassindo", "Sandimas", "Essenza", "Europe Enchanting", "Paloma", "Toto", "Aplus", "Alexindo"
+                    ];
+                    trading.forEach(name => {
+                        document.write(`
+                            <div class="partner-card p-4 rounded-lg bg-gray-50 flex flex-col items-center justify-center text-center">
+                                <img src="https://via.placeholder.com/150?text=${name.replace(/ /g, '+')}" class="h-10 object-contain mb-2 grayscale hover:grayscale-0 transition-all">
+                                <p class="text-[9px] font-bold text-gray-400 uppercase">${name}</p>
+                            </div>
+                        `);
+                    });
+                </script>
             </div>
         </section>
 
-        <section class="py-12 bg-gray-50 rounded-2xl text-center">
-            <h2 class="text-xl font-semibold text-gray-400 italic">Agrobusiness Division - Coming Soon</h2>
+        <section class="py-20 bg-gray-50 border-2 border-dashed border-gray-200 rounded-3xl text-center">
+            <h2 class="text-2xl font-bold text-gray-300 uppercase tracking-tighter italic">Agrobusiness Division - TBA
+            </h2>
         </section>
 
     </main>
 
+    <footer>
+        <div class="bg-white text-gray-800 pt-16 pb-10 border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 mb-12">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <img src="./src/img/logo_wifa.png" alt="Logo" class="h-12 w-auto" />
+                            <span class="text-2xl font-bold tracking-wide text-red-700">WIFA</span>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed font-light">
+                            Kami berkomitmen untuk memberikan layanan terbaik dan berkelanjutan kepada pelanggan kami,
+                            dengan dukungan partner dan tim profesional yang terpercaya.
+                        </p>
+                    </div>
+                    <div class="lg:ml-24">
+                        <h3 class="text-xl font-semibold mb-4 text-red-700">Navigasi</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li><a href="./index.html" class="hover:text-red-500 transition">Beranda</a></li>
+                            <li><a href="./about_us.html" class="hover:text-red-500 transition">Tentang Kami</a></li>
+                            <li><a href="./business_wifa.html" class="hover:text-red-500 transition">Bisnis Wifa</a>
+                            </li>
+                            <li><a href="./index.html#contact" class="hover:text-red-500 transition">Kontak</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-red-700">Ikuti Kami</h3>
+                        <div class="flex items-center gap-5 text-gray-500">
+                            <a href="#" class="hover:text-red-600 transition"><svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M7.75 2C4.57 2 2 4.57 2 7.75v8.5C2 19.43 4.57 22 7.75 22h8.5C19.43 22 22 19.43 22 16.25v-8.5C22 4.57 19.43 2 16.25 2h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm5.75.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+                                </svg></a>
+                            <a href="#" class="hover:text-red-600 transition"><svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19.6 3.2H4.4A4.4 4.4 0 0 0 0 7.6v8.8a4.4 4.4 0 0 0 4.4 4.4h15.2a4.4 4.4 0 0 0 4.4-4.4V7.6a4.4 4.4 0 0 0-4.4-4.4zM9.75 15.02V8.98l6.13 3.02-6.13 3.02z" />
+                                </svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-red-700 text-white py-4 text-center text-sm">
+            © 2025 WIFA Corporation. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const burger = document.getElementById("burger");
+        const menu = document.getElementById("mobileMenu");
+
+        burger.addEventListener("click", () => {
+            const isOpen = burger.classList.toggle("open");
+            if (isOpen) {
+                menu.classList.remove("hidden");
+                setTimeout(() => {
+                    menu.classList.add("opacity-100", "scale-y-100");
+                }, 10);
+                document.body.style.overflow = "hidden";
+            } else {
+                menu.classList.remove("opacity-100", "scale-y-100");
+                setTimeout(() => {
+                    menu.classList.add("hidden");
+                }, 350);
+                document.body.style.overflow = "auto";
+            }
+        });
+    </script>
 </body>
 
 </html>
