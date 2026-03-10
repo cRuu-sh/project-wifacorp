@@ -117,6 +117,101 @@ export default function Home() {
         </div>
       </section>
 
+      {/* BUSINESS UNITS SECTION */}
+      <section className="relative py-24 overflow-hidden">
+        {/* Background Image with Parallax-like Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/bg_bisnis.png"
+            alt="Business Background"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          {/* Judul Section */}
+          <div className="text-center text-white mb-20 space-y-4">
+            <h2 className="text-4xl md:text-5xl font-black capitalize italic tracking-tighter">
+              Bisnis <span className="text-white-600">WIFA</span>
+            </h2>
+            <div className="w-20 h-1.5 bg-red-600 mx-auto"></div>
+            <p className="text-gray-300 max-w-lg mx-auto font-medium">
+              Mewujudkan keunggulan di berbagai sektor usaha untuk masa depan yang lebih baik.
+            </p>
+          </div>
+
+          {/* Grid Business Units */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                title: "Konstruksi",
+                desc: "Berkomitmen menghadirkan hasil terbaik di bidang konstruksi dan infrastruktur modern.",
+                img: "/konstruksi.png",
+                link: "/business#konstruksi"
+              },
+              {
+                title: "Agrobisnis",
+                desc: "Menyediakan solusi terpadu untuk kebutuhan pertanian dan hasil bumi yang berkelanjutan.",
+                img: "/agrobisnis.jpg",
+                link: "/business#agrobisnis"
+              },
+              {
+                title: "Perdagangan Umum",
+                desc: "Menyediakan berbagai produk berkualitas untuk memenuhi kebutuhan pasar secara luas.",
+                img: "/investmen.png",
+                link: "/business#perdagangan"
+              },
+              {
+                title: "Kesehatan",
+                desc: "Pelayanan kesehatan terpercaya dengan fasilitas modern dan tenaga ahli profesional.",
+                img: "/rumah_sakit.png",
+                link: "/business#kesehatan"
+              }
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="group relative bg-white/5 backdrop-blur-md rounded-[2.5rem] p-8 border border-white/10 hover:border-red-600/50 transition-all duration-500 hover:-translate-y-4 overflow-hidden flex flex-col items-center text-center"
+              >
+                {/* Circle Image Wrapper */}
+                <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-white/10 group-hover:border-red-600 transition-colors duration-500 mb-8">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                </div>
+
+                {/* Container Konten yang Slide Up */}
+                <div className="transition-all duration-500 md:translate-y-12 group-hover:translate-y-0 flex flex-col items-center w-full px-4 pb-8">
+
+                  <h3 className="text-xl font-black text-white capitalize italic tracking-tighter mb-3">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-gray-400 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-center">
+                    {item.desc}
+                  </p>
+
+                  <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100">
+                    <Link href={item.link}>
+                      <button className="flex items-center justify-center gap-2 bg-transparent border border-white/40 text-white text-[10px] font-bold px-6 py-2.5 rounded-full hover:bg-red-600 hover:border-red-600 transition-all duration-300 uppercase tracking-widest whitespace-nowrap">
+                        See More
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M7 7h10v10" />
+                        </svg>
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </main>
   )
