@@ -11,7 +11,7 @@ export default function Footer() {
                     {/* Brand Identity */}
                     <div className="md:col-span-2">
                         <h2 className="text-4xl font-black italic tracking-tighter uppercase leading-none">
-                            WIFACORP <br /> <span className="text-red-600 text-lg not-italic tracking-[0.3em]">BEYOND CONSTRUCTION</span>
+                            WIFACORP <br /> <span className="text-white-600 text-lg not-italic tracking-[0.3em]">BEYOND CONSTRUCTION</span>
                         </h2>
                         <p className="mt-6 text-sm text-white/50 max-w-sm leading-relaxed">
                             Leading the way in infrastructure development and strategic business units across the nation. Building the future, one project at a time.

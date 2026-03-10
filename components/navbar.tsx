@@ -28,7 +28,7 @@ export default function Navbar() {
                         <span className="text-xl md:text-2xl font-black italic tracking-tighter text-white leading-none">
                             WIFACORP
                         </span>
-                        <span className="text-[8px] font-bold tracking-[0.4em] text-red-600 uppercase mt-1 opacity-80">
+                        <span className="text-[8px] font-bold tracking-[0.4em] text-white-600 uppercase mt-1 opacity-80">
                             Beyond Construction
                         </span>
                     </div>
