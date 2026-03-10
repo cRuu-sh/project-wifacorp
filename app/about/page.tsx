@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 
 export default function AboutPage() {
-    const [activeTab, setActiveTab] = useState('profile')
+    const [activeTab, setActiveTab] = useState('our-story')
 
     const tabs = [
         { id: 'our-story', label: 'Our Story' },
