@@ -1,0 +1,397 @@
+'use client'
+
+import { useState } from 'react'
+import Image from 'next/image'
+import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
+import Link from 'next/link'
+
+
+export default function AboutPage() {
+    const [activeTab, setActiveTab] = useState('profile')
+
+    const tabs = [
+        { id: 'our-story', label: 'Our Story' },
+        { id: 'visi-misi', label: 'Visi & Misi' },
+        { id: 'value', label: 'Value' },
+        { id: 'team', label: 'Team' },
+        { id: 'lisensi', label: 'Lisensi Bisnis' },
+    ]
+
+    return (
+        <main className="min-h-screen bg-white">
+            <Navbar />
+
+            {/* BACKGROUND HERO WITH FIXED EFFECT */}
+            <section className="relative w-full overflow-hidden">
+                <div
+                    className="relative w-full min-h-[450px] md:h-[80vh] bg-cover bg-center bg-fixed flex items-center justify-center text-center"
+                    style={{
+                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.3) 30%, rgba(255, 255, 255, 0) 100%), url('https://adhi.co.id/wp-content/uploads/2024/06/ADHI-Tower.png')`
+                    }}
+                >
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-black/30 z-0"></div>
+
+                    <div className="relative z-10 px-6">
+                        <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white drop-shadow-2xl capitalize italic">
+                            Tentang Wifa
+                        </h1>
+                        <p className="text-lg md:text-2xl mt-4 font-bold italic tracking-[0.3em] text-gray-200 capitalize">
+                            Beyond Construction
+                        </p>
+                    </div>
+                </div>
+
+                {/* WHITE CONTENT BOX (OVERLAP) */}
+                <div className="relative z-20 -mt-24 md:-mt-32 p-4 md:p-8 flex justify-center">
+                    <div className="bg-white border border-gray-100 rounded-[2.5rem] shadow-2xl w-full md:w-[85%] max-w-6xl p-8 md:p-12 relative overflow-hidden">
+                        {/* Top Red Border Accent */}
+                        <div className="absolute top-0 left-0 w-full h-2.5 bg-red-600"></div>
+
+                        {/* TAB NAVIGATION */}
+                        <div className="flex flex-wrap justify-center gap-3 mb-12">
+                            {tabs.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 ${activeTab === tab.id
+                                        ? 'bg-red-600 text-white shadow-lg shadow-red-600/30 scale-105'
+                                        : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                                        }`}
+                                >
+                                    {tab.label}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* TAB CONTENT AREA */}
+                        <div className="min-h-[500px] transition-all duration-500">
+
+                            {/* 1. OUR STORY (PROFILE) */}
+                            {activeTab === 'our-story' && (
+                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 max-w-4xl mx-auto">
+                                    <div className="text-center mb-16">
+                                        <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 capitalize italic border-b-4 border-red-600 inline-block pb-2">
+                                            Perjalanan Kami
+                                        </h2>
+                                        <div className="space-y-6 text-gray-600 leading-relaxed text-lg font-medium text-justify md:text-center mt-6">
+                                            <p>
+                                                <span className="text-red-600 font-black">Wifa Corp</span> telah berdiri sejak tahun 1992. Perusahaan kami beroperasi di beberapa sektor bisnis, termasuk pengadaan barang dan jasa konstruksi, serta aktif terlibat dalam sektor kesehatan. Dengan pengalaman lebih dari tiga dekade, kami berkomitmen untuk memberikan solusi terbaik bagi mitra kami.
+                                            </p>
+                                            <p className="bg-gray-50 p-6 rounded-2xl border-l-4 border-gray-900 italic text-sm md:text-base">
+                                                Beberapa mitra bisnis Wifa Corp antara lain PT. Timah Tbk, PT. DAK, PT. Angkasa Pura II, PT. Bakti Timah Medika, Pemerintah Daerah Kota Pangkalpinang, Kantor Pelayanan Pajak Bangka dan Pangkalpinang, Badan Karantina Pertanian Pangkalpinang, Kantor Pelayanan Bea dan Cukai Kota Pangkalpinang, serta Pemerintah Provinsi Kepulauan Bangka Belitung.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-20">
+                                        <h2 className="text-3xl font-black text-gray-900 mb-16 capitalize italic text-center">
+                                            Sejarah <span className="text-red-600">Kami</span>
+                                        </h2>
+
+                                        <div className="relative max-w-5xl mx-auto">
+                                            {/* Garis Tengah (Hanya muncul di Desktop) */}
+                                            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200 hidden md:block"></div>
+
+                                            <div className="space-y-12 md:space-y-0 pb-10">
+                                                {[
+                                                    { year: '1992', desc: 'PT. Andika Karya Sejahtera telah berdiri sejak tahun 1992 dengan nama CV. Andika. Perusahaan ini bergerak di bidang pengadaan barang dan jasa konstruksi.' },
+                                                    { year: '1999', desc: 'CV. Ilham Nusantara didirikan pada tahun 1999. Perusahaan ini bergerak di bidang pengadaan barang dan jasa konstruksi.' },
+                                                    { year: '2008', desc: 'CV. Andika berganti nama menjadi PT. Andika Karya Sejahtera dengan Akta Notaris yang dikeluarkan oleh Amorawati, S.H., Nomor 14, tertanggal 19 Januari 2008.' },
+                                                    { year: '2024', desc: 'PT. Wifa Medistra Nusantara didirikan pada tahun 2024 dan beroperasi di sektor kesehatan.' }
+                                                ].map((item, idx) => (
+                                                    <div key={idx} className={`relative flex items-center justify-between md:mb-16 w-full ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+
+                                                        {/* Sisi Kosong untuk Spacer di Desktop */}
+                                                        <div className="hidden md:block md:w-[45%]"></div>
+
+                                                        {/* Dot di Tengah */}
+                                                        <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-white border-4 border-red-600 z-10 hidden md:block group-hover:scale-150 transition-transform shadow-sm"></div>
+
+                                                        {/* Konten Card */}
+                                                        <div className={`w-full md:w-[45%] pl-8 md:pl-0 group`}>
+                                                            {/* Garis Vertikal Mobile */}
+                                                            <div className="absolute left-[7px] top-0 h-full w-0.5 bg-gray-200 md:hidden"></div>
+                                                            {/* Dot Mobile */}
+                                                            <div className="absolute left-0 w-4 h-4 rounded-full bg-white border-4 border-red-600 z-10 md:hidden mt-2"></div>
+
+                                                            <div className={`p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
+                                                                <h3 className="text-3xl font-black text-red-600 italic tracking-tighter mb-3">
+                                                                    {item.year}
+                                                                </h3>
+                                                                <p className="text-gray-600 font-medium leading-relaxed text-sm md:text-base">
+                                                                    {item.desc}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* 2. VISI & MISI */}
+                            {activeTab === 'visi-misi' && (
+                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 max-w-5xl mx-auto space-y-16">
+                                    <div className="text-center">
+                                        <h2 className="text-3xl font-black text-gray-900 mb-12 capitalize italic border-b-4 border-red-600 inline-block pb-2">Visi Dan Misi</h2>
+                                    </div>
+                                    <div className="grid md:grid-cols-2 gap-12">
+                                        <div className="flex gap-6 items-start">
+                                            <div className="bg-red-600 text-white rounded-2xl p-4 shadow-xl shrink-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </div>
+                                            <div className="space-y-4">
+                                                <h3 className="text-2xl font-black text-gray-900 italic capitalize">Visi</h3>
+                                                <ul className="space-y-3 text-gray-600 font-medium list-disc pl-5">
+                                                    <li>Menjadi mitra yang berkomitmen dengan integritas tinggi, menawarkan solusi yang terintegrasi, andal, dan terpercaya.</li>
+                                                    <li>Menjadi perusahaan pemasok produk dan layanan terbaik dan paling kredibel bagi klien/pelanggan.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div className="flex gap-6 items-start">
+                                            <div className="bg-gray-900 text-white rounded-2xl p-4 shadow-xl shrink-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                                    <circle cx="12" cy="12" r="9" />
+                                                    <path d="M12 8v8M8 12h8" />
+                                                </svg>
+                                            </div>
+                                            <div className="space-y-4">
+                                                <h3 className="text-2xl font-black text-gray-900 italic capitalize">Misi</h3>
+                                                <ul className="space-y-3 text-gray-600 font-medium list-disc pl-5 text-sm leading-relaxed">
+                                                    <li>Menyediakan produk andal berkualitas tinggi dan harga kompetitif.</li>
+                                                    <li>Membangun kemitraan berkelanjutan dengan menjunjung tinggi kredibilitas.</li>
+                                                    <li>Melaksanakan proyek tepat waktu, sesuai anggaran, dan transparan.</li>
+                                                    <li>Meningkatkan produktivitas SDM melalui pengembangan kompetensi karyawan.</li>
+                                                    <li>Menciptakan lingkungan kerja aman dengan menjaga K3 secara konsisten.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* 3. VALUE */}
+                            {activeTab === 'value' && (
+                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 text-center max-w-3xl mx-auto py-10">
+                                    <h2 className="text-3xl font-black text-gray-900 mb-8 capitalize italic border-b-4 border-red-600 inline-block pb-2">Value Perusahaan</h2>
+                                    <div className="bg-gray-50 p-10 rounded-[3rem] border-2 border-dashed border-gray-200">
+                                        <p className="text-2xl font-bold text-gray-700 leading-relaxed italic">
+                                            "Integritas, Kolaborasi, Dan Inovasi Menjadi Nilai Utama Kami Dalam Menciptakan Hasil Terbaik Bagi Klien Dan Masyarakat."
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* 4. TEAM & UNIT BISNIS */}
+                            {activeTab === 'team' && (
+                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 text-center max-w-5xl mx-auto">
+                                    <h2 className="text-3xl font-black text-gray-900 mb-6 capitalize italic">Tim & Unit Bisnis</h2>
+                                    <p className="text-gray-600 font-medium mb-12 max-w-2xl mx-auto">Wifa Corp didukung oleh para profesional ahli dan unit bisnis strategis yang berdedikasi untuk memberikan solusi unggul di semua sektor industri.</p>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                                        {[
+                                            { name: "PT. Andika Karya Sejahtera", div: "Divisi Konstruksi & Pengadaan Barang", color: "bg-red-50 text-red-600 hover:bg-red-600" },
+                                            { name: "CV. Ilham Nusantara", div: "Divisi Konstruksi & Perdagangan Umum", color: "bg-red-50 text-red-600 hover:bg-red-600" },
+                                            { name: "Wifa Medistra Nusantara", div: "Divisi Kesehatan", color: "bg-blue-50 text-blue-600 hover:bg-blue-600" }
+                                        ].map((unit, i) => (
+                                            <div key={i} className="group p-8 border border-gray-100 rounded-[2.5rem] shadow-sm bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                                                <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl transition-colors duration-300 group-hover:text-white ${unit.color}`}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                                    </svg>
+                                                </div>
+                                                <h4 className="text-lg font-black text-gray-900 capitalize italic leading-tight mb-4">{unit.name}</h4>
+                                                <div className="w-10 h-1 bg-red-600 mx-auto mb-4 opacity-40 group-hover:w-16 transition-all"></div>
+                                                <p className="text-gray-400 text-xs font-bold capitalize italic">{unit.div}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <p className="text-gray-400 italic text-xs tracking-[0.2em] font-black border-t border-gray-100 pt-8 capitalize">— Profil Jajaran Manajemen Segera Hadir —</p>
+                                </div>
+                            )}
+
+                            {/* 5. LISENSI BISNIS */}
+                            {activeTab === 'lisensi' && (
+                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 text-center max-w-5xl mx-auto">
+                                    <h2 className="text-3xl font-black text-gray-900 mb-6 capitalize italic">Sertifikasi Bisnis</h2>
+                                    <p className="text-gray-600 font-medium mb-12">Setiap unit bisnis Wifacorp telah dilengkapi dengan lisensi dan sertifikasi resmi untuk menjamin standar kualitas tertinggi.</p>
+                                    {/* Reuse grid from Team but focused on certification look */}
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 opacity-70">
+                                        {["Sertifikat Badan Usaha (SBU)", "Izin Usaha Jasa Konstruksi", "Sertifikasi Alat Kesehatan"].map((cert, i) => (
+                                            <div key={i} className="p-6 border-2 border-dashed border-gray-200 rounded-3xl">
+                                                <div className="w-12 h-12 bg-gray-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                                    </svg>
+                                                </div>
+                                                <p className="font-black text-gray-500 text-sm capitalize italic">{cert}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* PARTNERS SECTION */}
+            <section id="partner" className="relative bg-white py-24 border-t border-gray-100">
+                <div className="max-w-7xl mx-auto px-6">
+
+                    {/* Heading Partner */}
+                    <div className="text-center mb-20">
+                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter capitalize italic leading-none mb-6">
+                            Partner <span className="text-white-600">Kami</span>
+                        </h2>
+                        <div className="h-1.5 bg-red-600 w-24 mx-auto mb-10"></div>
+                        <p className="text-gray-500 font-medium max-w-2xl mx-auto text-lg leading-relaxed">
+                            Kami bangga bekerja sama dengan berbagai perusahaan dan organisasi ternama yang turut mendukung kami dalam memberikan layanan terbaik dan berkelanjutan bagi pelanggan kami.            </p>
+                    </div>
+
+                    {/* Partners Grid */}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-12 items-center justify-center max-w-6xl mx-auto mb-20">
+                        {[1, 2, 3, 4, 5, 6].map((num) => (
+                            <div
+                                key={num}
+                                className="flex justify-center transition-all duration-500 transform hover:scale-110 group"
+                            >
+                                <div className="relative h-12 md:h-16 w-full">
+                                    <Image
+                                        src={`/partner-${num}.png`}
+                                        alt={`Partner ${num}`}
+                                        fill
+                                        className="object-contain transition-all duration-500 opacity-80 group-hover:opacity-100"
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Button See All Partners */}
+                    <div className="flex justify-center">
+                        <Link href="/partners">
+                            <button className="group relative inline-flex items-center gap-3 bg-gray-900 text-white font-black px-10 py-4 rounded-xl overflow-hidden transition-all duration-300 hover:bg-red-600 uppercase tracking-[0.2em] text-xs">
+                                <span className="relative z-10">Lihat Selengkapnya</span>
+                                <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300">→</span>
+                            </button>
+                        </Link>
+                    </div>
+
+                </div>
+            </section>
+
+            {/* CONTACT SECTION */}
+            <section id="contact" className="relative bg-gradient-to-br from-red-800 via-red-600 to-red-700 py-32 overflow-hidden">
+                {/* Aksesoris Background biar gak sepi */}
+                <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-black/20 rounded-full blur-3xl"></div>
+
+                <div className="relative z-10 max-w-7xl mx-auto px-6">
+                    {/* Heading */}
+                    <div className="text-center mb-20">
+                        <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter capitalize italic leading-none mb-6">
+                            Hubungi <span className="text-white-900/30">Kami</span>
+                        </h2>
+                        <div className="h-2 bg-white w-24 mx-auto mb-8"></div>
+                        <p className="text-white/90 font-bold text-lg max-w-2xl mx-auto leading-relaxed">
+                            Kami siap membantu Anda! Silakan hubungi kami melalui formulir di bawah ini atau melalui kontak langsung yang tersedia.
+                        </p>
+                    </div>
+
+                    <div className="grid lg:grid-cols-2 gap-16 items-start">
+                        {/* Formulir Kontak */}
+                        <div className="bg-white rounded-[2.5rem] shadow-2xl p-10 md:p-12 transform hover:-translate-y-2 transition-all duration-500 border border-white/20">
+                            <form className="space-y-6">
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label htmlFor="name" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Nama Lengkap</label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            placeholder="John Doe"
+                                            className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label htmlFor="email" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Email Address</label>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            placeholder="john@wifacorp.com"
+                                            className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <label htmlFor="message" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Pesan Anda</label>
+                                    <textarea
+                                        id="message"
+                                        rows={4}
+                                        placeholder="Tulis pesan Anda..."
+                                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900 resize-none"
+                                    ></textarea>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="w-full bg-red-600 text-white font-black py-5 rounded-2xl hover:bg-gray-900 transition-all duration-300 shadow-xl capitalize tracking-[0.3em] text-sm group"
+                                >
+                                    Kirim Pesan
+                                    <span className="inline-block ml-3 group-hover:translate-x-2 transition-transform">→</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        {/* Info Kontak */}
+                        <div className="text-white lg:pt-8 space-y-12">
+                            <div className="space-y-6">
+                                <h3 className="text-3xl md:text-4xl font-black capitalize italic tracking-tighter leading-tight">
+                                    Koneksi Langsung
+                                </h3>
+                                <p className="text-white/80 font-medium text-lg max-w-md">
+                                    Anda juga bisa langsung menghubungi kami melalui detail di bawah ini.
+                                </p>
+                            </div>
+
+                            <div className="space-y-6">
+                                {[
+                                    {
+                                        icon: <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />,
+                                        text: "Jl. Fatmawati No. 60A, Pangkal Pinang"
+                                    },
+                                    {
+                                        icon: <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />,
+                                        text: "nusantara@wifacorp.com"
+                                    },
+                                    {
+                                        icon: <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.05-.24c1.12.37 2.33.57 3.54.57a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 22 2 13.93 2 3.5a1 1 0 011-1H6.5a1 1 0 011 1c0 1.21.2 2.42.57 3.54a1 1 0 01-.25 1.05l-2.2 2.2z" />,
+                                        text: "(0274) 123456"
+                                    }
+                                ].map((item, idx) => (
+                                    <div key={idx} className="flex items-center gap-6 group cursor-pointer">
+                                        <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:bg-white group-hover:scale-110 transition-all duration-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-white group-hover:fill-red-600 transition-colors" viewBox="0 0 24 24">
+                                                {item.icon}
+                                            </svg>
+                                        </div>
+                                        <span className="font-bold text-lg tracking-tight group-hover:text-gray-900/60 transition-colors">{item.text}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <Footer />
+        </main>
+    )
+}
