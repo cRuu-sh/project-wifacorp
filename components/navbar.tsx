@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -22,15 +23,16 @@ export default function Navbar() {
         >
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
 
-                {/* LOGO AREA */}
-                <Link href="/" className="group">
-                    <div className="flex flex-col">
-                        <span className="text-xl md:text-2xl font-black italic tracking-tighter text-white leading-none">
-                            WIFACORP
-                        </span>
-                        <span className="text-[8px] font-bold tracking-[0.4em] text-white-600 uppercase mt-1 opacity-80">
-                            Beyond Construction
-                        </span>
+                {/* LOGO AREA - Only Icon */}
+                <Link href="/" className="group flex items-center">
+                    <div className="relative w-10 h-10 md:w-12 md:h-12 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+                        <Image
+                            src="/wifa_icon.png" // 
+                            alt="Wifacorp Logo"
+                            fill
+                            className="object-contain"
+                            priority
+                        />
                     </div>
                 </Link>
 
