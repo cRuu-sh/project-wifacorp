@@ -108,7 +108,7 @@ export default function PartnersPage() {
                 <section className="mb-32">
                     <div className="flex items-center gap-4 mb-12">
                         <div className="h-10 w-2 bg-red-600 rounded-full"></div>
-                        <h2 className="text-2xl md:text-3xl font-black text-gray-900 uppercase tracking-[0.2em] italic">
+                        <h2 className="text-2xl md:text-3xl font-black text-gray-900 capitalize tracking-[0.2em] italic">
                             Agrobisnis <span className="text-red-600">Strategic</span>
                         </h2>
                     </div>
