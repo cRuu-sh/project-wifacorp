@@ -212,6 +212,66 @@ export default function Home() {
         </div>
       </section>
 
+      {/* LEGACY WIFA / PORTFOLIO SECTION */}
+      <section className="py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+
+          {/* Heading Portfolio */}
+          <div className="mb-20 border-l-8 border-red-600 pl-6">
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tighter capitalize italic leading-none">
+              Legacy <span className="text-red-600">WIFA</span>
+            </h2>
+          </div>
+
+          {/* Portfolio Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              {
+                title: "Pembangunan Karantina",
+                location: "Pangkalbalam, Bangka Belitung",
+                img: "https://images.unsplash.com/photo-1636808458964-c34aef9273ff?q=80&w=800&auto=format&fit=crop"
+              },
+              {
+                title: "Kebut Sawit",
+                location: "Munggu, Bangka Tengah",
+                img: "https://plus.unsplash.com/premium_photo-1697729435258-b7d20023c843?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              },
+              {
+                title: "Pelabuhan Peti Kemas",
+                location: "Operasional Logistik PT",
+                img: "https://images.unsplash.com/photo-1769752803898-e7e9a843a120?q=80&w=800&auto=format&fit=crop"
+              }
+            ].map((project, index) => (
+              <div key={index} className="group cursor-pointer">
+                {/* Image Container with Aspect Ratio */}
+                <div className="relative overflow-hidden rounded-2xl aspect-[3/4] bg-gray-100 shadow-2xl">
+                  <Image
+                    src={project.img}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  {/* Subtle Overlay on Hover */}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+
+                {/* Project Info */}
+                <div className="mt-8 text-center px-4">
+                  <h3 className="font-black text-gray-900 text-lg md:text-xl leading-tight group-hover:text-red-600 transition-colors capitalize italic tracking-tighter">
+                    {project.title}
+                  </h3>
+                  <div className="w-10 h-1 bg-gray-200 mx-auto my-4 group-hover:w-20 group-hover:bg-red-600 transition-all duration-500"></div>
+                  <p className="text-[10px] md:text-[11px] text-gray-400 capitalize tracking-[0.2em] font-bold">
+                    {project.location}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
       <Footer />
     </main>
   )
