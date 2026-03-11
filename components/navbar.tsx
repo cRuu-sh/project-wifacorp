@@ -38,11 +38,11 @@ export default function Navbar() {
 
                 {/* MENU LINKS (Desktop) */}
                 <div className="hidden md:flex items-center gap-10">
-                    {['Home', 'Business Units', 'Projects', 'Careers', 'Contact'].map((item) => (
+                    {['Home', 'Tentang WIFA', 'Bisnis WIFA', 'Partners WIFA', 'Contact'].map((item) => (
                         <Link
                             key={item}
                             href={`#${item.toLowerCase().replace(' ', '-')}`}
-                            className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70 hover:text-red-600 transition-colors"
+                            className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 transition-colors"
                         >
                             {item}
                         </Link>
