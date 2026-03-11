@@ -97,7 +97,7 @@ export default function Navbar() {
                             key={link.name}
                             href={link.href}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-2xl font-black text-white hover:text-red-600 transition-colors uppercase tracking-[0.2em]"
+                            className="text-2xl font-black text-white hover:text-red-600 transition-colors capitalize tracking-[0.2em]"
                         >
                             {link.name}
                         </Link>

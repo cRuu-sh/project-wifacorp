@@ -47,7 +47,7 @@ export default function Home() {
 
         {/* Teks Utama */}
         <div className="relative z-10 text-center px-6">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black capitalize tracking-tighter leading-tight text-white drop-shadow-2xl">
+          <h1 className="text-xl sm:text-4xl md:text-6xl lg:text-7xl font-black capitalize tracking-tighter leading-tight text-white drop-shadow-2xl">
             PT Wifacorp Tbk
           </h1>
           <p className="mt-3 text-xs md:text-sm font-bold italic tracking-[0.2em] text-white capitalize opacity-90">

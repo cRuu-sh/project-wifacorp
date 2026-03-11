@@ -54,7 +54,7 @@ export default function BusinessPage() {
                                 <button
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id)}
-                                    className={`px-4 py-2.5 md:px-8 md:py-3 rounded-full font-black text-[10px] md:text-xs uppercase tracking-widest transition-all duration-300 ${activeTab === tab.id
+                                    className={`px-4 py-2.5 md:px-8 md:py-3 rounded-full font-black text-[10px] md:text-xs capitalize tracking-widest transition-all duration-300 ${activeTab === tab.id
                                         ? 'bg-red-600 text-white shadow-lg shadow-red-600/30 scale-105'
                                         : 'bg-gray-700 text-white hover:bg-red-600'
                                         }`}
@@ -82,7 +82,7 @@ export default function BusinessPage() {
                                                 {['Pembangunan Gedung', 'Fasilitas Publik', 'Renovasi Skala Besar', 'Manajemen Material'].map((item, idx) => (
                                                     <div key={idx} className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border-b-2 border-gray-200">
                                                         <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-                                                        <span className="font-black text-gray-800 italic text-sm uppercase tracking-tighter">{item}</span>
+                                                        <span className="font-black text-gray-800 italic text-sm capitalize tracking-tighter">{item}</span>
                                                     </div>
                                                 ))}
                                             </div>
@@ -114,7 +114,7 @@ export default function BusinessPage() {
                                                 className="object-cover"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
-                                                <p className="text-white font-black italic text-xl uppercase tracking-widest">Ketahanan Pangan Berkelanjutan</p>
+                                                <p className="text-white font-black italic text-xl capitalize tracking-widest">Ketahanan Pangan Berkelanjutan</p>
                                             </div>
                                         </div>
                                         <div className="space-y-6">
@@ -125,7 +125,7 @@ export default function BusinessPage() {
                                                 Melalui pendekatan agrikultur modern, kami mengelola komoditas unggulan yang mendukung ekonomi lokal dan nasional. Fokus kami adalah pada efisiensi rantai pasok dan kualitas hasil bumi yang kompetitif untuk pasar domestik maupun industri.
                                             </p>
                                             <div className="bg-gray-900 p-8 rounded-[2rem] text-white">
-                                                <h4 className="text-red-600 font-black italic mb-2 uppercase tracking-widest">Core Focus:</h4>
+                                                <h4 className="text-red-600 font-black italic mb-2 capitalize tracking-widest">Core Focus:</h4>
                                                 <p className="font-medium italic text-gray-300">Pengelolaan Lahan Produktif, Distribusi Komoditas Utama, dan Implementasi Teknologi Tani Modern.</p>
                                             </div>
                                         </div>
@@ -145,7 +145,7 @@ export default function BusinessPage() {
                                         </p>
                                         <div className="flex flex-wrap justify-center gap-6">
                                             {['Material Alam', 'Alat Teknik', 'Suku Cadang', 'Logistik'].map((tag, i) => (
-                                                <span key={i} className="px-6 py-2 bg-white shadow-md rounded-full text-gray-900 font-black italic text-xs uppercase tracking-tighter border border-gray-100">
+                                                <span key={i} className="px-6 py-2 bg-white shadow-md rounded-full text-gray-900 font-black italic text-xs capitalize tracking-tighter border border-gray-100">
                                                     #{tag}
                                                 </span>
                                             ))}
@@ -171,7 +171,7 @@ export default function BusinessPage() {
                                                 { title: 'Layanan', desc: 'Konsultasi & Manajemen Fasilitas Medis' }
                                             ].map((box, i) => (
                                                 <div key={i} className="p-8 bg-white border-b-4 border-red-600 shadow-xl rounded-2xl hover:-translate-y-2 transition-transform duration-300">
-                                                    <h4 className="text-2xl font-black text-gray-900 italic mb-2 uppercase tracking-tighter">{box.title}</h4>
+                                                    <h4 className="text-2xl font-black text-gray-900 italic mb-2 capitalize tracking-tighter">{box.title}</h4>
                                                     <p className="text-sm text-gray-500 font-bold capitalize">{box.desc}</p>
                                                 </div>
                                             ))}
@@ -221,7 +221,7 @@ export default function BusinessPage() {
                     {/* Button See All Partners */}
                     <div className="flex justify-center">
                         <Link href="/partners">
-                            <button className="group relative inline-flex items-center gap-3 bg-gray-900 text-white font-black px-10 py-4 rounded-xl overflow-hidden transition-all duration-300 hover:bg-red-600 uppercase tracking-[0.2em] text-xs">
+                            <button className="group relative inline-flex items-center gap-3 bg-gray-900 text-white font-black px-10 py-4 rounded-xl overflow-hidden transition-all duration-300 hover:bg-red-600 capitalize tracking-[0.2em] text-xs">
                                 <span className="relative z-10">Lihat Selengkapnya</span>
                                 <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300">→</span>
                             </button>

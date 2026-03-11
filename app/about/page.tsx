@@ -55,7 +55,7 @@ export default function AboutPage() {
                                 <button
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id)}
-                                    className={`px-4 py-2 md:px-8 md:py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 ${activeTab === tab.id
+                                    className={`px-4 py-2 md:px-8 md:py-3 rounded-full font-black text-xs capitalize tracking-widest transition-all duration-300 ${activeTab === tab.id
                                         ? 'bg-red-600 text-white shadow-lg shadow-red-600/30 scale-105'
                                         : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
                                         }`}
