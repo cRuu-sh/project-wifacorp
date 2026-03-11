@@ -43,8 +43,8 @@ export default function BusinessPage() {
                 </div>
 
                 {/* KONTEN PUTIH (OVERLAP) */}
-                <div className="relative z-20 -mt-24 md:-mt-32 p-4 md:p-8 flex justify-center">
-                    <div className="bg-white border border-gray-100 rounded-[2.5rem] shadow-2xl w-full md:w-[85%] max-w-6xl p-8 md:p-12 relative overflow-hidden">
+                <div className="relative z-20 -mt-16 md:-mt-32 p-4 md:p-8 flex justify-center">
+                    <div className="bg-white border border-gray-100 rounded-[2.5rem] shadow-2xl w-full md:w-[85%] max-w-6xl p-6 md:p-12 relative overflow-hidden">
                         {/* Divider merah mengikuti lebar box putih */}
                         <div className="absolute top-0 left-0 w-full h-2.5 bg-red-600"></div>
 
@@ -54,7 +54,7 @@ export default function BusinessPage() {
                                 <button
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id)}
-                                    className={`px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 ${activeTab === tab.id
+                                    className={`px-4 py-2.5 md:px-8 md:py-3 rounded-full font-black text-[10px] md:text-xs uppercase tracking-widest transition-all duration-300 ${activeTab === tab.id
                                         ? 'bg-red-600 text-white shadow-lg shadow-red-600/30 scale-105'
                                         : 'bg-gray-700 text-white hover:bg-red-600'
                                         }`}
@@ -70,7 +70,7 @@ export default function BusinessPage() {
                             {/* 1. KONSTRUKSI */}
                             {activeTab === 'konstruksi' && (
                                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                                         <div className="space-y-6">
                                             <h2 className="text-3xl md:text-4xl font-black text-gray-900 capitalize italic border-l-8 border-red-600 pl-6 leading-tight">
                                                 Solusi <span className="text-red-600">Infrastruktur</span> & Konstruksi Terpadu
@@ -105,7 +105,7 @@ export default function BusinessPage() {
                             {/* 2. AGROBISNIS */}
                             {activeTab === 'agrobisnis' && (
                                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                                         <div className="relative h-[400px] rounded-[2.5rem] overflow-hidden shadow-2xl order-last md:order-first">
                                             <Image
                                                 src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?q=80&w=1000"
@@ -164,7 +164,7 @@ export default function BusinessPage() {
                                         <p className="text-gray-600 leading-relaxed text-lg font-medium">
                                             Divisi kesehatan kami berfokus pada penyediaan alat kesehatan dan layanan medis yang kredibel. Kami berkomitmen untuk meningkatkan kualitas hidup masyarakat melalui distribusi produk medis yang standar internasional.
                                         </p>
-                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                                             {[
                                                 { title: 'Alkes', desc: 'Pengadaan Alat Kesehatan Rumah Sakit' },
                                                 { title: 'Pharma', desc: 'Distribusi Farmasi & Obat-obatan' },
@@ -200,7 +200,7 @@ export default function BusinessPage() {
                     </div>
 
                     {/* Partners Grid */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-12 items-center justify-center max-w-6xl mx-auto mb-20">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-center max-w-6xl mx-auto mb-20">
                         {[1, 2, 3, 4, 5, 6].map((num) => (
                             <div
                                 key={num}
@@ -251,7 +251,7 @@ export default function BusinessPage() {
 
                     <div className="grid lg:grid-cols-2 gap-16 items-start">
                         {/* Formulir Kontak */}
-                        <div className="bg-white rounded-[2.5rem] shadow-2xl p-10 md:p-12 transform hover:-translate-y-2 transition-all duration-500 border border-white/20">
+                        <div className="bg-white rounded-[2.5rem] shadow-2xl p-6 md:p-12 transform hover:-translate-y-2 transition-all duration-500 border border-white/20">
                             <form className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
