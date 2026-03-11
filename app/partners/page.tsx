@@ -6,10 +6,10 @@ import Footer from "@/components/footer"
 
 function PartnerCard({ id, name }: { id: number, name: string }) {
     return (
-        <div className="group relative p-8 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 flex items-center justify-center overflow-hidden hover:-translate-y-2">
+        <div className="group relative p-5 md:p-8 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 flex items-center justify-center overflow-hidden hover:-translate-y-2">
             <div className="absolute inset-0 bg-red-600/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
 
-            <div className="relative z-10 w-full h-16 md:h-20">
+            <div className="relative z-10 w-full h-12 md:h-20 md:h-20">
                 <Image
                     src={`/partner-${id}.png`}
                     alt={name}
@@ -35,7 +35,7 @@ export default function PartnersPage() {
             <header className="bg-gray-900 pt-40 pb-24 text-center relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 blur-[100px] rounded-full"></div>
                 <div className="container mx-auto px-6 relative z-10">
-                    <h1 className="text-4xl md:text-6xl font-black text-white mb-6 capitalize italic tracking-tighter">
+                    <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-6 capitalize italic tracking-tighter">
                         Partner <span className="text-red-600">Kami</span>
                     </h1>
                     <div className="w-24 h-2 bg-red-600 mx-auto mb-8 rounded-full"></div>
@@ -56,7 +56,7 @@ export default function PartnersPage() {
                             Material <span className="text-red-600">Suppliers</span>
                         </h2>
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8">
                         {materialSuppliers.map((partner) => (
                             <PartnerCard key={partner.id} id={partner.id} name={partner.name} />
                         ))}
@@ -121,7 +121,7 @@ export default function PartnersPage() {
             </div>
 
             {/* CONTACT SECTION */}
-            <section id="contact" className="relative bg-gradient-to-br from-red-800 via-red-600 to-red-700 py-32 overflow-hidden">
+            <section id="contact" className="relative bg-gradient-to-br from-red-800 via-red-600 to-red-700 py-20 md:py-32 px-6 overflow-hidden">
                 {/* Aksesoris Background biar gak sepi */}
                 <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-black/20 rounded-full blur-3xl"></div>
@@ -140,9 +140,9 @@ export default function PartnersPage() {
 
                     <div className="grid lg:grid-cols-2 gap-16 items-start">
                         {/* Formulir Kontak */}
-                        <div className="bg-white rounded-[2.5rem] shadow-2xl p-10 md:p-12 transform hover:-translate-y-2 transition-all duration-500 border border-white/20">
+                        <div className="bg-white rounded-[2.5rem] shadow-2xl p-6 md:p-12 transform hover:-translate-y-2 transition-all duration-500 border border-white/20">
                             <form className="space-y-6">
-                                <div className="grid md:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <label htmlFor="name" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Nama Lengkap</label>
                                         <input
@@ -209,7 +209,7 @@ export default function PartnersPage() {
                                         text: "(0274) 123456"
                                     }
                                 ].map((item, idx) => (
-                                    <div key={idx} className="flex items-center gap-6 group cursor-pointer">
+                                    <div key={idx} className="flex items-start md:items-center gap-4 md:gap-6 group cursor-pointer">
                                         <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:bg-white group-hover:scale-110 transition-all duration-300">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-white group-hover:fill-red-600 transition-colors" viewBox="0 0 24 24">
                                                 {item.icon}
