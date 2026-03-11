@@ -5,12 +5,11 @@ export default function Footer() {
     return (
         <footer className="w-full">
             {/* Bagian atas: putih */}
-            <div className="bg-white text-gray-800 pt-20 pb-12 border-t border-gray-100">
+            <div className="bg-white text-gray-800 pt-16 pb-10 border-t border-gray-100">
                 <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 mb-12">
-
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 mb-12">
                         {/* Kolom 1: Logo & Deskripsi */}
-                        <div className="space-y-6">
+                        <div className="flex flex-col items-center text-center sm:items-start sm:text-left space-y-6">
                             <div className="flex items-center gap-3">
                                 <Image
                                     src="/logo_wifa.png"
@@ -42,7 +41,7 @@ export default function Footer() {
                                     <li key={item.name}>
                                         <Link
                                             href={item.href}
-                                            className="text-gray-600 hover:text-red-600 transition-colors font-bold text-sm capitalize tracking-wide block"
+                                            className="block py-1 text-gray-600 hover:text-red-600 transition-colors font-bold text-sm capitalize tracking-wide block"
                                         >
                                             {item.name}
                                         </Link>
@@ -56,7 +55,7 @@ export default function Footer() {
                             <h3 className="text-sm font-black capitalize tracking-tight mb-6 text-red-700 italic border-l-4 border-red-600 pl-3">
                                 Ikuti Kami
                             </h3>
-                            <div className="flex items-center gap-5">
+                            <div className="flex items-center justify-center sm:justify-start gap-5">
                                 {/* Instagram */}
                                 <Link href="#" className="w-12 h-12 flex items-center justify-center rounded-xl bg-gray-50 text-gray-700 hover:bg-red-600 hover:text-white transition-all duration-300 shadow-sm border border-gray-100">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -84,7 +83,7 @@ export default function Footer() {
             {/* Bagian bawah: merah */}
             <div className="bg-red-700 text-white py-8 border-t border-white/10">
                 <div className="max-w-7xl mx-auto px-6 text-center">
-                    <p className="text-sm font-bold tracking-tight capitalize opacity-90">
+                    <p className="text-[12px] md:text-sm font-bold tracking-tight capitalize opacity-90">
                         © {new Date().getFullYear()} Wifa Corporation. All rights reserved.
                     </p>
                 </div>
