@@ -33,8 +33,8 @@ export default function AboutPage() {
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-black/30 z-0"></div>
 
-                    <div className="relative z-10 px-6">
-                        <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white drop-shadow-2xl capitalize italic">
+                    <div className="relative z-10 px-6 pt-20 md:pt-0">
+                        <h1 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tighter text-white drop-shadow-2xl capitalize italic">
                             Tentang Wifa
                         </h1>
                         <p className="text-lg md:text-2xl mt-4 font-bold italic tracking-[0.3em] text-gray-200 capitalize">
@@ -50,12 +50,12 @@ export default function AboutPage() {
                         <div className="absolute top-0 left-0 w-full h-2.5 bg-red-600"></div>
 
                         {/* TAB NAVIGATION */}
-                        <div className="flex flex-wrap justify-center gap-3 mb-12">
+                        <div className="flex flex-wrap md:flex-nowrap justify-center gap-2 md:gap-3 mb-12">
                             {tabs.map((tab) => (
                                 <button
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id)}
-                                    className={`px-8 py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 ${activeTab === tab.id
+                                    className={`px-4 py-2 md:px-8 md:py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 ${activeTab === tab.id
                                         ? 'bg-red-600 text-white shadow-lg shadow-red-600/30 scale-105'
                                         : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
                                         }`}
@@ -139,7 +139,7 @@ export default function AboutPage() {
                                     <div className="text-center">
                                         <h2 className="text-3xl font-black text-gray-900 mb-12 capitalize italic border-b-4 border-red-600 inline-block pb-2">Visi Dan Misi</h2>
                                     </div>
-                                    <div className="grid md:grid-cols-2 gap-12">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
                                         <div className="flex gap-6 items-start">
                                             <div className="bg-red-600 text-white rounded-2xl p-4 shadow-xl shrink-0">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -200,7 +200,7 @@ export default function AboutPage() {
                                             { name: "CV. Ilham Nusantara", div: "Divisi Konstruksi & Perdagangan Umum", color: "bg-red-50 text-red-600 hover:bg-red-600" },
                                             { name: "Wifa Medistra Nusantara", div: "Divisi Kesehatan", color: "bg-blue-50 text-blue-600 hover:bg-blue-600" }
                                         ].map((unit, i) => (
-                                            <div key={i} className="group p-8 border border-gray-100 rounded-[2.5rem] shadow-sm bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                                            <div key={i} className="group p-6 md:p-8 border border-gray-100 rounded-[2.5rem] shadow-sm bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                                                 <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl transition-colors duration-300 group-hover:text-white ${unit.color}`}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -305,7 +305,7 @@ export default function AboutPage() {
                         </p>
                     </div>
 
-                    <div className="grid lg:grid-cols-2 gap-16 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
                         {/* Formulir Kontak */}
                         <div className="bg-white rounded-[2.5rem] shadow-2xl p-10 md:p-12 transform hover:-translate-y-2 transition-all duration-500 border border-white/20">
                             <form className="space-y-6">
