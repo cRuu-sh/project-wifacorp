@@ -1,0 +1,22 @@
+{
+  "Navbar": {
+    "home": "Beranda",
+    "about": "Tentang WIFA",
+    "business": "Bisnis WIFA",
+    "partners": "Mitra WIFA",
+    "contact": "Kontak",
+    "inquiry": "Permintaan"
+  },
+  "Hero": {
+    "title": "PT Wifacorp Tbk",
+    "subtitle": "Melampaui Konstruksi"
+  },
+  "About": {
+    "title": "Tentang Kami",
+    "description": "Kami adalah perusahaan konstruksi terkemuka yang berdedikasi untuk membangun masa depan yang lebih baik melalui inovasi dan kualitas tinggi."
+  },
+  "Footer": {
+    "rights": "Hak Cipta Terpelihara",
+    "address": "Jakarta, Indonesia"
+  }
+}

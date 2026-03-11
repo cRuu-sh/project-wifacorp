@@ -1,33 +1,38 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+'use client';
+
+import { useState, useEffect } from 'react';
+import { NextIntlClientProvider } from 'next-intl';
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Wifacorp",
-  description: "Beyond Construction",
-};
+// Import JSON langsung dari folder messages
+import idMessages from '../messages/id.json';
+import enMessages from '../messages/en.json';
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const [locale, setLocale] = useState<string>('id');
+  const [messages, setMessages] = useState<any>(idMessages);
+
+  useEffect(() => {
+    const savedLocale = localStorage.getItem('locale') || 'id';
+    setLocale(savedLocale);
+
+    if (savedLocale === 'en') {
+      setMessages(enMessages);
+    } else {
+      setMessages(idMessages);
+    }
+  }, []);
+
   return (
-    <html lang="id">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang={locale}>
+      <body className="antialiased">
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

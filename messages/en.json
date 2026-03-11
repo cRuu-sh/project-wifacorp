@@ -1,0 +1,22 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "about": "About WIFA",
+    "business": "WIFA Business",
+    "partners": "WIFA Partners",
+    "contact": "Contact",
+    "inquiry": "Inquiry"
+  },
+  "Hero": {
+    "title": "PT Wifacorp Tbk",
+    "subtitle": "Beyond Construction"
+  },
+  "About": {
+    "title": "About Us",
+    "description": "We are a leading construction company dedicated to building a better future through innovation and high quality."
+  },
+  "Footer": {
+    "rights": "All Rights Reserved",
+    "address": "Jakarta, Indonesia"
+  }
+}

@@ -5,10 +5,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
+import { useTranslations } from 'next-intl';
 
 export default function Home() {
   const [experience, setExperience] = useState(0)
   const targetYear = 34
+  const t = useTranslations('Navbar');
 
   // Efek counter buat angka tahun
   useEffect(() => {

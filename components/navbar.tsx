@@ -3,20 +3,28 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl';
 
 export default function Navbar() {
+    const t = useTranslations('Navbar'); // Sesuaikan namespace dengan JSON (Navbar/navbar)
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const [activeLocale, setActiveLocale] = useState('id');
+
+    // Definisikan navLinks di sini biar kebaca sampe ke bawah (Mobile Menu)
+    // 'name' di sini adalah KEY di file JSON 
     const navLinks = [
-        { name: 'Home', href: '/' },
-        { name: 'Tentang WIFA', href: '/about' },
-        { name: 'Bisnis WIFA', href: '/business' },
-        { name: 'Partners WIFA', href: '/partners' },
-        { name: 'Contact', href: '/#contact' },
+        { name: 'home', href: '/' },
+        { name: 'about', href: '/about' },
+        { name: 'business', href: '/business' },
+        { name: 'partners', href: '/partners' },
+        { name: 'contact', href: '/#contact' },
     ]
 
-    // Efek buat deteksi scroll biar navbar berubah warna
     useEffect(() => {
+        const saved = localStorage.getItem('locale') || 'id';
+        setActiveLocale(saved);
+
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50)
         }
@@ -24,66 +32,64 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
+    const handleLanguageChange = (lang: string) => {
+        localStorage.setItem('locale', lang);
+        window.location.reload();
+    };
+
     return (
-        <nav
-            className={`fixed top-0 w-full z-[100] transition-all duration-500 ${isScrolled ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent py-8'
-                }`}
-        >
+        <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 ${isScrolled ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}>
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
 
-                {/* LOGO AREA - Only Icon */}
+                {/* LOGO */}
                 <Link href="/" className="group flex items-center">
-                    <div className="relative w-10 h-10 md:w-12 md:h-12 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-                        <Image
-                            src="/wifa_icon.png" // 
-                            alt="Wifacorp Logo"
-                            fill
-                            className="object-contain"
-                            priority
-                        />
+                    <div className="relative w-10 h-10 md:w-12 md:h-12 transition-all duration-300 group-hover:scale-110">
+                        <Image src="/wifa_icon.png" alt="Wifacorp Logo" fill className="object-contain" priority />
                     </div>
                 </Link>
 
                 {/* MENU LINKS (Desktop) */}
                 <div className="hidden md:flex items-center gap-10">
-                    {['Home', 'Tentang WIFA', 'Bisnis WIFA', 'Partners WIFA', 'Contact'].map((item) => {
-                        // Logika penentuan path
-                        const href =
-                            item === 'Home' ? '/' :
-                                item === 'Tentang WIFA' ? '/about' :
-                                    item === 'Bisnis WIFA' ? '/business' :
-                                        item === 'Partners WIFA' ? '/partners' :
-                                            '/#contact'; // Contact balik ke home section contact
-
-                        return (
-                            <Link
-                                key={item}
-                                href={href}
-                                className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 transition-colors"
-                            >
-                                {item}
-                            </Link>
-                        );
-                    })}
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.name}
+                            href={link.href}
+                            className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 transition-colors"
+                        >
+                            {t(link.name)} {/* <--- Panggil fungsi t() di sini */}
+                        </Link>
+                    ))}
                 </div>
 
-                {/* CTA BUTTON / MOBILE TOGGLE */}
-                <div className="flex items-center gap-4">
+                {/* BUTTONS (Language & Inquiry) */}
+                <div className="flex items-center gap-6">
+                    <div className="hidden md:flex gap-2 items-center text-[10px] font-bold tracking-widest border-r border-white/20 pr-6 mr-2">
+                        <button
+                            onClick={() => handleLanguageChange('id')}
+                            className={`${activeLocale === 'id' ? 'text-red-600' : 'text-white/50'} hover:text-white transition-colors`}
+                        >
+                            ID
+                        </button>
+                        <span className="text-white/20">|</span>
+                        <button
+                            onClick={() => handleLanguageChange('en')}
+                            className={`${activeLocale === 'en' ? 'text-red-600' : 'text-white/50'} hover:text-white transition-colors`}
+                        >
+                            EN
+                        </button>
+                    </div>
+
                     <button className="px-6 py-2 border border-white/20 text-[10px] font-bold tracking-widest uppercase hover:bg-red-600 hover:border-red-600 transition-all text-white">
                         Inquiry
                     </button>
 
-                    {/* Mobile Menu Icon (Simple version) */}
-                    <button
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="md:hidden flex flex-col gap-1.5 p-2 relative z-[110]"
-                    >
+                    {/* Hamburger Button */}
+                    <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden flex flex-col gap-1.5 p-2 relative z-[110]">
                         <div className={`w-6 h-[2px] bg-white transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
                         <div className={`w-4 h-[2px] bg-white ml-auto transition-all ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
                         <div className={`w-6 h-[2px] bg-white transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></div>
                     </button>
                 </div>
-
             </div>
 
             {/* MOBILE OVERLAY */}
@@ -107,6 +113,6 @@ export default function Navbar() {
                     </button>
                 </div>
             </div>
-        </nav>
+        </nav >
     )
 }
