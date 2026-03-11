@@ -47,7 +47,7 @@ export default function Home() {
 
         {/* Teks Utama */}
         <div className="relative z-10 text-center px-6">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black capitalize tracking-tighter leading-none text-white drop-shadow-2xl">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black capitalize tracking-tighter leading-tight text-white drop-shadow-2xl">
             PT Wifacorp Tbk
           </h1>
           <p className="mt-3 text-xs md:text-sm font-bold italic tracking-[0.2em] text-white capitalize opacity-90">
@@ -68,7 +68,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
             {/* Left: Image with Counter */}
             <div className="relative group">
@@ -81,12 +81,12 @@ export default function Home() {
                 />
               </div>
 
-              <div className="absolute -bottom-6 -right-6 bg-red-600 text-white px-8 py-4 rounded-2xl shadow-xl">
+              <div className="absolute -bottom-4 -righ  t-2 md:-bottom-6 md:-right-6 bg-red-600 text-white px-8 py-4 rounded-2xl shadow-xl">
                 <div className="flex items-center gap-2">
-                  <span className="text-5xl font-black italic">{experience}</span>
+                  <span className="text-3xl md:text-5xl font-black italic">{experience}</span>
                   <div className="flex flex-col leading-none">
                     <span className="text-xl font-bold">+</span>
-                    <span className="text-[10px] uppercase font-black tracking-widest text-white/90">Tahun<br />Pengalaman</span>
+                    <span className="text-[10px] capitalize font-black tracking-widest text-white/90">Tahun<br />Pengalaman</span>
                   </div>
                 </div>
               </div>
@@ -143,7 +143,7 @@ export default function Home() {
           </div>
 
           {/* Grid Business Units */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
               {
                 title: "Konstruksi",
@@ -191,7 +191,7 @@ export default function Home() {
                     {item.title}
                   </h3>
 
-                  <p className="text-gray-400 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-center">
+                  <p className="text-gray-400 text-sm leading-relaxed opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-center">
                     {item.desc}
                   </p>
 
@@ -319,8 +319,7 @@ export default function Home() {
       </section>
 
       {/* CONTACT SECTION */}
-      <section id="contact" className="relative bg-gradient-to-br from-red-800 via-red-600 to-red-700 py-32 overflow-hidden">
-        {/* Aksesoris Background biar gak sepi */}
+      <section id="contact" className="relative bg-gradient-to-br from-red-800 via-red-600 to-red-700 py-20 md:py-32 px-6 overflow-hidden">        {/* Aksesoris Background biar gak sepi */}
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-black/20 rounded-full blur-3xl"></div>
 
