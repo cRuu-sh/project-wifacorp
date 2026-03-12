@@ -49,40 +49,76 @@ export default function WorkHistory() {
 
     const featuredProjects = [
         {
-            year: "2015",
-            title: "Jasa Sewa Pompong Operasional Unit Pengamanan Laut Bangka (6 Unit)",
-            company: "PT. Timah, Tbk",
-            location: "Bangka"
+            year: "2026",
+            title: "Revitalisasi Atap Terminal Lanjutan Bandara Depati Amir Pangkalpinang",
+            company: "PT. Angkasa Pura II",
+            location: "Bangka Belitung, Kab. Bangka Tengah"
         },
         {
-            year: "2015",
-            title: "Pembangunan Fasilitas Pendukung Proyek Tanur 3",
+            year: "2025",
+            title: "Pengadaan AED (Automatedd External Defibrillator",
             company: "PT. Timah, Tbk",
-            location: "Kepulauan Riau"
+            location: "Bangka Belitung, Kota Pangkalpinang"
         },
         {
-            year: "2015",
-            title: "Lanjutan Jogging Track Dan Infrastruktur Lalu Lintas Polda",
+            year: "2024",
+            title: "Pengadaan Jasa Penggantian Asbes Rumah Sakit Bakti Timah Pangkalpinang",
+            company: "PT. Bakti Timah Medika",
+            location: "Bangka Belitung, Kota Pangkalpinang"
+        },
+        {
+            year: "2023",
+            title: "Jasa Pekerjaan Perbaikan Asrama / Mess 1 UPLB di Belinyu",
+            company: "PT. Timah, Tbk",
+            location: "Bangka Belitung, Kab. Bangka"
+        },
+        {
+            year: "2022",
+            title: "Material Pembangunan Workshop",
+            company: "PT. DAK",
+            location: "Bangka Belitung, Kota Pangkalpinang"
+        },
+        {
+            year: "2021",
+            title: "Jasa Sewa 6 Unit Kapal Pompong Kebutuhan Biang Pengamanan Wilayah Laut Bangka",
             company: "PT. Timah, Tbk",
             location: "Bangka Belitung"
         },
         {
-            year: "2015",
-            title: "Renovasi 12 Unit Rumah Dinas Kopel Belinyu",
+            year: "2020",
+            title: "Jasa Pekerjaan Perbaikan Stasiun Pengumpul Tempilang & Gemuruh Bidang Pengawasan Tambang & Pengangkutan",
             company: "PT. Timah, Tbk",
-            location: "Bangka"
+            location: "Bangka Belitung, Kab. Bangka Barat"
         },
         {
-            year: "2016",
-            title: "Lanjutan Pembangunan Gedung Rumah Sakit Medika Stania",
-            company: "PT. Rumah Sakit Bakti Timah",
-            location: "Sungailiat"
+            year: "2019",
+            title: "Jasa Pekerjaan Pembuatan Bangunan Geddung Arsip Corebox Eksplorasi di Merawang",
+            company: "PT. Timah, Tbk",
+            location: "Bangka Belitung, Kab. Bangka"
+        },
+        {
+            year: "2018",
+            title: "Jasa Pekerjaan Renovasi Rumah Dinas Kopel di Unit Metalurgi Mentok",
+            company: "PT. Timah, Tbk",
+            location: "Bangka Belitung, Kab. Bangka Barat"
         },
         {
             year: "2017",
-            title: "Pekerjaan Tambah Gedung Rawat Inap Kelas I Rg. Anggrek Rsms",
-            company: "PT. Rumah Sakit Bakti Timah",
-            location: "Sungailiat"
+            title: "Pekerjaan Tambah Gedung Rawat Inap Kelas I Rg. Anggrek RSMS Sungailiat",
+            company: "PT. Timah, Tbk",
+            location: "Bangka Belitung, Kab. Bangka"
+        },
+        {
+            year: "2016",
+            title: "Lanjutan Jasa Pekerjaan Pembangunan Gedung Rumah Sakit Medika Stania di Sungailiat",
+            company: "PT. Timah, Tbk",
+            location: "Bangka Belitung, Kab. Bangka"
+        },
+        {
+            year: "2015",
+            title: "Jasa pembangunan Fasilitas Pendukung untuk Proyek Tanur 3 di PT. Timah, Tbk di kepulauan Riau dan Wilayah Riau",
+            company: "PT. Timah, Tbk",
+            location: "Riau"
         }
     ]
 
