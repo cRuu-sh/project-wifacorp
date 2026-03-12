@@ -11,13 +11,12 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [activeLocale, setActiveLocale] = useState('id');
 
-    // Definisikan navLinks di sini biar kebaca sampe ke bawah (Mobile Menu)
-    // 'name' di sini adalah KEY di file JSON 
     const navLinks = [
         { name: 'home', href: '/' },
         { name: 'about', href: '/about' },
         { name: 'business', href: '/business' },
         { name: 'partners', href: '/partners' },
+        { name: 'careers', href: '/work' },
         { name: 'contact', href: '/#contact' },
     ]
 
@@ -58,7 +57,7 @@ export default function Navbar() {
                             href={link.href}
                             className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 transition-colors"
                         >
-                            {t(link.name)} {/* <--- Panggil fungsi t() di sini */}
+                            {t(link.name)}
                         </Link>
                     ))}
                 </div>
