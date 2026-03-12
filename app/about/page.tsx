@@ -218,19 +218,60 @@ export default function AboutPage() {
 
                             {/* 5. LISENSI BISNIS */}
                             {activeTab === 'lisensi' && (
-                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 text-center max-w-5xl mx-auto">
-                                    <h2 className="text-3xl font-black text-gray-900 mb-6 capitalize italic">Sertifikasi Bisnis</h2>
-                                    <p className="text-gray-600 font-medium mb-12">Setiap unit bisnis Wifacorp telah dilengkapi dengan lisensi dan sertifikasi resmi untuk menjamin standar kualitas tertinggi.</p>
-                                    {/* Reuse grid from Team but focused on certification look */}
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 opacity-70">
-                                        {["Sertifikat Badan Usaha (SBU)", "Izin Usaha Jasa Konstruksi", "Sertifikasi Alat Kesehatan"].map((cert, i) => (
-                                            <div key={i} className="p-6 border-2 border-dashed border-gray-200 rounded-3xl">
-                                                <div className="w-12 h-12 bg-gray-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 text-center max-w-6xl mx-auto">
+                                    <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 capitalize italic">Perizinan Usaha</h2>
+                                    <p className="text-gray-600 font-medium mb-16 max-w-2xl mx-auto">
+                                        Wifacorp berkomitmen terhadap kepatuhan legalitas dan transparansi operasional melalui entitas bisnis yang terdaftar secara resmi.
+                                    </p>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                                        {[
+                                            {
+                                                name: "PT. Andika Karya Sejahtera",
+                                                licenses: [
+                                                    { label: "Akta Pendirian (CV. Andika)", detail: "No. 10 | 29-12-1992" },
+                                                    { label: "Akta Pendirian (PT AKS)", detail: "No. 14 | 19-01-2008" },
+                                                    { label: "Nomor Induk Berusaha (NIB)", detail: "0220008670983" }
+                                                ]
+                                            },
+                                            {
+                                                name: "CV. Ilham Nusantara",
+                                                licenses: [
+                                                    { label: "Akta Pendirian", detail: "No. 15 | 22-01-1999" },
+                                                    { label: "Nomor Induk Berusaha (NIB)", detail: "0220100430885" }
+                                                ]
+                                            },
+                                            {
+                                                name: "PT. Wifa Medistra Nusantara",
+                                                licenses: [
+                                                    { label: "Akta Pendirian", detail: "No. 01 | 02-12-2024" },
+                                                    { label: "Nomor Induk Berusaha (NIB)", detail: "2212240014926" }
+                                                ]
+                                            }
+                                        ].map((company, i) => (
+                                            <div key={i} className="relative p-8 bg-gray-50 rounded-[2.5rem] border border-gray-100 hover:shadow-xl transition-all duration-500 group text-left">
+                                                <div className="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+                                                    <svg viewBox="0 0 24 24" className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" strokeLinecap="round" strokeLinejoin="round" />
                                                     </svg>
                                                 </div>
-                                                <p className="font-black text-gray-500 text-sm capitalize italic">{cert}</p>
+
+                                                {/* Judul sekarang Capitalize bray */}
+                                                <h3 className="font-black text-gray-900 text-lg mb-8 tracking-tight leading-tight">
+                                                    {company.name}
+                                                </h3>
+
+                                                <div className="space-y-6">
+                                                    {company.licenses.map((lic, idx) => (
+                                                        <div key={idx} className="flex gap-4">
+                                                            <div className="mt-1.5 w-2 h-2 rounded-full bg-red-600 flex-shrink-0" />
+                                                            <div>
+                                                                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">{lic.label}</p>
+                                                                <p className="text-sm font-bold text-gray-700">{lic.detail}</p>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
