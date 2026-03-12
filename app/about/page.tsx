@@ -256,7 +256,6 @@ export default function AboutPage() {
                                                     </svg>
                                                 </div>
 
-                                                {/* Judul sekarang Capitalize bray */}
                                                 <h3 className="font-black text-gray-900 text-lg mb-8 tracking-tight leading-tight">
                                                     {company.name}
                                                 </h3>
@@ -266,7 +265,7 @@ export default function AboutPage() {
                                                         <div key={idx} className="flex gap-4">
                                                             <div className="mt-1.5 w-2 h-2 rounded-full bg-red-600 flex-shrink-0" />
                                                             <div>
-                                                                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">{lic.label}</p>
+                                                                <p className="text-xs font-bold text-gray-400 capitalize tracking-widest mb-1">{lic.label}</p>
                                                                 <p className="text-sm font-bold text-gray-700">{lic.detail}</p>
                                                             </div>
                                                         </div>
