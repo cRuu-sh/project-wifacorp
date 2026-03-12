@@ -33,7 +33,8 @@ export default function WorkHistory() {
             const matchesYear = selectedYear === "All" || project.year === selectedYear;
 
             return matchesSearch && matchesYear;
-        });
+        })
+        .sort((a, b) => Number(b.year) - Number(a.year));
     }, [searchTerm, selectedYear]);
 
     // --- 3. LOGIC PAGINATION (Bisa jalan karena filteredProjects sudah ada) ---
