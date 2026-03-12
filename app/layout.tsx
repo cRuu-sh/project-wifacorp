@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body className="antialiased">
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages} timeZone="Asia/Jakarta">
           {children}
         </NextIntlClientProvider>
       </body>
