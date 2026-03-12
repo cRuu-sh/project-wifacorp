@@ -1,32 +1,53 @@
 'use client'
 
+import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import Image from 'next/image'
 import Link from 'next/link'
+import { allProjectsData } from '@/data/projectsData'
 
 export default function WorkHistory() {
     const t = useTranslations('Work');
+    const [showAll, setShowAll] = useState(false);
 
-    const careers = [
+    const featuredProjects = [
         {
-            year: "2024 - Present",
-            title: "Infrastructure Mega Project",
-            company: "PT Wifacorp Tbk",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            year: "2015",
+            title: "Jasa Sewa Pompong Operasional Unit Pengamanan Laut Bangka (6 Unit)",
+            company: "PT. Timah, Tbk",
+            location: "Bangka"
         },
         {
-            year: "2020 - 2023",
-            title: "Urban Development Strategy",
-            company: "Subsidiary WIFA",
-            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            year: "2015",
+            title: "Pembangunan Fasilitas Pendukung Proyek Tanur 3",
+            company: "PT. Timah, Tbk",
+            location: "Kepulauan Riau"
         },
         {
-            year: "2015 - 2019",
-            title: "Maritime Logistic Hub",
-            company: "WIFA Engineering",
-            description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            year: "2015",
+            title: "Lanjutan Jogging Track Dan Infrastruktur Lalu Lintas Polda",
+            company: "PT. Timah, Tbk",
+            location: "Bangka Belitung"
+        },
+        {
+            year: "2015",
+            title: "Renovasi 12 Unit Rumah Dinas Kopel Belinyu",
+            company: "PT. Timah, Tbk",
+            location: "Bangka"
+        },
+        {
+            year: "2016",
+            title: "Lanjutan Pembangunan Gedung Rumah Sakit Medika Stania",
+            company: "PT. Rumah Sakit Bakti Timah",
+            location: "Sungailiat"
+        },
+        {
+            year: "2017",
+            title: "Pekerjaan Tambah Gedung Rawat Inap Kelas I Rg. Anggrek Rsms",
+            company: "PT. Rumah Sakit Bakti Timah",
+            location: "Sungailiat"
         }
     ]
 
@@ -60,31 +81,120 @@ export default function WorkHistory() {
             {/* CONTENT SECTION - Efek Card Putih Melengkung */}
             <section className="relative z-20 -mt-20">
                 <div className="bg-white rounded-t-[60px] pt-20 pb-32 px-6 md:px-12 min-h-screen">
-                    <div className="max-w-4xl mx-auto text-center">
-                        {/* Judul dengan Garis Merah kayak "Perjalanan Kami" */}
-                        <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 capitalize inline-block relative mb-16">
-                            Riwayat Pekerjaan
-                            <div className="mt-2 h-1.5 bg-red-600 w-full"></div>
-                        </h2>
+                    <div className="max-w-7xl mx-auto"> {/* Lebarin container biar tabel leluasa */}
 
-                        {/* Career List */}
-                        <div className="space-y-16 text-left">
-                            {careers.map((item, index) => (
-                                <div key={index} className="group border-b border-slate-100 pb-12 transition-all hover:pl-4 duration-300">
-                                    <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                                        <span className="bg-red-600 text-white px-4 py-1 text-sm font-bold rounded-full w-fit">
-                                            {item.year}
+                        {/* Header Riwayat - Tetap Center */}
+                        <div className="text-center mb-20">
+                            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 capitalize inline-block relative">
+                                Riwayat Pekerjaan
+                                <div className="mt-2 h-1.5 bg-red-600 w-full"></div>
+                            </h2>
+                        </div>
+
+                        {/* 1. FEATURED PROJECTS - 6 MINI TABLES */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20 text-left">
+                            {featuredProjects.map((project, idx) => (
+                                <div key={idx} className="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:border-red-600 hover:shadow-2xl transition-all duration-500 group relative overflow-hidden">
+                                    {/* Badge Tahun */}
+                                    <div className="flex justify-between items-center mb-6">
+                                        <span className="bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">
+                                            Project {project.year}
                                         </span>
-                                        <h3 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
-                                            {item.title}
-                                        </h3>
+                                        <span className="text-slate-200 font-black text-2xl italic group-hover:text-red-100 transition-colors">0{idx + 1}</span>
                                     </div>
-                                    <h4 className="text-red-600 font-bold mb-4 capitalize text-sm tracking-widest">{item.company}</h4>
-                                    <p className="text-slate-500 text-lg leading-relaxed max-w-3xl">
-                                        {item.description}
-                                    </p>
+
+                                    {/* Judul Project (Capitalize) */}
+                                    <h3 className="text-lg font-black text-slate-900 leading-tight mb-6 min-h-[4rem] group-hover:text-red-600 transition-colors">
+                                        {project.title}
+                                    </h3>
+
+                                    {/* Detail Table-Style */}
+                                    <div className="space-y-4 border-t border-slate-200 pt-6">
+                                        <div className="flex justify-between items-start gap-4">
+                                            <span className="text-[10px] uppercase font-black text-slate-400 tracking-wider mt-1">Perusahaan</span>
+                                            <span className="text-sm font-bold text-slate-700 text-right leading-tight">{project.company}</span>
+                                        </div>
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-[10px] uppercase font-black text-slate-400 tracking-wider">Lokasi</span>
+                                            <span className="text-sm font-bold text-slate-700">{project.location}</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Hover Decor */}
+                                    <div className="absolute bottom-0 left-0 h-1 w-0 bg-red-600 group-hover:w-full transition-all duration-500"></div>
                                 </div>
                             ))}
+                        </div>
+
+                        {/* SECTION DATABASE PROYEK LENGKAP */}
+                        <div className="mt-20 pt-20 border-t border-slate-100 text-center">
+                            {!showAll && (
+                                <button
+                                    onClick={() => setShowAll(true)}
+                                    className="group relative inline-flex items-center justify-center px-12 py-5 font-black text-white bg-red-600 rounded-full overflow-hidden transition-all hover:bg-black shadow-xl shadow-red-600/20"
+                                >
+                                    <span className="relative uppercase tracking-widest text-sm">View Full Project Database</span>
+                                </button>
+                            )}
+
+                            {showAll && (
+                                <div className="animate-in fade-in slide-in-from-top-10 duration-700 text-left">
+                                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+                                        <div>
+                                            <h2 className="text-3xl font-black text-slate-900 uppercase italic tracking-tighter">
+                                                Complete Project <span className="text-red-600">Database</span>
+                                            </h2>
+                                            <p className="text-slate-500 mt-2 text-sm font-medium">Rekam jejak profesional Wifacorp sejak 2015.</p>
+                                        </div>
+                                        <button
+                                            onClick={() => setShowAll(false)}
+                                            className="group flex items-center gap-2 text-slate-400 hover:text-red-600 font-bold uppercase text-xs border-b-2 border-slate-200 hover:border-red-600 transition-all shrink-0 pb-1"
+                                        >
+                                            <span>Close Database</span>
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7" /></svg>
+                                        </button>
+                                    </div>
+
+                                    <div className="overflow-x-auto rounded-[2.5rem] border border-slate-200 bg-slate-50 shadow-2xl shadow-slate-200/50">
+                                        <table className="w-full text-left border-collapse min-w-[1000px]">
+                                            <thead>
+                                                <tr className="bg-slate-900 text-white">
+                                                    <th className="p-7 text-[10px] uppercase font-black tracking-widest border-r border-slate-800 w-16">No</th>
+                                                    <th className="p-7 text-[10px] uppercase font-black tracking-widest border-r border-slate-800">Nama Proyek</th>
+                                                    <th className="p-7 text-[10px] uppercase font-black tracking-widest border-r border-slate-800">Perusahaan</th>
+                                                    <th className="p-7 text-[10px] uppercase font-black tracking-widest border-r border-slate-800 text-center">Lokasi</th>
+                                                    <th className="p-7 text-[10px] uppercase font-black tracking-widest text-right">Tahun</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="text-sm">
+                                                {allProjectsData.map((project, idx) => (
+                                                    <tr key={idx} className="border-b border-slate-200/60 hover:bg-white transition-all group">
+                                                        <td className="p-6 font-bold text-slate-300 group-hover:text-red-600 transition-colors">{idx + 1}</td>
+                                                        <td className="p-6 font-black text-slate-900 uppercase text-[11px] leading-relaxed max-w-md">
+                                                            {project.title}
+                                                        </td>
+                                                        <td className="p-6 text-slate-600 font-bold">
+                                                            {project.company}
+                                                        </td>
+                                                        <td className="p-6 text-slate-500 font-medium italic text-center">
+                                                            {project.location}
+                                                        </td>
+                                                        <td className="p-6 text-right font-black text-red-600 tracking-tighter text-base">
+                                                            {project.year}
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div className="mt-8 flex items-center justify-center gap-3 text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em]">
+                                        <div className="h-px w-10 bg-slate-200"></div>
+                                        <span>End of Records</span>
+                                        <div className="h-px w-10 bg-slate-200"></div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
