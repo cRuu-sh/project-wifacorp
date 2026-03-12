@@ -41,12 +41,14 @@ export default function Navbar() {
         <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 ${isScrolled ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}>
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
 
-                {/* LOGO */}
-                <Link href="/" className="group flex items-center">
-                    <div className="relative w-10 h-10 md:w-12 md:h-12 transition-all duration-300 group-hover:scale-110">
-                        <Image src="/wifa_icon.png" alt="Wifacorp Logo" fill className="object-contain" priority />
-                    </div>
-                </Link>
+                {/* LOGO SECTION */}
+                <div className="flex-shrink-0">
+                    <Link href="/" className="group flex items-center">
+                        <span className="text-xl md:text-2xl font-black tracking-[0.3em] text-white transition-all duration-300 group-hover:text-red-600 uppercase">
+                            WIFACORP<span className="text-red-600 group-hover:text-white">.</span>
+                        </span>
+                    </Link>
+                </div>
 
                 {/* MENU LINKS (Desktop) */}
                 <div className="hidden md:flex items-center gap-10">
