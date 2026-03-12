@@ -132,7 +132,7 @@ export default function WorkHistory() {
                                 <div key={idx} className="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:border-red-600 hover:shadow-2xl transition-all duration-500 group relative overflow-hidden">
                                     {/* Badge Tahun */}
                                     <div className="flex justify-between items-center mb-6">
-                                        <span className="bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">
+                                        <span className="bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full capitalize tracking-widest">
                                             Project {project.year}
                                         </span>
                                         <span className="text-slate-200 font-black text-2xl italic group-hover:text-red-100 transition-colors">0{idx + 1}</span>
@@ -146,11 +146,11 @@ export default function WorkHistory() {
                                     {/* Detail Table-Style */}
                                     <div className="space-y-4 border-t border-slate-200 pt-6">
                                         <div className="flex justify-between items-start gap-4">
-                                            <span className="text-[10px] uppercase font-black text-slate-400 tracking-wider mt-1">Perusahaan</span>
+                                            <span className="text-[10px] capitalize font-black text-slate-400 tracking-wider mt-1">Perusahaan</span>
                                             <span className="text-sm font-bold text-slate-700 text-right leading-tight">{project.company}</span>
                                         </div>
                                         <div className="flex justify-between items-center">
-                                            <span className="text-[10px] uppercase font-black text-slate-400 tracking-wider">Lokasi</span>
+                                            <span className="text-[10px] capitalize font-black text-slate-400 tracking-wider">Lokasi</span>
                                             <span className="text-sm font-bold text-slate-700">{project.location}</span>
                                         </div>
                                     </div>
@@ -168,7 +168,7 @@ export default function WorkHistory() {
                                     onClick={() => setShowAll(true)}
                                     className="group relative inline-flex items-center justify-center px-12 py-5 font-black text-white bg-red-600 rounded-full overflow-hidden transition-all hover:bg-black shadow-xl shadow-red-600/20"
                                 >
-                                    <span className="relative uppercase tracking-widest text-sm">View Full Project Database</span>
+                                    <span className="relative capitalize tracking-widest text-sm">View Full Project Database</span>
                                 </button>
                             )}
 
@@ -177,7 +177,7 @@ export default function WorkHistory() {
                                     {/* HEADER & CONTROLS */}
                                     <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-10 gap-6">
                                         <div>
-                                            <h2 className="text-3xl font-black text-slate-900 uppercase italic tracking-tighter">
+                                            <h2 className="text-3xl font-black text-slate-900 capitalize italic tracking-tighter">
                                                 Complete Project <span className="text-red-600">Database</span>
                                             </h2>
                                             <p className="text-slate-500 mt-2 text-sm font-medium">Ditemukan {filteredProjects.length} data proyek.</p>
@@ -203,14 +203,14 @@ export default function WorkHistory() {
                                             <select
                                                 value={selectedYear}
                                                 onChange={(e) => setSelectedYear(e.target.value)}
-                                                className="px-6 py-3 bg-white border-2 border-slate-200 rounded-2xl focus:border-red-600 outline-none transition-all font-black text-xs uppercase tracking-widest cursor-pointer"
+                                                className="px-6 py-3 bg-white border-2 border-slate-200 rounded-2xl focus:border-red-600 outline-none transition-all font-black text-xs capitalize tracking-widest cursor-pointer"
                                             >
                                                 {availableYears.map(year => (
-                                                    <option key={year} value={year}>{year === "All" ? "SEMUA TAHUN" : `TAHUN ${year}`}</option>
+                                                    <option key={year} value={year}>{year === "All" ? "Semua Tahun" : `Tahun ${year}`}</option>
                                                 ))}
                                             </select>
 
-                                            <button onClick={() => setShowAll(false)} className="px-6 py-3 text-slate-400 hover:text-red-600 font-bold uppercase text-[10px] tracking-widest border-2 border-transparent hover:border-red-600 rounded-2xl transition-all">
+                                            <button onClick={() => setShowAll(false)} className="px-6 py-3 text-slate-400 hover:text-red-600 font-bold capitalize text-[10px] tracking-widest border-2 border-transparent hover:border-red-600 rounded-2xl transition-all">
                                                 Close
                                             </button>
                                         </div>
@@ -237,8 +237,8 @@ export default function WorkHistory() {
                                                     ))
                                                 ) : (
                                                     <tr>
-                                                        <td colSpan={5} className="p-20 text-center text-slate-400 uppercase font-black">
-                                                            Data Gak Ada Bray...
+                                                        <td colSpan={5} className="p-20 text-center text-slate-400 capitalize font-black">
+                                                            Data Tidak Ditemukan..
                                                         </td>
                                                     </tr>
                                                 )}
