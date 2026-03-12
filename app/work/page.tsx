@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
@@ -10,7 +10,42 @@ import { allProjectsData } from '@/data/projectsData'
 
 export default function WorkHistory() {
     const t = useTranslations('Work');
+
+    // --- 1. DEKLARASI STATE DULU (Ini fondasi) ---
     const [showAll, setShowAll] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [selectedYear, setSelectedYear] = useState("All");
+    const itemsPerPage = 10;
+
+    // --- 2. LOGIC FILTER (Supaya filteredProjects tercipta) ---
+    const availableYears = useMemo(() => {
+        const years = allProjectsData.map(p => p.year);
+        return ["All", ...Array.from(new Set(years))].sort((a, b) => b.localeCompare(a));
+    }, []);
+
+    const filteredProjects = useMemo(() => {
+        return allProjectsData.filter(project => {
+            const matchesSearch =
+                project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                project.company.toLowerCase().includes(searchTerm.toLowerCase());
+
+            const matchesYear = selectedYear === "All" || project.year === selectedYear;
+
+            return matchesSearch && matchesYear;
+        });
+    }, [searchTerm, selectedYear]);
+
+    // --- 3. LOGIC PAGINATION (Bisa jalan karena filteredProjects sudah ada) ---
+    const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredProjects.slice(indexOfFirstItem, indexOfLastItem);
+
+    // --- 4. EFFECT & DATA LAIN ---
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm, selectedYear]);
 
     const featuredProjects = [
         {
@@ -139,60 +174,113 @@ export default function WorkHistory() {
 
                             {showAll && (
                                 <div className="animate-in fade-in slide-in-from-top-10 duration-700 text-left">
-                                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+                                    {/* HEADER & CONTROLS */}
+                                    <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-10 gap-6">
                                         <div>
                                             <h2 className="text-3xl font-black text-slate-900 uppercase italic tracking-tighter">
                                                 Complete Project <span className="text-red-600">Database</span>
                                             </h2>
-                                            <p className="text-slate-500 mt-2 text-sm font-medium">Rekam jejak profesional Wifacorp sejak 2015.</p>
+                                            <p className="text-slate-500 mt-2 text-sm font-medium">Ditemukan {filteredProjects.length} data proyek.</p>
                                         </div>
-                                        <button
-                                            onClick={() => setShowAll(false)}
-                                            className="group flex items-center gap-2 text-slate-400 hover:text-red-600 font-bold uppercase text-xs border-b-2 border-slate-200 hover:border-red-600 transition-all shrink-0 pb-1"
-                                        >
-                                            <span>Close Database</span>
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7" /></svg>
-                                        </button>
+
+                                        {/* SEARCH & FILTER BOX */}
+                                        <div className="flex flex-col md:flex-row gap-4 w-full lg:w-auto">
+                                            {/* Search Input */}
+                                            <div className="relative group">
+                                                <input
+                                                    type="text"
+                                                    placeholder="Cari proyek atau klien..."
+                                                    value={searchTerm}
+                                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                                    className="w-full md:w-80 px-6 py-3 bg-white border-2 border-slate-200 rounded-2xl focus:border-red-600 outline-none transition-all font-bold text-sm"
+                                                />
+                                                <div className="absolute right-4 top-3.5 text-slate-300 group-focus-within:text-red-600">
+                                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                                                </div>
+                                            </div>
+
+                                            {/* Year Filter */}
+                                            <select
+                                                value={selectedYear}
+                                                onChange={(e) => setSelectedYear(e.target.value)}
+                                                className="px-6 py-3 bg-white border-2 border-slate-200 rounded-2xl focus:border-red-600 outline-none transition-all font-black text-xs uppercase tracking-widest cursor-pointer"
+                                            >
+                                                {availableYears.map(year => (
+                                                    <option key={year} value={year}>{year === "All" ? "SEMUA TAHUN" : `TAHUN ${year}`}</option>
+                                                ))}
+                                            </select>
+
+                                            <button onClick={() => setShowAll(false)} className="px-6 py-3 text-slate-400 hover:text-red-600 font-bold uppercase text-[10px] tracking-widest border-2 border-transparent hover:border-red-600 rounded-2xl transition-all">
+                                                Close
+                                            </button>
+                                        </div>
                                     </div>
 
+                                    {/* TABEL (Pake data filteredProjects) */}
                                     <div className="overflow-x-auto rounded-[2.5rem] border border-slate-200 bg-slate-50 shadow-2xl shadow-slate-200/50">
                                         <table className="w-full text-left border-collapse min-w-[1000px]">
-                                            <thead>
-                                                <tr className="bg-slate-900 text-white">
-                                                    <th className="p-7 text-[10px] uppercase font-black tracking-widest border-r border-slate-800 w-16">No</th>
-                                                    <th className="p-7 text-[10px] uppercase font-black tracking-widest border-r border-slate-800">Nama Proyek</th>
-                                                    <th className="p-7 text-[10px] uppercase font-black tracking-widest border-r border-slate-800">Perusahaan</th>
-                                                    <th className="p-7 text-[10px] uppercase font-black tracking-widest border-r border-slate-800 text-center">Lokasi</th>
-                                                    <th className="p-7 text-[10px] uppercase font-black tracking-widest text-right">Tahun</th>
-                                                </tr>
-                                            </thead>
+                                            {/* ... existing thread ... */}
                                             <tbody className="text-sm">
-                                                {allProjectsData.map((project, idx) => (
-                                                    <tr key={idx} className="border-b border-slate-200/60 hover:bg-white transition-all group">
-                                                        <td className="p-6 font-bold text-slate-300 group-hover:text-red-600 transition-colors">{idx + 1}</td>
-                                                        <td className="p-6 font-black text-slate-900 uppercase text-[11px] leading-relaxed max-w-md">
-                                                            {project.title}
-                                                        </td>
-                                                        <td className="p-6 text-slate-600 font-bold">
-                                                            {project.company}
-                                                        </td>
-                                                        <td className="p-6 text-slate-500 font-medium italic text-center">
-                                                            {project.location}
-                                                        </td>
-                                                        <td className="p-6 text-right font-black text-red-600 tracking-tighter text-base">
-                                                            {project.year}
+                                                {currentItems.length > 0 ? (
+                                                    currentItems.map((project, idx) => (
+                                                        <tr key={idx} className="border-b border-slate-200/60 hover:bg-white transition-all group">
+                                                            <td className="p-6 font-bold text-slate-300 group-hover:text-red-600">
+                                                                {indexOfFirstItem + idx + 1}
+                                                            </td>
+                                                            <td className="p-6 font-black text-slate-900 uppercase text-[11px] leading-relaxed max-w-md">
+                                                                {project.title}
+                                                            </td>
+                                                            <td className="p-6 text-slate-600 font-bold">{project.company}</td>
+                                                            <td className="p-6 text-slate-500 font-medium italic text-center">{project.location}</td>
+                                                            <td className="p-6 text-right font-black text-red-600 tracking-tighter text-base">{project.year}</td>
+                                                        </tr>
+                                                    ))
+                                                ) : (
+                                                    <tr>
+                                                        <td colSpan={5} className="p-20 text-center text-slate-400 uppercase font-black">
+                                                            Data Gak Ada Bray...
                                                         </td>
                                                     </tr>
-                                                ))}
+                                                )}
                                             </tbody>
                                         </table>
                                     </div>
 
-                                    <div className="mt-8 flex items-center justify-center gap-3 text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em]">
-                                        <div className="h-px w-10 bg-slate-200"></div>
-                                        <span>End of Records</span>
-                                        <div className="h-px w-10 bg-slate-200"></div>
-                                    </div>
+                                    {/* PAGINATION CONTROLS */}
+                                    {filteredProjects.length > itemsPerPage && (
+                                        <div className="mt-8 flex items-center justify-center gap-2">
+                                            <button
+                                                disabled={currentPage === 1}
+                                                onClick={() => setCurrentPage(prev => prev - 1)}
+                                                className="p-3 rounded-xl border border-slate-200 hover:bg-red-600 hover:text-white disabled:opacity-30 transition-all"
+                                            >
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                                            </button>
+
+                                            <div className="flex gap-2">
+                                                {[...Array(totalPages)].map((_, i) => (
+                                                    <button
+                                                        key={i}
+                                                        onClick={() => setCurrentPage(i + 1)}
+                                                        className={`w-10 h-10 rounded-xl font-bold text-xs transition-all ${currentPage === i + 1
+                                                            ? 'bg-red-600 text-white shadow-lg shadow-red-600/20'
+                                                            : 'bg-white border border-slate-200 text-slate-400 hover:border-red-600'
+                                                            }`}
+                                                    >
+                                                        {i + 1}
+                                                    </button>
+                                                ))}
+                                            </div>
+
+                                            <button
+                                                disabled={currentPage === totalPages}
+                                                onClick={() => setCurrentPage(prev => prev + 1)}
+                                                className="p-3 rounded-xl border border-slate-200 hover:bg-red-600 hover:text-white disabled:opacity-30 transition-all"
+                                            >
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             )}
                         </div>
