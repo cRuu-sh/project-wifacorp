@@ -36,7 +36,7 @@ export default function Navbar() {
         ],
         business: [
             { name: t('construction'), href: '/business?type=konstruksi' },
-            { name: t('agrobisnis'), href: '/business?type=agrobisnis' },
+            { name: t('agribusiness'), href: '/business?type=agrobisnis' },
             { name: t('trading'), href: '/business?type=perdagangan' },
             { name: t('healthcare'), href: '/business?type=kesehatan' },
         ]
@@ -191,8 +191,14 @@ export default function Navbar() {
 
                             {/* Nav Links Accordion */}
                             <div className="flex-1 overflow-y-auto space-y-6">
-                                {/* Home */}
-                                <Link href="/" className="block text-xl font-bold text-white/50 hover:text-red-600">{t('home')}</Link>
+                                {/* Home - Tambah onClick */}
+                                <Link
+                                    href="/"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="block text-xl font-bold text-white/50 hover:text-red-600"
+                                >
+                                    {t('home')}
+                                </Link>
 
                                 {/* About Dropdown */}
                                 <div>
@@ -232,19 +238,21 @@ export default function Navbar() {
                                     </AnimatePresence>
                                 </div>
 
-                                <Link href="/partners" className="block text-xl font-bold text-white hover:text-red-600">{t('partners')}</Link>
-                                <Link href="/work" className="block text-xl font-bold text-white hover:text-red-600">{t('careers')}</Link>
-                            </div>
-
-                            {/* Footer Drawer (Adhi Style) */}
-                            <div className="mt-auto pt-8 border-t border-white/10 space-y-4">
-                                <p className="text-[10px] font-black tracking-[0.3em] text-red-600 uppercase">Get In Touch</p>
-                                <a href="mailto:nusantara@wifacorp.com" className="flex items-center gap-3 text-white/60 text-sm font-bold">
-                                    <Mail size={16} /> nusantara@wifacorp.com
-                                </a>
-                                <a href="tel:+62217975311" className="flex items-center gap-3 text-white/60 text-sm font-bold">
-                                    <Phone size={16} /> +62 21 797 5311
-                                </a>
+                                {/* Partners & Careers - Tambah onClick */}
+                                <Link
+                                    href="/partners"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="block text-xl font-bold text-white hover:text-red-600"
+                                >
+                                    {t('partners')}
+                                </Link>
+                                <Link
+                                    href="/work"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="block text-xl font-bold text-white hover:text-red-600"
+                                >
+                                    {t('careers')}
+                                </Link>
                             </div>
                         </motion.div>
                     </>
