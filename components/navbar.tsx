@@ -253,6 +253,40 @@ export default function Navbar() {
                                 >
                                     {t('careers')}
                                 </Link>
+
+                                {/* Footer Drawer (Adhi Style) */}
+                                <div className="mt-auto pt-8 border-t border-white/10 space-y-6">
+                                    <div className="space-y-2">
+                                        <p className="text-[10px] font-black tracking-[0.3em] text-white uppercase opacity-50">Get In Touch</p>
+                                        <div className="h-0.5 bg-red-600 w-12"></div>
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        {/* Email */}
+                                        <a href="mailto:nusantara@wifacorp.com" className="group flex items-center gap-4">
+                                            <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white transition-transform group-hover:scale-110">
+                                                <Mail size={18} fill="currentColor" />
+                                            </div>
+                                            <span className="text-white text-sm font-bold tracking-tight">nusantara@wifacorp.com</span>
+                                        </a>
+
+                                        {/* Phone 1 */}
+                                        <a href="tel:+62217975311" className="group flex items-center gap-4">
+                                            <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white transition-transform group-hover:scale-110">
+                                                <Phone size={18} fill="currentColor" />
+                                            </div>
+                                            <span className="text-white text-sm font-bold tracking-tight">+62 21 797 5311</span>
+                                        </a>
+
+                                        {/* Phone 2 (Opsional sesuai gambar) */}
+                                        <a href="tel:+62217975312" className="group flex items-center gap-4">
+                                            <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white transition-transform group-hover:scale-110">
+                                                <Phone size={18} fill="currentColor" />
+                                            </div>
+                                            <span className="text-white text-sm font-bold tracking-tight">+62 21 797 5312</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
                     </>
