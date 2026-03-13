@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
+import { useTranslations } from 'next-intl';
 
 function PartnerCard({ id, name }: { id: number, name: string }) {
     return (
@@ -22,6 +23,7 @@ function PartnerCard({ id, name }: { id: number, name: string }) {
 }
 
 export default function PartnersPage() {
+    const t = useTranslations('Navbar');
     const materialSuppliers = Array.from({ length: 15 }, (_, i) => ({
         id: i + 1,
         name: `Partner ${i + 1}`
@@ -31,15 +33,26 @@ export default function PartnersPage() {
         <main className="min-h-screen bg-white">
             <Navbar />
 
-            {/* HEADER SECTION */}
-            <header className="bg-gray-900 pt-40 pb-24 text-center relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 blur-[100px] rounded-full"></div>
-                <div className="container mx-auto px-6 relative z-10">
-                    <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-6 capitalize italic tracking-tighter">
+            {/* HEADER SECTION WITH BACKGROUND IMAGE */}
+            <header className="relative min-h-[500px] flex items-center justify-center overflow-hidden">
+                {/* Background Image with Fixed Effect */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center bg-fixed z-0"
+                    style={{
+                        backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2000')`
+                    }}
+                />
+
+                {/* Glow Effect biar makin mewah */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/20 blur-[120px] rounded-full z-1"></div>
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-red-600/10 blur-[120px] rounded-full z-1"></div>
+
+                <div className="container mx-auto px-6 relative z-10 text-center pt-20">
+                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-6 capitalize italic tracking-tighter">
                         Partner <span className="text-red-600">Kami</span>
                     </h1>
-                    <div className="w-24 h-2 bg-red-600 mx-auto mb-8 rounded-full"></div>
-                    <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-relaxed italic capitalize">
+                    <div className="w-24 h-2 bg-red-600 mx-auto mb-8 rounded-full shadow-[0_0_20px_rgba(220,38,38,0.5)]"></div>
+                    <p className="text-gray-200 max-w-2xl mx-auto font-bold text-lg md:text-xl leading-relaxed italic capitalize drop-shadow-lg">
                         Kami bangga bekerja sama dengan berbagai perusahaan dan organisasi ternama yang turut mendukung kami dalam memberikan layanan terbaik.
                     </p>
                 </div>
