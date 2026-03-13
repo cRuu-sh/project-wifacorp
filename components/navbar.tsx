@@ -26,17 +26,17 @@ export default function Navbar() {
 
     const menuStructure = {
         about: [
-            { name: 'Our Story', href: '/about?tab=our-story' },
-            { name: 'Visi & Misi', href: '/about?tab=visi-misi' },
-            { name: 'Our Value', href: '/about?tab=value' },
-            { name: 'Our Team', href: '/about?tab=team' },
-            { name: 'Lisensi Bisnis', href: '/about?tab=lisensi' },
+            { name: t('story'), href: '/about?tab=our-story' },
+            { name: t('visionMission'), href: '/about?tab=visi-misi' },
+            { name: t('value'), href: '/about?tab=value' },
+            { name: t('team'), href: '/about?tab=team' },
+            { name: t('license'), href: '/about?tab=lisensi' },
         ],
         business: [
-            { name: 'Konstruksi', href: '/business?type=konstruksi' },
-            { name: 'Agrobisnis', href: '/business?type=agrobisnis' },
-            { name: 'Perdagangan Umum', href: '/business?type=perdagangan' },
-            { name: 'Kesehatan', href: '/business?type=kesehatan' },
+            { name: t('construction'), href: '/business?type=konstruksi' },
+            { name: t('agrobisnis'), href: '/business?type=agrobisnis' },
+            { name: t('trading'), href: '/business?type=perdagangan' },
+            { name: t('healthcare'), href: '/business?type=kesehatan' },
         ]
     };
 
@@ -78,13 +78,10 @@ export default function Navbar() {
                         onMouseEnter={() => setOpenDropdown('about')}
                         onMouseLeave={() => setOpenDropdown(null)}
                     >
-                        {/* Button dikasih py-4 biar area sensitif mouse-nya lebih luas ke bawah */}
-                        <button className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 flex items-center gap-1 transition-all py-4">
-                            About WIFA <ChevronDown size={12} className={`transition-transform duration-300 ${openDropdown === 'about' ? 'rotate-180' : ''}`} />
+                        <button className="text-[10px] font-bold capitalize tracking-[0.2em] text-white/70 hover:text-red-600 flex items-center gap-1 transition-all py-4">
+                            {t('about')} <ChevronDown size={12} className={`transition-transform duration-300 ${openDropdown === 'about' ? 'rotate-180' : ''}`} />
                         </button>
 
-                        {/* Dropdown Menu */}
-                        {/* Kita kasih invisible bridge pake pt-2 dan nempel di top-[80%] atau top-full */}
                         <div className={`absolute top-[90%] left-0 pt-2 w-56 transition-all duration-300 origin-top ${openDropdown === 'about' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
                             <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-4 shadow-2xl border border-white/20">
                                 {menuStructure.about.map((item) => (
@@ -102,8 +99,8 @@ export default function Navbar() {
                         onMouseEnter={() => setOpenDropdown('business')}
                         onMouseLeave={() => setOpenDropdown(null)}
                     >
-                        <button className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 flex items-center gap-1 transition-all py-4">
-                            Business WIFA <ChevronDown size={12} className={`transition-transform duration-300 ${openDropdown === 'business' ? 'rotate-180' : ''}`} />
+                        <button className="text-[10px] font-bold capitalize tracking-[0.2em] text-white/70 hover:text-red-600 flex items-center gap-1 transition-all py-4">
+                            {t('business')} <ChevronDown size={12} className={`transition-transform duration-300 ${openDropdown === 'business' ? 'rotate-180' : ''}`} />
                         </button>
 
                         <div className={`absolute top-[90%] left-0 pt-2 w-64 transition-all duration-300 origin-top ${openDropdown === 'business' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
@@ -118,9 +115,15 @@ export default function Navbar() {
                     </div>
 
                     {/* REGULAR LINKS */}
-                    <Link href="/partners" className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 transition-all">Partners</Link>
-                    <Link href="/work" className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 transition-all">Careers</Link>
-                    <Link href="/#contact" className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 transition-all">Contact</Link>
+                    <Link href="/partners" className="text-[10px] font-bold capitalize tracking-[0.2em] text-white/70 hover:text-red-600 transition-all">
+                        {t('partners')}
+                    </Link>
+                    <Link href="/work" className="text-[10px] font-bold capitalize tracking-[0.2em] text-white/70 hover:text-red-600 transition-all">
+                        {t('careers')}
+                    </Link>
+                    <Link href="/#contact" className="text-[10px] font-bold capitalize tracking-[0.2em] text-white/70 hover:text-red-600 transition-all">
+                        {t('contact')}
+                    </Link>
                 </div>
 
                 {/* RIGHT SECTION (Lang & Inquiry) */}
