@@ -36,7 +36,7 @@ export default function Footer() {
                                     { name: 'Tentang Kami', href: '/about' },
                                     { name: 'Bisnis Wifa', href: '/business' },
                                     { name: 'Partner', href: '/#partner' },
-                                    { name: 'Careers', href: '/#work' },
+                                    { name: 'Careers', href: '/work' },
                                     { name: 'Kontak', href: '/#contact' },
                                 ].map((item) => (
                                     <li key={item.name}>
