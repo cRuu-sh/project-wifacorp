@@ -129,22 +129,27 @@ export default function Navbar() {
                     <Link href="/work" className="text-[10px] font-bold capitalize tracking-[0.2em] text-white/70 hover:text-red-600 transition-all">
                         {t('careers')}
                     </Link>
-                    <Link href="/#contact" className="text-[10px] font-bold capitalize tracking-[0.2em] text-white/70 hover:text-red-600 transition-all">
-                        {t('contact')}
-                    </Link>
                 </div>
 
-                {/* RIGHT SECTION (Lang & Inquiry) */}
+                {/* RIGHT SECTION (Lang & Inquiry Action) */}
                 <div className="flex items-center gap-6">
+                    {/* Language Switcher */}
                     <div className="hidden md:flex gap-2 items-center text-[10px] font-bold tracking-widest border-r border-white/20 pr-6 mr-2">
                         <button onClick={() => handleLanguageChange('id')} className={`${activeLocale === 'id' ? 'text-red-600' : 'text-white/50'} hover:text-white transition-colors`}>ID</button>
                         <span className="text-white/20">|</span>
                         <button onClick={() => handleLanguageChange('en')} className={`${activeLocale === 'en' ? 'text-red-600' : 'text-white/50'} hover:text-white transition-colors`}>EN</button>
                     </div>
-                    <button className="px-6 py-2 border border-white/20 text-[10px] font-bold tracking-widest capitalize hover:bg-red-600 hover:border-red-600 transition-all text-white">Inquiry</button>
 
-                    {/* Hamburger Button */}
-                    <button onClick={() => setIsMobileMenuOpen(true)} className="md:hidden flex flex-col gap-1.5 p-2">
+                    {/* Tombol Contact yang sekarang jadi Inquiry Button */}
+                    <Link
+                        href="/#contact"
+                        className="px-6 py-2 border border-white/20 text-[10px] font-bold tracking-widest capitalize hover:bg-red-600 hover:border-red-600 transition-all text-white"
+                    >
+                        {t('contact')}
+                    </Link>
+
+                    {/* Hamburger Button (Mobile) */}
+                    <button onClick={() => setIsMobileMenuOpen(true)} className="md:hidden flex flex-col gap-1.5 p-2 relative z-[120]">
                         <div className="w-6 h-[2px] bg-white"></div>
                         <div className="w-4 h-[2px] bg-white ml-auto"></div>
                         <div className="w-6 h-[2px] bg-white"></div>
