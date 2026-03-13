@@ -1,13 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
+
 
 export default function BusinessPage() {
     const [activeTab, setActiveTab] = useState('konstruksi')
+    const searchParams = useSearchParams()
 
     const businessTabs = [
         { id: 'konstruksi', label: 'Konstruksi' },
@@ -15,6 +18,13 @@ export default function BusinessPage() {
         { id: 'perdagangan', label: 'Perdagangan Umum' },
         { id: 'kesehatan', label: 'Kesehatan' },
     ]
+
+    useEffect(() => {
+        const type = searchParams.get('type')
+        if (type) {
+            setActiveTab(type) // Ini bakal otomatis ganti tab sesuai parameter URL
+        }
+    }, [searchParams])
 
     return (
         <main className="min-h-screen bg-white">

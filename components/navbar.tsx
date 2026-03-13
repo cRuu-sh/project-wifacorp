@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl';
+import { ChevronDown } from 'lucide-react';
 
 export default function Navbar() {
     const t = useTranslations('Navbar'); // Sesuaikan namespace dengan JSON (Navbar/navbar)
@@ -19,6 +20,25 @@ export default function Navbar() {
         { name: 'careers', href: '/work' },
         { name: 'contact', href: '/#contact' },
     ]
+
+    // State untuk kontrol dropdown desktop
+    const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+    const menuStructure = {
+        about: [
+            { name: 'Our Story', href: '/about?tab=our-story' },
+            { name: 'Visi & Misi', href: '/about?tab=visi-misi' },
+            { name: 'Our Value', href: '/about?tab=value' },
+            { name: 'Our Team', href: '/about?tab=team' },
+            { name: 'Lisensi Bisnis', href: '/about?tab=lisensi' },
+        ],
+        business: [
+            { name: 'Konstruksi', href: '/business?type=konstruksi' },
+            { name: 'Agrobisnis', href: '/business?type=agrobisnis' },
+            { name: 'Perdagangan Umum', href: '/business?type=perdagangan' },
+            { name: 'Kesehatan', href: '/business?type=kesehatan' },
+        ]
+    };
 
     useEffect(() => {
         const saved = localStorage.getItem('locale') || 'id';
@@ -49,43 +69,71 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                {/* MENU LINKS (Desktop) */}
-                <div className="hidden md:flex items-center gap-10">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 transition-colors"
-                        >
-                            {t(link.name)}
-                        </Link>
-                    ))}
-                </div>
+                {/* DESKTOP MENU */}
+                <div className="hidden md:flex items-center gap-8">
 
-                {/* BUTTONS (Language & Inquiry) */}
-                <div className="flex items-center gap-6">
-                    <div className="hidden md:flex gap-2 items-center text-[10px] font-bold tracking-widest border-r border-white/20 pr-6 mr-2">
-                        <button
-                            onClick={() => handleLanguageChange('id')}
-                            className={`${activeLocale === 'id' ? 'text-red-600' : 'text-white/50'} hover:text-white transition-colors`}
-                        >
-                            ID
+                    {/* DROPDOWN: ABOUT */}
+                    <div
+                        className="relative group"
+                        onMouseEnter={() => setOpenDropdown('about')}
+                        onMouseLeave={() => setOpenDropdown(null)}
+                    >
+                        {/* Button dikasih py-4 biar area sensitif mouse-nya lebih luas ke bawah */}
+                        <button className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 flex items-center gap-1 transition-all py-4">
+                            About WIFA <ChevronDown size={12} className={`transition-transform duration-300 ${openDropdown === 'about' ? 'rotate-180' : ''}`} />
                         </button>
-                        <span className="text-white/20">|</span>
-                        <button
-                            onClick={() => handleLanguageChange('en')}
-                            className={`${activeLocale === 'en' ? 'text-red-600' : 'text-white/50'} hover:text-white transition-colors`}
-                        >
-                            EN
-                        </button>
+
+                        {/* Dropdown Menu */}
+                        {/* Kita kasih invisible bridge pake pt-2 dan nempel di top-[80%] atau top-full */}
+                        <div className={`absolute top-[90%] left-0 pt-2 w-56 transition-all duration-300 origin-top ${openDropdown === 'about' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+                            <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-4 shadow-2xl border border-white/20">
+                                {menuStructure.about.map((item) => (
+                                    <Link key={item.name} href={item.href} className="block px-4 py-3 text-[9px] font-black capitalize tracking-widest text-slate-800 hover:text-red-600 hover:bg-slate-50 rounded-xl transition-all">
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
-                    <button className="px-6 py-2 border border-white/20 text-[10px] font-bold tracking-widest uppercase hover:bg-red-600 hover:border-red-600 transition-all text-white">
-                        Inquiry
-                    </button>
+                    {/* DROPDOWN: BUSINESS */}
+                    <div
+                        className="relative group"
+                        onMouseEnter={() => setOpenDropdown('business')}
+                        onMouseLeave={() => setOpenDropdown(null)}
+                    >
+                        <button className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 flex items-center gap-1 transition-all py-4">
+                            Business WIFA <ChevronDown size={12} className={`transition-transform duration-300 ${openDropdown === 'business' ? 'rotate-180' : ''}`} />
+                        </button>
 
-                    {/* Hamburger Button */}
-                    <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden flex flex-col gap-1.5 p-2 relative z-[110]">
+                        <div className={`absolute top-[90%] left-0 pt-2 w-64 transition-all duration-300 origin-top ${openDropdown === 'business' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+                            <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-4 shadow-2xl border border-white/20">
+                                {menuStructure.business.map((item) => (
+                                    <Link key={item.name} href={item.href} className="block px-4 py-3 text-[9px] font-black capitalize tracking-widest text-slate-800 hover:text-red-600 hover:bg-slate-50 rounded-xl transition-all">
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* REGULAR LINKS */}
+                    <Link href="/partners" className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 transition-all">Partners</Link>
+                    <Link href="/work" className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 transition-all">Careers</Link>
+                    <Link href="/#contact" className="text-[10px] font-bold capitalize tracking-[0.3em] text-white/70 hover:text-red-600 transition-all">Contact</Link>
+                </div>
+
+                {/* RIGHT SECTION (Lang & Inquiry) */}
+                <div className="flex items-center gap-6">
+                    <div className="hidden md:flex gap-2 items-center text-[10px] font-bold tracking-widest border-r border-white/20 pr-6 mr-2">
+                        <button onClick={() => handleLanguageChange('id')} className={`${activeLocale === 'id' ? 'text-red-600' : 'text-white/50'} hover:text-white transition-colors`}>ID</button>
+                        <span className="text-white/20">|</span>
+                        <button onClick={() => handleLanguageChange('en')} className={`${activeLocale === 'en' ? 'text-red-600' : 'text-white/50'} hover:text-white transition-colors`}>EN</button>
+                    </div>
+                    <button className="px-6 py-2 border border-white/20 text-[10px] font-bold tracking-widest capitalize hover:bg-red-600 hover:border-red-600 transition-all text-white">Inquiry</button>
+
+                    {/* HAMBURGER (Sama kayak sebelumnya) */}
+                    <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden flex flex-col gap-1.5 p-2 relative z-[120]">
                         <div className={`w-6 h-[2px] bg-white transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
                         <div className={`w-4 h-[2px] bg-white ml-auto transition-all ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
                         <div className={`w-6 h-[2px] bg-white transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></div>
@@ -93,27 +141,22 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* MOBILE OVERLAY */}
-            <div
-                className={`fixed inset-0 bg-black/95 backdrop-blur-xl z-[105] transition-all duration-500 md:hidden ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
-                    }`}
-            >
-                <div className="flex flex-col items-center justify-center h-full gap-8">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-2xl font-black text-white hover:text-red-600 transition-colors capitalize tracking-[0.2em]"
-                        >
-                            {link.name}
-                        </Link>
+            {/* MOBILE MENU (Disederhanakan) */}
+            <div className={`fixed inset-0 bg-black/98 backdrop-blur-2xl z-[115] transition-all duration-700 md:hidden ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
+                <div className="flex flex-col items-center justify-center h-full gap-8 overflow-y-auto pt-20 pb-10">
+                    <p className="text-[8px] font-black tracking-[0.5em] text-red-600 uppercase">Menu About</p>
+                    {menuStructure.about.map((item) => (
+                        <Link key={item.name} href={item.href} onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-black text-white hover:text-red-600 transition-all uppercase tracking-widest">{item.name}</Link>
                     ))}
-                    <button className="mt-4 px-10 py-4 bg-red-600 text-white font-black tracking-widest uppercase hover:bg-white hover:text-red-600 transition-all duration-300">
-                        Inquiry Now
-                    </button>
+
+                    <div className="w-12 h-[1px] bg-white/10 my-4"></div>
+
+                    <p className="text-[8px] font-black tracking-[0.5em] text-red-600 uppercase">Menu Business</p>
+                    {menuStructure.business.map((item) => (
+                        <Link key={item.name} href={item.href} onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-black text-white hover:text-red-600 transition-all uppercase tracking-widest">{item.name}</Link>
+                    ))}
                 </div>
             </div>
-        </nav >
+        </nav>
     )
 }

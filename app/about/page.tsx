@@ -1,14 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
 
 export default function AboutPage() {
     const [activeTab, setActiveTab] = useState('our-story')
+    const searchParams = useSearchParams()
 
     const tabs = [
         { id: 'our-story', label: 'Our Story' },
@@ -17,6 +19,13 @@ export default function AboutPage() {
         { id: 'team', label: 'Team' },
         { id: 'lisensi', label: 'Lisensi Bisnis' },
     ]
+
+    useEffect(() => {
+        const tab = searchParams.get('tab')
+        if (tab) {
+            setActiveTab(tab)
+        }
+    }, [searchParams])
 
     return (
         <main className="min-h-screen bg-white">
