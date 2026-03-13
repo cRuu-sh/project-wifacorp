@@ -151,25 +151,25 @@ export default function Home() {
                 title: "Konstruksi",
                 desc: "Berkomitmen menghadirkan hasil terbaik di bidang konstruksi dan infrastruktur modern.",
                 img: "/konstruksi.png",
-                link: "/business#konstruksi"
+                link: "/business?type=konstruksi"
               },
               {
                 title: "Agrobisnis",
                 desc: "Menyediakan solusi terpadu untuk kebutuhan pertanian dan hasil bumi yang berkelanjutan.",
                 img: "/agrobisnis.jpg",
-                link: "/business#agrobisnis"
+                link: "/business?type=agrobisnis"
               },
               {
                 title: "Perdagangan Umum",
                 desc: "Menyediakan berbagai produk berkualitas untuk memenuhi kebutuhan pasar secara luas.",
                 img: "/investmen.png",
-                link: "/business#perdagangan"
+                link: "/business?type=perdagangan"
               },
               {
                 title: "Kesehatan",
                 desc: "Pelayanan kesehatan terpercaya dengan fasilitas modern dan tenaga ahli profesional.",
                 img: "/rumah_sakit.png",
-                link: "/business#kesehatan"
+                link: "/business?type=kesehatan"
               }
             ].map((item, index) => (
               <div
