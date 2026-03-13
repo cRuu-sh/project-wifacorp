@@ -4,13 +4,15 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, X, Mail, Phone } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
     const t = useTranslations('Navbar'); // Sesuaikan namespace dengan JSON (Navbar/navbar)
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [activeLocale, setActiveLocale] = useState('id');
+    const [openMobileSub, setOpenMobileSub] = useState<string | null>(null);
 
     const navLinks = [
         { name: 'home', href: '/' },
@@ -55,6 +57,12 @@ export default function Navbar() {
         localStorage.setItem('locale', lang);
         window.location.reload();
     };
+
+    // Lock scroll pas mobile menu buka
+    useEffect(() => {
+        if (isMobileMenuOpen) document.body.style.overflow = 'hidden';
+        else document.body.style.overflow = 'unset';
+    }, [isMobileMenuOpen]);
 
     return (
         <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 ${isScrolled ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}>
@@ -135,31 +143,108 @@ export default function Navbar() {
                     </div>
                     <button className="px-6 py-2 border border-white/20 text-[10px] font-bold tracking-widest capitalize hover:bg-red-600 hover:border-red-600 transition-all text-white">Inquiry</button>
 
-                    {/* HAMBURGER (Sama kayak sebelumnya) */}
-                    <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden flex flex-col gap-1.5 p-2 relative z-[120]">
-                        <div className={`w-6 h-[2px] bg-white transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
-                        <div className={`w-4 h-[2px] bg-white ml-auto transition-all ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
-                        <div className={`w-6 h-[2px] bg-white transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></div>
+                    {/* Hamburger Button */}
+                    <button onClick={() => setIsMobileMenuOpen(true)} className="md:hidden flex flex-col gap-1.5 p-2">
+                        <div className="w-6 h-[2px] bg-white"></div>
+                        <div className="w-4 h-[2px] bg-white ml-auto"></div>
+                        <div className="w-6 h-[2px] bg-white"></div>
                     </button>
                 </div>
             </div>
 
-            {/* MOBILE MENU (Disederhanakan) */}
-            <div className={`fixed inset-0 bg-black/98 backdrop-blur-2xl z-[115] transition-all duration-700 md:hidden ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
-                <div className="flex flex-col items-center justify-center h-full gap-8 overflow-y-auto pt-20 pb-10">
-                    <p className="text-[8px] font-black tracking-[0.5em] text-red-600 uppercase">Menu About</p>
-                    {menuStructure.about.map((item) => (
-                        <Link key={item.name} href={item.href} onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-black text-white hover:text-red-600 transition-all uppercase tracking-widest">{item.name}</Link>
-                    ))}
+            {/* MOBILE SIDE DRAWER (ADHI STYLE) */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110] md:hidden"
+                        />
 
-                    <div className="w-12 h-[1px] bg-white/10 my-4"></div>
+                        {/* Drawer Content */}
+                        <motion.div
+                            initial={{ x: '100%' }}
+                            animate={{ x: 0 }}
+                            exit={{ x: '100%' }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                            className="fixed top-0 right-0 h-full w-[85%] bg-[#1a1a1a] z-[120] p-8 flex flex-col md:hidden"
+                        >
+                            {/* Header Drawer */}
+                            <div className="flex justify-between items-start mb-12">
+                                <div className="space-y-1">
+                                    <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center font-black text-white text-xs">W</div>
+                                    <p className="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase">Menu</p>
+                                </div>
+                                <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 border border-white/10 rounded-full text-white">
+                                    <X size={20} />
+                                </button>
+                            </div>
 
-                    <p className="text-[8px] font-black tracking-[0.5em] text-red-600 uppercase">Menu Business</p>
-                    {menuStructure.business.map((item) => (
-                        <Link key={item.name} href={item.href} onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-black text-white hover:text-red-600 transition-all uppercase tracking-widest">{item.name}</Link>
-                    ))}
-                </div>
-            </div>
+                            {/* Nav Links Accordion */}
+                            <div className="flex-1 overflow-y-auto space-y-6">
+                                {/* Home */}
+                                <Link href="/" className="block text-xl font-bold text-white/50 hover:text-red-600">{t('home')}</Link>
+
+                                {/* About Dropdown */}
+                                <div>
+                                    <button
+                                        onClick={() => setOpenMobileSub(openMobileSub === 'about' ? null : 'about')}
+                                        className={`flex items-center justify-between w-full text-xl font-bold ${openMobileSub === 'about' ? 'text-red-600' : 'text-white'}`}
+                                    >
+                                        {t('about')} <ChevronDown size={18} className={`transition-transform ${openMobileSub === 'about' ? 'rotate-180' : ''}`} />
+                                    </button>
+                                    <AnimatePresence>
+                                        {openMobileSub === 'about' && (
+                                            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pl-4 space-y-4 mt-4 border-l border-white/10">
+                                                {menuStructure.about.map(s => (
+                                                    <Link key={s.name} href={s.href} onClick={() => setIsMobileMenuOpen(false)} className="block text-sm font-bold text-white/40 hover:text-white capitalize">{s.name}</Link>
+                                                ))}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+
+                                {/* Business Dropdown */}
+                                <div>
+                                    <button
+                                        onClick={() => setOpenMobileSub(openMobileSub === 'business' ? null : 'business')}
+                                        className={`flex items-center justify-between w-full text-xl font-bold ${openMobileSub === 'business' ? 'text-red-600' : 'text-white'}`}
+                                    >
+                                        {t('business')} <ChevronDown size={18} className={`transition-transform ${openMobileSub === 'business' ? 'rotate-180' : ''}`} />
+                                    </button>
+                                    <AnimatePresence>
+                                        {openMobileSub === 'business' && (
+                                            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pl-4 space-y-4 mt-4 border-l border-white/10">
+                                                {menuStructure.business.map(s => (
+                                                    <Link key={s.name} href={s.href} onClick={() => setIsMobileMenuOpen(false)} className="block text-sm font-bold text-white/40 hover:text-white capitalize">{s.name}</Link>
+                                                ))}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+
+                                <Link href="/partners" className="block text-xl font-bold text-white hover:text-red-600">{t('partners')}</Link>
+                                <Link href="/work" className="block text-xl font-bold text-white hover:text-red-600">{t('careers')}</Link>
+                            </div>
+
+                            {/* Footer Drawer (Adhi Style) */}
+                            <div className="mt-auto pt-8 border-t border-white/10 space-y-4">
+                                <p className="text-[10px] font-black tracking-[0.3em] text-red-600 uppercase">Get In Touch</p>
+                                <a href="mailto:nusantara@wifacorp.com" className="flex items-center gap-3 text-white/60 text-sm font-bold">
+                                    <Mail size={16} /> nusantara@wifacorp.com
+                                </a>
+                                <a href="tel:+62217975311" className="flex items-center gap-3 text-white/60 text-sm font-bold">
+                                    <Phone size={16} /> +62 21 797 5311
+                                </a>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
         </nav>
     )
 }
