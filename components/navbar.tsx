@@ -14,6 +14,7 @@ export default function Navbar() {
     const [activeLocale, setActiveLocale] = useState('id');
     const [openMobileSub, setOpenMobileSub] = useState<string | null>(null);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const navLinks = [
         { name: 'home', href: '/' },
@@ -43,6 +44,19 @@ export default function Navbar() {
         ]
     };
 
+    // Kumpulin semua menu yang bisa dicari
+    const searchResources = [
+        { name: t('home'), href: '/' },
+        { name: t('story'), href: '/about?tab=our-story' },
+        { name: t('leadership'), href: '/about?tab=leadership' },
+        { name: t('construction'), href: '/business?type=konstruksi' },
+        { name: t('agribusiness'), href: '/business?type=agrobisnis' },
+        { name: t('trading'), href: '/business?type=perdagangan' },
+        { name: t('healthcare'), href: '/business?type=kesehatan' },
+        { name: t('partners'), href: '/partners' },
+        { name: t('careers'), href: '/work' },
+    ];
+
     useEffect(() => {
         const saved = localStorage.getItem('locale') || 'id';
         setActiveLocale(saved);
@@ -64,6 +78,13 @@ export default function Navbar() {
         if (isMobileMenuOpen) document.body.style.overflow = 'hidden';
         else document.body.style.overflow = 'unset';
     }, [isMobileMenuOpen]);
+
+    // Logic Filter: Mulai nyari kalau user udah ngetik minimal 2 huruf
+    const filteredResults = searchQuery.length >= 2
+        ? searchResources.filter(item =>
+            item.name.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        : [];
 
     return (
         <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 ${isScrolled ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}>
@@ -345,11 +366,51 @@ export default function Navbar() {
                                 <input
                                     autoFocus
                                     type="text"
+                                    value={searchQuery} // Hubungin ke state
+                                    onChange={(e) => setSearchQuery(e.target.value)} // Update state pas ngetik
                                     placeholder="What are you looking for?"
                                     className="w-full bg-transparent border-b-2 border-white/20 py-8 text-3xl md:text-7xl font-bold text-white placeholder:text-white/10 focus:outline-none focus:border-red-600 transition-all capitalize tracking-tighter"
                                 />
                                 <Search className="absolute right-0 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-red-600 transition-all" size={40} />
                             </div>
+
+                            {/* Search Results Display */}
+                            <div className="mt-10 w-full max-w-4xl mx-auto overflow-y-auto max-h-[50vh] pr-4 custom-scrollbar">
+                                {filteredResults.length > 0 ? (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {filteredResults.map((result, idx) => (
+                                            <Link
+                                                key={idx}
+                                                href={result.href}
+                                                onClick={() => {
+                                                    setIsSearchOpen(false); // Tutup overlay
+                                                    setSearchQuery("");     // Reset input
+                                                }}
+                                                className="group p-6 bg-white/5 hover:bg-red-600 transition-all rounded-2xl border border-white/10 flex items-center justify-between"
+                                            >
+                                                <div className="flex flex-col">
+                                                    <span className="text-white font-bold text-xl capitalize">{result.name}</span>
+                                                    <span className="text-white/30 text-xs uppercase tracking-widest group-hover:text-white/70">Navigate to Page</span>
+                                                </div>
+                                                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-red-600 transition-all">
+                                                    <ChevronDown size={20} className="-rotate-90" />
+                                                </div>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                ) : searchQuery.length >= 2 ? (
+                                    <div className="text-center py-10">
+                                        <p className="text-white/30 text-xl italic font-light">
+                                            No results found for "<span className="text-white">{searchQuery}</span>"
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div className="text-center py-10 text-white/10 uppercase tracking-[0.2em] text-xs font-bold">
+                                        Start typing to find what you need...
+                                    </div>
+                                )}
+                            </div>
+
 
                             {/* Popular Tags / Quick Links */}
                             <div className="mt-12 flex flex-wrap justify-center gap-6 text-white/40 font-bold italic capitalize text-sm">
