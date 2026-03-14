@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl';
-import { ChevronDown, X, Mail, Phone } from 'lucide-react';
+import { ChevronDown, X, Mail, Phone, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
@@ -13,6 +13,7 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [activeLocale, setActiveLocale] = useState('id');
     const [openMobileSub, setOpenMobileSub] = useState<string | null>(null);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
 
     const navLinks = [
         { name: 'home', href: '/' },
@@ -133,6 +134,13 @@ export default function Navbar() {
 
                 {/* RIGHT SECTION (Lang & Inquiry Action) */}
                 <div className="flex items-center gap-6">
+                    {/* Icon Search */}
+                    <button
+                        onClick={() => setIsSearchOpen(true)}
+                        className="text-white/70 hover:text-red-600 transition-all p-2"
+                    >
+                        <Search size={20} />
+                    </button>
                     {/* Language Switcher */}
                     <div className="hidden md:flex gap-2 items-center text-[10px] font-bold tracking-widest border-r border-white/20 pr-6 mr-2">
                         <button onClick={() => handleLanguageChange('id')} className={`${activeLocale === 'id' ? 'text-red-600' : 'text-white/50'} hover:text-white transition-colors`}>ID</button>
@@ -290,6 +298,69 @@ export default function Navbar() {
                             </div>
                         </motion.div>
                     </>
+                )}
+            </AnimatePresence>
+
+            {/* Search Overlay with Background Image */}
+            <AnimatePresence>
+                {isSearchOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex flex-col items-center justify-center px-6"
+                    >
+                        {/* Background Image Wrapper */}
+                        <div className="absolute inset-0 z-0">
+                            <Image
+                                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070" // Ganti pake foto gedung atau proyek WIFA yang gahar
+                                alt="Search Background"
+                                fill
+                                className="object-cover"
+                            />
+                            {/* Overlay Gelap agar input tetep kebaca */}
+                            <div className="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+                        </div>
+
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setIsSearchOpen(false)}
+                            className="absolute top-10 right-10 text-white/50 hover:text-red-600 transition-all z-20"
+                        >
+                            <X size={40} strokeWidth={1} />
+                        </button>
+
+                        {/* Content Container */}
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                            className="w-full max-w-5xl relative z-10"
+                        >
+                            <p className="text-red-600 font-black tracking-[0.3em] uppercase text-xs mb-6 text-center">
+                                Search Wifa Nusantara
+                            </p>
+
+                            <div className="relative group">
+                                <input
+                                    autoFocus
+                                    type="text"
+                                    placeholder="What are you looking for?"
+                                    className="w-full bg-transparent border-b-2 border-white/20 py-8 text-3xl md:text-7xl font-bold text-white placeholder:text-white/10 focus:outline-none focus:border-red-600 transition-all capitalize tracking-tighter"
+                                />
+                                <Search className="absolute right-0 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-red-600 transition-all" size={40} />
+                            </div>
+
+                            {/* Popular Tags / Quick Links */}
+                            <div className="mt-12 flex flex-wrap justify-center gap-6 text-white/40 font-bold italic capitalize text-sm">
+                                <span className="text-white/60 not-italic">Popular:</span>
+                                <Link href="/business?type=konstruksi" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">Construction</Link>
+                                <Link href="/business?type=agrobisnis" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">Agribusiness</Link>
+                                <Link href="/about" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">Our Story</Link>
+                                <Link href="/partners" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">Partners</Link>
+                            </div>
+                        </motion.div>
+                    </motion.div>
                 )}
             </AnimatePresence>
         </nav>
