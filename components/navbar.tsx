@@ -210,7 +210,7 @@ export default function Navbar() {
                             {/* Header Drawer */}
                             <div className="flex justify-between items-start mb-12">
                                 <div className="space-y-1">
-                                    <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center font-black text-white text-xs">W</div>
+                                    <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center font-black text-white text-xs">WIFACORP.</div>
                                     <p className="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase">Menu</p>
                                 </div>
                                 <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 border border-white/10 rounded-full text-white">
