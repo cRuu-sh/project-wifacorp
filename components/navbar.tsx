@@ -73,10 +73,19 @@ export default function Navbar() {
         window.location.reload();
     };
 
-    // Lock scroll pas mobile menu buka
     useEffect(() => {
-        if (isMobileMenuOpen) document.body.style.overflow = 'hidden';
-        else document.body.style.overflow = 'unset';
+        if (isMobileMenuOpen) {
+            // Kunci total scroll body
+            document.body.style.overflow = 'hidden';
+            document.body.style.height = '100vh';
+        } else {
+            document.body.style.overflow = 'unset';
+            document.body.style.height = 'auto';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+            document.body.style.height = 'auto';
+        };
     }, [isMobileMenuOpen]);
 
     // Logic Filter: Mulai nyari kalau user udah ngetik minimal 2 huruf
@@ -186,7 +195,7 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* MOBILE SIDE DRAWER (ADHI STYLE) */}
+            {/* MOBILE SIDE DRAWER (ADHI STYLE - ANTI-CUT VERSION) */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <>
@@ -196,7 +205,7 @@ export default function Navbar() {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110] md:hidden"
+                            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[110] md:hidden"
                         />
 
                         {/* Drawer Content */}
@@ -205,115 +214,135 @@ export default function Navbar() {
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
                             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="fixed top-0 right-0 h-full w-[85%] bg-[#1a1a1a] z-[120] p-8 flex flex-col md:hidden"
+                            // 1. Pakai h-[100dvh] (Dynamic Viewport) biar gak ada celah putih di bawah
+                            // 2. Pakai bg-[#1a1a1a] TANPA opacity/transparent di container utama
+                            // 3. Tambahin touch-none buat nahan tarikan scroll browser
+                            className="fixed inset-y-0 right-0 w-[85%] bg-[#1a1a1a] z-[120] flex flex-col md:hidden shadow-2xl h-[100dvh] touch-none"
                         >
-                            {/* Header Drawer */}
-                            <div className="flex justify-between items-start mb-12">
+                            {/* 1. FIXED HEADER (Gak bakal ikut ke-scroll) */}
+                            <div className="p-8 flex justify-between items-start shrink-0">
                                 <div className="space-y-1">
-                                    <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center font-black text-white text-xs">WIFACORP.</div>
+                                    <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center font-black text-white text-[10px] leading-none">WIFACORP.</div>
                                     <p className="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase">Menu</p>
                                 </div>
-                                <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 border border-white/10 rounded-full text-white">
-                                    <X size={20} />
+                                <button
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="p-3 border border-white/10 rounded-full text-white hover:bg-white/5 transition-colors"
+                                >
+                                    <X size={24} />
                                 </button>
                             </div>
 
-                            {/* Nav Links Accordion */}
-                            <div className="flex-1 overflow-y-auto space-y-6">
-                                {/* Home - Tambah onClick */}
-                                <Link
-                                    href="/"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="block text-xl font-bold text-white/50 hover:text-red-600"
-                                >
-                                    {t('home')}
-                                </Link>
+                            {/* 2. SCROLLABLE AREA (Konten utama di sini) */}
+                            <div className="flex-1 overflow-y-auto px-8 pb-20 touch-pan-y custom-scrollbar bg-[#1a1a1a]">
+                                <div className="flex flex-col min-h-full">
 
-                                {/* About Dropdown */}
-                                <div>
-                                    <button
-                                        onClick={() => setOpenMobileSub(openMobileSub === 'about' ? null : 'about')}
-                                        className={`flex items-center justify-between w-full text-xl font-bold ${openMobileSub === 'about' ? 'text-red-600' : 'text-white'}`}
-                                    >
-                                        {t('about')} <ChevronDown size={18} className={`transition-transform ${openMobileSub === 'about' ? 'rotate-180' : ''}`} />
-                                    </button>
-                                    <AnimatePresence>
-                                        {openMobileSub === 'about' && (
-                                            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pl-4 space-y-4 mt-4 border-l border-white/10">
-                                                {menuStructure.about.map(s => (
-                                                    <Link key={s.name} href={s.href} onClick={() => setIsMobileMenuOpen(false)} className="block text-sm font-bold text-white/40 hover:text-white capitalize">{s.name}</Link>
-                                                ))}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
+                                    {/* Nav Links Group */}
+                                    <div className="flex-1 space-y-8 py-4">
+                                        {/* Home */}
+                                        <Link
+                                            href="/"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                            className="block text-2xl font-bold text-white/50 hover:text-white transition-colors"
+                                        >
+                                            {t('home')}
+                                        </Link>
 
-                                {/* Business Dropdown */}
-                                <div>
-                                    <button
-                                        onClick={() => setOpenMobileSub(openMobileSub === 'business' ? null : 'business')}
-                                        className={`flex items-center justify-between w-full text-xl font-bold ${openMobileSub === 'business' ? 'text-red-600' : 'text-white'}`}
-                                    >
-                                        {t('business')} <ChevronDown size={18} className={`transition-transform ${openMobileSub === 'business' ? 'rotate-180' : ''}`} />
-                                    </button>
-                                    <AnimatePresence>
-                                        {openMobileSub === 'business' && (
-                                            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pl-4 space-y-4 mt-4 border-l border-white/10">
-                                                {menuStructure.business.map(s => (
-                                                    <Link key={s.name} href={s.href} onClick={() => setIsMobileMenuOpen(false)} className="block text-sm font-bold text-white/40 hover:text-white capitalize">{s.name}</Link>
-                                                ))}
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
+                                        {/* About Dropdown */}
+                                        <div className="space-y-4">
+                                            <button
+                                                onClick={() => setOpenMobileSub(openMobileSub === 'about' ? null : 'about')}
+                                                className={`flex items-center justify-between w-full text-2xl font-bold transition-colors ${openMobileSub === 'about' ? 'text-red-600' : 'text-white'}`}
+                                            >
+                                                {t('about')}
+                                                <ChevronDown size={20} className={`transition-transform duration-300 ${openMobileSub === 'about' ? 'rotate-180' : ''}`} />
+                                            </button>
+                                            <AnimatePresence>
+                                                {openMobileSub === 'about' && (
+                                                    <motion.div
+                                                        initial={{ height: 0, opacity: 0 }}
+                                                        animate={{ height: 'auto', opacity: 1 }}
+                                                        exit={{ height: 0, opacity: 0 }}
+                                                        className="overflow-hidden pl-4 space-y-5 border-l-2 border-red-600/30"
+                                                    >
+                                                        {menuStructure.about.map(s => (
+                                                            <Link key={s.name} href={s.href} onClick={() => setIsMobileMenuOpen(false)} className="block text-lg font-medium text-white/40 hover:text-white capitalize transition-colors">{s.name}</Link>
+                                                        ))}
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
 
-                                {/* Partners & Careers - Tambah onClick */}
-                                <Link
-                                    href="/partners"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="block text-xl font-bold text-white hover:text-red-600"
-                                >
-                                    {t('partners')}
-                                </Link>
-                                <Link
-                                    href="/work"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="block text-xl font-bold text-white hover:text-red-600"
-                                >
-                                    {t('careers')}
-                                </Link>
+                                        {/* Business Dropdown */}
+                                        <div className="space-y-4">
+                                            <button
+                                                onClick={() => setOpenMobileSub(openMobileSub === 'business' ? null : 'business')}
+                                                className={`flex items-center justify-between w-full text-2xl font-bold transition-colors ${openMobileSub === 'business' ? 'text-red-600' : 'text-white'}`}
+                                            >
+                                                {t('business')}
+                                                <ChevronDown size={20} className={`transition-transform duration-300 ${openMobileSub === 'business' ? 'rotate-180' : ''}`} />
+                                            </button>
+                                            <AnimatePresence>
+                                                {openMobileSub === 'business' && (
+                                                    <motion.div
+                                                        initial={{ height: 0, opacity: 0 }}
+                                                        animate={{ height: 'auto', opacity: 1 }}
+                                                        exit={{ height: 0, opacity: 0 }}
+                                                        className="overflow-hidden pl-4 space-y-5 border-l-2 border-red-600/30"
+                                                    >
+                                                        {menuStructure.business.map(s => (
+                                                            <Link key={s.name} href={s.href} onClick={() => setIsMobileMenuOpen(false)} className="block text-lg font-medium text-white/40 hover:text-white capitalize transition-colors">{s.name}</Link>
+                                                        ))}
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
 
-                                {/* Footer Drawer (Adhi Style) */}
-                                <div className="mt-auto pt-8 border-t border-white/10 space-y-6">
-                                    <div className="space-y-2">
-                                        <p className="text-[10px] font-black tracking-[0.3em] text-white uppercase opacity-50">Get In Touch</p>
-                                        <div className="h-0.5 bg-red-600 w-12"></div>
+                                        {/* Partners & Careers */}
+                                        <Link
+                                            href="/partners"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                            className="block text-2xl font-bold text-white hover:text-red-600 transition-colors"
+                                        >
+                                            {t('partners')}
+                                        </Link>
+                                        <Link
+                                            href="/work"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                            className="block text-2xl font-bold text-white hover:text-red-600 transition-colors"
+                                        >
+                                            {t('careers')}
+                                        </Link>
                                     </div>
 
-                                    <div className="space-y-4">
-                                        {/* Email */}
-                                        <a href="mailto:nusantara@wifacorp.com" className="group flex items-center gap-4">
-                                            <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white transition-transform group-hover:scale-110">
-                                                <Mail size={18} fill="currentColor" />
-                                            </div>
-                                            <span className="text-white text-sm font-bold tracking-tight">nusantara@wifacorp.com</span>
-                                        </a>
+                                    {/* 3. FOOTER AREA (Tetap di bawah area scroll) */}
+                                    <div className="mt-12 pt-8 border-t border-white/10 space-y-8">
+                                        <div className="space-y-2">
+                                            <p className="text-[10px] font-black tracking-[0.3em] text-white uppercase opacity-50">Get In Touch</p>
+                                            <div className="h-1 bg-red-600 w-12"></div>
+                                        </div>
 
-                                        {/* Phone 1 */}
-                                        <a href="tel:+62217975311" className="group flex items-center gap-4">
-                                            <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white transition-transform group-hover:scale-110">
-                                                <Phone size={18} fill="currentColor" />
-                                            </div>
-                                            <span className="text-white text-sm font-bold tracking-tight">+62 21 797 5311</span>
-                                        </a>
+                                        <div className="space-y-6">
+                                            <a href="mailto:nusantara@wifacorp.com" className="group flex items-center gap-4">
+                                                <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white shrink-0 group-active:scale-95 transition-transform">
+                                                    <Mail size={20} fill="currentColor" />
+                                                </div>
+                                                <div className="flex flex-col">
+                                                    <span className="text-[10px] text-white/40 uppercase font-bold tracking-wider">Email Us</span>
+                                                    <span className="text-white text-sm font-bold tracking-tight">nusantara@wifacorp.com</span>
+                                                </div>
+                                            </a>
 
-                                        {/* Phone 2 (Opsional sesuai gambar) */}
-                                        <a href="tel:+62217975312" className="group flex items-center gap-4">
-                                            <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white transition-transform group-hover:scale-110">
-                                                <Phone size={18} fill="currentColor" />
-                                            </div>
-                                            <span className="text-white text-sm font-bold tracking-tight">+62 21 797 5312</span>
-                                        </a>
+                                            <a href="tel:+62217975311" className="group flex items-center gap-4">
+                                                <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white shrink-0 group-active:scale-95 transition-transform">
+                                                    <Phone size={20} fill="currentColor" />
+                                                </div>
+                                                <div className="flex flex-col">
+                                                    <span className="text-[10px] text-white/40 uppercase font-bold tracking-wider">Call Center</span>
+                                                    <span className="text-white text-sm font-bold tracking-tight">+62 21 797 5311</span>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
