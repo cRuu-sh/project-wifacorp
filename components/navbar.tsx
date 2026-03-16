@@ -195,7 +195,7 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* MOBILE SIDE DRAWER (ADHI STYLE - ANTI-CUT VERSION) */}
+            {/* MOBILE SIDE DRAWER */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <>
@@ -214,9 +214,6 @@ export default function Navbar() {
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
                             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            // 1. Pakai h-[100dvh] (Dynamic Viewport) biar gak ada celah putih di bawah
-                            // 2. Pakai bg-[#1a1a1a] TANPA opacity/transparent di container utama
-                            // 3. Tambahin touch-none buat nahan tarikan scroll browser
                             className="fixed inset-y-0 right-0 w-[85%] bg-[#1a1a1a] z-[120] flex flex-col md:hidden shadow-2xl h-[100dvh] touch-none"
                         >
                             {/* 1. FIXED HEADER (Gak bakal ikut ke-scroll) */}
@@ -233,7 +230,7 @@ export default function Navbar() {
                                 </button>
                             </div>
 
-                            {/* 2. SCROLLABLE AREA (Konten utama di sini) */}
+                            {/* 2. SCROLLABLE AREA  */}
                             <div className="flex-1 overflow-y-auto px-8 pb-20 touch-pan-y custom-scrollbar bg-[#1a1a1a]">
                                 <div className="flex flex-col min-h-full">
 
@@ -315,7 +312,7 @@ export default function Navbar() {
                                         </Link>
                                     </div>
 
-                                    {/* 3. FOOTER AREA (Tetap di bawah area scroll) */}
+                                    {/* 3. FOOTER AREA  */}
                                     <div className="mt-12 pt-8 border-t border-white/10 space-y-8">
                                         <div className="space-y-2">
                                             <p className="text-[10px] font-black tracking-[0.3em] text-white uppercase opacity-50">Get In Touch</p>
@@ -358,53 +355,58 @@ export default function Navbar() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] flex flex-col items-center justify-center px-6"
+                        className="fixed inset-0 z-[200] flex flex-col items-center justify-start overflow-y-auto h-[100dvh] bg-[#1a1a1a] pt-20 px-6 custom-scrollbar"
                     >
-                        {/* Background Image Wrapper */}
-                        <div className="absolute inset-0 z-0">
+                        {/* Background Image Wrapper - Fixed */}
+                        <div className="fixed inset-0 z-0">
                             <Image
-                                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070" // Ganti pake foto gedung atau proyek WIFA yang gahar
+                                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070"
                                 alt="Search Background"
                                 fill
-                                className="object-cover"
+                                priority
+                                className="object-cover opacity-40"
                             />
-                            {/* Overlay Gelap agar input tetep kebaca */}
-                            <div className="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+                            {/* Overlay Gelap */}
+                            <div className="absolute inset-0 bg-black/90 backdrop-blur-xl"></div>
                         </div>
 
-                        {/* Close Button */}
+                        {/* Close Button - Fixed */}
                         <button
                             onClick={() => setIsSearchOpen(false)}
-                            className="absolute top-10 right-10 text-white/50 hover:text-red-600 transition-all z-20"
+                            className="fixed top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-red-600 transition-all z-[250] p-2"
                         >
-                            <X size={40} strokeWidth={1} />
+                            <X strokeWidth={1} className="w-8 h-8 md:w-12 md:h-12" />
                         </button>
 
                         {/* Content Container */}
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
+                            initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ duration: 0.3 }}
-                            className="w-full max-w-5xl relative z-10"
+                            className="w-full max-w-5xl relative z-10 pb-24"
                         >
-                            <p className="text-red-600 font-black tracking-[0.3em] uppercase text-xs mb-6 text-center">
+                            {/* Branding Small */}
+                            <p className="text-red-600 font-black tracking-[0.3em] uppercase text-[10px] md:text-xs mb-8 text-center">
                                 Search Wifa Nusantara
                             </p>
 
-                            <div className="relative group">
+                            {/* Input Search Area */}
+                            <div className="relative group mb-12">
                                 <input
                                     autoFocus
                                     type="text"
-                                    value={searchQuery} // Hubungin ke state
-                                    onChange={(e) => setSearchQuery(e.target.value)} // Update state pas ngetik
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
                                     placeholder="What are you looking for?"
-                                    className="w-full bg-transparent border-b-2 border-white/20 py-8 text-3xl md:text-7xl font-bold text-white placeholder:text-white/10 focus:outline-none focus:border-red-600 transition-all capitalize tracking-tighter"
+                                    className="w-full bg-transparent border-b-2 border-white/20 py-6 md:py-10 text-2xl md:text-7xl font-bold text-white placeholder:text-white/10 focus:outline-none focus:border-red-600 transition-all capitalize tracking-tighter"
                                 />
-                                <Search className="absolute right-0 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-red-600 transition-all" size={40} />
+                                <Search
+                                    className="absolute right-0 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-red-600 transition-all w-8 h-8 md:w-12 md:h-12"
+                                />
                             </div>
 
-                            {/* Search Results Display */}
-                            <div className="mt-10 w-full max-w-4xl mx-auto overflow-y-auto max-h-[50vh] pr-4 custom-scrollbar">
+                            {/* Results Section */}
+                            <div className="w-full max-w-4xl mx-auto">
                                 {filteredResults.length > 0 ? (
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         {filteredResults.map((result, idx) => (
@@ -412,41 +414,40 @@ export default function Navbar() {
                                                 key={idx}
                                                 href={result.href}
                                                 onClick={() => {
-                                                    setIsSearchOpen(false); // Tutup overlay
-                                                    setSearchQuery("");     // Reset input
+                                                    setIsSearchOpen(false);
+                                                    setSearchQuery("");
                                                 }}
                                                 className="group p-6 bg-white/5 hover:bg-red-600 transition-all rounded-2xl border border-white/10 flex items-center justify-between"
                                             >
                                                 <div className="flex flex-col">
-                                                    <span className="text-white font-bold text-xl capitalize">{result.name}</span>
-                                                    <span className="text-white/30 text-xs uppercase tracking-widest group-hover:text-white/70">Navigate to Page</span>
+                                                    <span className="text-white font-bold text-lg md:text-xl capitalize">{result.name}</span>
+                                                    <span className="text-white/30 text-[10px] uppercase tracking-widest group-hover:text-white/70">Navigate to Page</span>
                                                 </div>
-                                                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-red-600 transition-all">
+                                                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-red-600 transition-all shrink-0">
                                                     <ChevronDown size={20} className="-rotate-90" />
                                                 </div>
                                             </Link>
                                         ))}
                                     </div>
                                 ) : searchQuery.length >= 2 ? (
-                                    <div className="text-center py-10">
+                                    <div className="text-center py-20">
                                         <p className="text-white/30 text-xl italic font-light">
                                             No results found for "<span className="text-white">{searchQuery}</span>"
                                         </p>
                                     </div>
                                 ) : (
-                                    <div className="text-center py-10 text-white/10 uppercase tracking-[0.2em] text-xs font-bold">
-                                        Start typing to find what you need...
+                                    <div className="text-center py-20 text-white/10 uppercase tracking-[0.4em] text-[10px] font-black">
+                                        Start typing to explore...
                                     </div>
                                 )}
                             </div>
 
-
-                            {/* Popular Tags / Quick Links */}
-                            <div className="mt-12 flex flex-wrap justify-center gap-6 text-white/40 font-bold italic capitalize text-sm">
-                                <span className="text-white/60 not-italic">Popular:</span>
+                            {/* Popular Quick Links */}
+                            <div className="mt-20 flex flex-wrap justify-center gap-6 md:gap-10 text-white/30 font-bold italic capitalize text-xs md:text-sm border-t border-white/5 pt-10">
+                                <span className="text-white/60 not-italic uppercase tracking-widest font-black text-[10px]">Quick Access:</span>
                                 <Link href="/business?type=konstruksi" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">Construction</Link>
                                 <Link href="/business?type=agrobisnis" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">Agribusiness</Link>
-                                <Link href="/about" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">Our Story</Link>
+                                <Link href="/about" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">About Us</Link>
                                 <Link href="/partners" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">Partners</Link>
                             </div>
                         </motion.div>
