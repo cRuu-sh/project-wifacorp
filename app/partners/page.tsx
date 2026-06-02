@@ -136,8 +136,7 @@ export default function PartnersPage() {
                 </div>
 
                 {/* CONTACT SECTION */}
-                <section id="contact" className="relative bg-gradient-to-br from-red-800 via-red-600 to-red-700 py-20 md:py-32 px-6 overflow-hidden">
-                    {/* Aksesoris Background biar gak sepi */}
+                <section id="contact" className="relative bg-gradient-to-br from-red-800 via-red-600 to-red-700 py-20 md:py-32 px-6 overflow-hidden">        {/* Aksesoris Background biar gak sepi */}
                     <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-black/20 rounded-full blur-3xl"></div>
 
@@ -155,15 +154,15 @@ export default function PartnersPage() {
 
                         <div className="grid lg:grid-cols-2 gap-16 items-start">
                             {/* Formulir Kontak */}
-                            <div className="bg-white rounded-[2.5rem] shadow-2xl p-6 md:p-12 transform hover:-translate-y-2 transition-all duration-500 border border-white/20">
+                            <div className="bg-white rounded-[2.5rem] shadow-2xl p-10 md:p-12 transform hover:-translate-y-2 transition-all duration-500 border border-white/20">
                                 <form className="space-y-6">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="grid md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
                                             <label htmlFor="name" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Nama Lengkap</label>
                                             <input
                                                 type="text"
                                                 id="name"
-                                                placeholder="John Doe"
+                                                placeholder="Masukkan Nama Anda"
                                                 className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
                                             />
                                         </div>
@@ -172,7 +171,7 @@ export default function PartnersPage() {
                                             <input
                                                 type="email"
                                                 id="email"
-                                                placeholder="john@wifacorp.com"
+                                                placeholder="Masukkan Email Anda"
                                                 className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
                                             />
                                         </div>
@@ -213,18 +212,14 @@ export default function PartnersPage() {
                                     {[
                                         {
                                             icon: <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />,
-                                            text: "Jl. Fatmawati No. 60A, Pangkal Pinang"
+                                            text: "Jl. Fatmawati, No. 60A, Kota Pangkalpinang, Prov. Kep. Bangka Belitung"
                                         },
                                         {
                                             icon: <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />,
                                             text: "nusantara@wifacorp.com"
-                                        },
-                                        {
-                                            icon: <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.05-.24c1.12.37 2.33.57 3.54.57a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 22 2 13.93 2 3.5a1 1 0 011-1H6.5a1 1 0 011 1c0 1.21.2 2.42.57 3.54a1 1 0 01-.25 1.05l-2.2 2.2z" />,
-                                            text: "(0274) 123456"
                                         }
                                     ].map((item, idx) => (
-                                        <div key={idx} className="flex items-start md:items-center gap-4 md:gap-6 group cursor-pointer">
+                                        <div key={idx} className="flex items-center gap-6 group cursor-pointer">
                                             <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:bg-white group-hover:scale-110 transition-all duration-300">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-white group-hover:fill-red-600 transition-colors" viewBox="0 0 24 24">
                                                     {item.icon}
