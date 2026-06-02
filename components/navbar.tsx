@@ -102,7 +102,7 @@ export default function Navbar() {
                 {/* LOGO SECTION */}
                 <div className="flex-shrink-0">
                     <Link href="/" className="group flex items-center">
-                        <span className="text-xl md:text-2xl font-black tracking-[0.3em] text-white uppercase transition-all duration-300 group-hover:text-red-600">
+                        <span className="text-xl md:text-2xl font-black text-white uppercase transition-all duration-300 group-hover:text-red-600">
                             WIFACORP<span className="text-red-600 group-hover:text-white">.</span>
                         </span>
                     </Link>
