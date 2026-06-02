@@ -35,17 +35,10 @@ export default function Home() {
       <Navbar />
 
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* Video Background */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
-        >
-          <source src="https://adhi.co.id/wp-content/uploads/2024/08/Website-Home.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {/* Static Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0f1e] via-[#0d1b3e] to-[#0a1628]" />
+        {/* Subtle overlay texture */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(30,80,160,0.25)_0%,_transparent_60%)]" />
 
         {/* Teks Utama */}
         <div className="relative z-10 text-center px-6">
