@@ -11,14 +11,7 @@ export default function Footer() {
                         {/* Kolom 1: Logo & Deskripsi */}
                         <div className="flex flex-col items-center text-center sm:items-start sm:text-left space-y-6">
                             <div className="flex items-center gap-3">
-                                <Image
-                                    src="/logo_wifa.png"
-                                    alt="Logo Wifa"
-                                    width={48}
-                                    height={48}
-                                    className="h-12 w-auto object-contain"
-                                />
-                                <span className="text-2xl font-black tracking-tighter text-red-700 italic capitalize">Wifa</span>
+                                <span className="text-2xl font-black tracking-tighter text-red-700 italic capitalize">WIFACORP</span>
                             </div>
                             <p className="text-gray-500 leading-relaxed font-medium">
                                 Kami berkomitmen untuk memberikan layanan terbaik dan berkelanjutan kepada pelanggan kami, didukung oleh tim profesional yang terpercaya.
@@ -33,10 +26,10 @@ export default function Footer() {
                             <ul className="space-y-4">
                                 {[
                                     { name: 'Beranda', href: '/#home' },
-                                    { name: 'Tentang Kami', href: '/about' },
-                                    { name: 'Bisnis Wifa', href: '/business' },
-                                    { name: 'Partner', href: '/#partner' },
-                                    { name: 'Careers', href: '/work' },
+                                    { name: 'Tentang WIFA', href: '/about' },
+                                    { name: 'Bisnis WIFA', href: '/business' },
+                                    { name: 'Mitra WIFA', href: '/#partner' },
+                                    { name: 'Karir WIFA', href: '/work' },
                                     { name: 'Kontak', href: '/#contact' },
                                 ].map((item) => (
                                     <li key={item.name}>
@@ -85,7 +78,7 @@ export default function Footer() {
             <div className="bg-red-700 text-white py-8 border-t border-white/10">
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <p className="text-[12px] md:text-sm font-bold tracking-tight capitalize opacity-90">
-                        © {new Date().getFullYear()} Wifa Corporation. All rights reserved.
+                        © {new Date().getFullYear()} WIFACORP Corporation. All rights reserved.
                     </p>
                 </div>
             </div>

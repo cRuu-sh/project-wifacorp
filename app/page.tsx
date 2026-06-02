@@ -207,7 +207,7 @@ export default function Home() {
           {/* Heading Portfolio */}
           <div className="mb-20 border-l-8 border-red-600 pl-6">
             <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tighter capitalize italic leading-none">
-              Legacy <span className="text-red-600">WIFA</span>
+              Legacy <span className="text-red-600">WIFACORP</span>
             </h2>
           </div>
 
