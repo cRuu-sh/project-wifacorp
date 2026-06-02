@@ -66,7 +66,7 @@ export default function Home() {
             <div className="relative group">
               <div className="relative w-full h-[450px] rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
                 <Image
-                  src="/team.png"
+                  src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
                   alt="Wifacorp Team"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
