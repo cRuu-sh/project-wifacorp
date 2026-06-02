@@ -195,51 +195,72 @@ export default function BusinessPage() {
                 </div>
             </section>
 
-            {/* PARTNERS SECTION */}
-            <section id="partner" className="relative bg-white py-24 border-t border-gray-100">
-                <div className="max-w-7xl mx-auto px-6">
+            {/* PARTNERS SECTION - WRAPPED FOR MAINTENANCE */}
+            <div className="relative">
 
-                    {/* Heading Partner */}
-                    <div className="text-center mb-20">
-                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter capitalize italic leading-none mb-6">
-                            Partner <span className="text-white-600">Kami</span>
-                        </h2>
-                        <div className="h-1.5 bg-red-600 w-24 mx-auto mb-10"></div>
-                        <p className="text-gray-500 font-medium max-w-2xl mx-auto text-lg leading-relaxed">
-                            Kami bangga bekerja sama dengan berbagai perusahaan dan organisasi ternama yang turut mendukung kami dalam memberikan layanan terbaik dan berkelanjutan bagi pelanggan kami.            </p>
-                    </div>
+                {/* PARTNERS SECTION */}
+                <section id="partner" className="relative bg-white py-24 border-t border-gray-100">
+                    <div className="max-w-7xl mx-auto px-6">
 
-                    {/* Partners Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-center max-w-6xl mx-auto mb-20">
-                        {[1, 2, 3, 4, 5, 6].map((num) => (
-                            <div
-                                key={num}
-                                className="flex justify-center transition-all duration-500 transform hover:scale-110 group"
-                            >
-                                <div className="relative h-12 md:h-16 w-full">
-                                    <Image
-                                        src={`/partner-${num}.png`}
-                                        alt={`Partner ${num}`}
-                                        fill
-                                        className="object-contain transition-all duration-500 opacity-80 group-hover:opacity-100"
-                                    />
+                        {/* Heading Partner */}
+                        <div className="text-center mb-20">
+                            <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter capitalize italic leading-none mb-6">
+                                Partner <span className="text-white-600">Kami</span>
+                            </h2>
+                            <div className="h-1.5 bg-red-600 w-24 mx-auto mb-10"></div>
+                            <p className="text-gray-500 font-medium max-w-2xl mx-auto text-lg leading-relaxed">
+                                Kami bangga bekerja sama dengan berbagai perusahaan dan organisasi ternama yang turut mendukung kami dalam memberikan layanan terbaik dan berkelanjutan bagi pelanggan kami.            </p>
+                        </div>
+
+                        {/* Partners Grid */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-12 items-center justify-center max-w-6xl mx-auto mb-20">
+                            {[1, 2, 3, 4, 5, 6].map((num) => (
+                                <div
+                                    key={num}
+                                    className="flex justify-center transition-all duration-500 transform hover:scale-110 group"
+                                >
+                                    <div className="relative h-12 md:h-16 w-full">
+                                        <Image
+                                            src={`/partner-${num}.png`}
+                                            alt={`Partner ${num}`}
+                                            fill
+                                            className="object-contain transition-all duration-500 opacity-80 group-hover:opacity-100"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
 
-                    {/* Button See All Partners */}
-                    <div className="flex justify-center">
-                        <Link href="/partners">
-                            <button className="group relative inline-flex items-center gap-3 bg-gray-900 text-white font-black px-10 py-4 rounded-xl overflow-hidden transition-all duration-300 hover:bg-red-600 capitalize tracking-[0.2em] text-xs">
-                                <span className="relative z-10">Lihat Selengkapnya</span>
-                                <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300">→</span>
-                            </button>
-                        </Link>
-                    </div>
+                        {/* Button See All Partners */}
+                        <div className="flex justify-center">
+                            <Link href="/partners">
+                                <button className="group relative inline-flex items-center gap-3 bg-gray-900 text-white font-black px-10 py-4 rounded-xl overflow-hidden transition-all duration-300 hover:bg-red-600 uppercase tracking-[0.2em] text-xs">
+                                    <span className="relative z-10">Lihat Selengkapnya</span>
+                                    <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300">→</span>
+                                </button>
+                            </Link>
+                        </div>
 
+                    </div>
+                </section>
+
+                {/* Maintenance Overlay */}
+                <div className="absolute inset-0 z-20 backdrop-blur-[3px] bg-white/75 flex flex-col items-center justify-center gap-4 pointer-events-none select-none">
+                    <div className="flex flex-col items-center text-center px-6">
+                        <span className="text-4xl mb-4">🔧</span>
+                        <span className="text-xs font-black uppercase tracking-[0.25em] text-red-600 mb-2">
+                            Maintenance
+                        </span>
+                        <h3 className="text-2xl md:text-3xl font-black text-gray-900 italic tracking-tighter mb-2">
+                            Coming Soon
+                        </h3>
+                        <p className="text-gray-500 text-sm font-medium">
+                            To Be Announced — Informasi partner akan segera hadir.
+                        </p>
+                    </div>
                 </div>
-            </section>
+
+            </div>
 
             {/* CONTACT SECTION */}
             <section id="contact" className="relative bg-gradient-to-br from-red-800 via-red-600 to-red-700 py-32 overflow-hidden">
