@@ -111,22 +111,17 @@ export default function Home() {
 
       {/* BUSINESS UNITS SECTION */}
       <section className="relative py-24 overflow-hidden">
-        {/* Background Image with Parallax-like Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/bg_bisnis.png"
-            alt="Business Background"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+        {/* Static Background */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#0a1128] via-[#0d1a3a] to-[#0a1128]">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(227,30,36,0.12)_0%,_transparent_55%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(227,30,36,0.08)_0%,_transparent_55%)]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           {/* Judul Section */}
           <div className="text-center text-white mb-20 space-y-4">
             <h2 className="text-4xl md:text-5xl font-black capitalize italic tracking-tighter">
-              Bisnis <span className="text-white-600">WIFA</span>
+              Bisnis <span className="text-white-600">WIFACORP</span>
             </h2>
             <div className="w-20 h-1.5 bg-red-600 mx-auto"></div>
             <p className="text-gray-300 max-w-lg mx-auto font-medium">
@@ -164,7 +159,7 @@ export default function Home() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="group relative bg-white/5 backdrop-blur-md rounded-[2.5rem] p-8 border border-white/10 hover:border-red-600/50 transition-all duration-500 hover:-translate-y-4 overflow-hidden flex flex-col items-center text-center"
+                className="group relative bg-white/5 backdrop-blur-md rounded-[2.5rem] p-8 border border-white/10 hover:border-red-600/60 hover:shadow-[0_0_30px_rgba(227,30,36,0.15)] transition-all duration-500 hover:-translate-y-3 overflow-hidden flex flex-col items-center text-center"
               >
                 {/* Circle Image Wrapper */}
                 <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-white/10 group-hover:border-red-600 transition-colors duration-500 mb-8">
@@ -176,18 +171,19 @@ export default function Home() {
                   />
                 </div>
 
-                {/* Container Konten yang Slide Up */}
-                <div className="transition-all duration-500 md:translate-y-12 group-hover:translate-y-0 flex flex-col items-center w-full px-4 pb-8">
+                {/* Konten selalu tampil */}
+                <div className="flex flex-col items-center w-full px-4 pb-4">
+                  <div className="min-h-[3.5rem] flex items-center justify-center mb-3">
+                    <h3 className="text-xl font-black text-white capitalize italic tracking-tighter leading-tight">
+                      {item.title}
+                    </h3>
+                  </div>
 
-                  <h3 className="text-xl font-black text-white capitalize italic tracking-tighter mb-3">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-gray-400 text-sm leading-relaxed opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-center">
+                  <p className="text-gray-400 text-sm leading-relaxed text-center">
                     {item.desc}
                   </p>
 
-                  <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100">
+                  <div className="mt-6">
                     <Link href={item.link}>
                       <button className="flex items-center justify-center gap-2 bg-transparent border border-white/40 text-white text-[10px] font-bold px-6 py-2.5 rounded-full hover:bg-red-600 hover:border-red-600 transition-all duration-300 uppercase tracking-widest whitespace-nowrap">
                         See More
