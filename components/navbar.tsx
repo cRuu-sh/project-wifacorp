@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl';
-import { ChevronDown, X, Mail, Phone, Search } from 'lucide-react';
+import { ChevronDown, X, Mail, Phone, } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
@@ -13,8 +13,8 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [activeLocale, setActiveLocale] = useState('id');
     const [openMobileSub, setOpenMobileSub] = useState<string | null>(null);
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [isHidden, setIsHidden] = useState(false)
+    const lastScrollY = useRef(0)
 
     const navLinks = [
         { name: 'home', href: '/' },
@@ -43,19 +43,6 @@ export default function Navbar() {
             { name: t('healthcare'), href: '/business?type=kesehatan' },
         ]
     };
-
-    // Kumpulin semua menu yang bisa dicari
-    const searchResources = [
-        { name: t('home'), href: '/' },
-        { name: t('story'), href: '/about?tab=our-story' },
-        { name: t('leadership'), href: '/about?tab=leadership' },
-        { name: t('construction'), href: '/business?type=konstruksi' },
-        { name: t('agribusiness'), href: '/business?type=agrobisnis' },
-        { name: t('trading'), href: '/business?type=perdagangan' },
-        { name: t('healthcare'), href: '/business?type=kesehatan' },
-        { name: t('partners'), href: '/partners' },
-        { name: t('careers'), href: '/work' },
-    ];
 
     useEffect(() => {
         const saved = localStorage.getItem('locale') || 'id';
@@ -88,15 +75,22 @@ export default function Navbar() {
         };
     }, [isMobileMenuOpen]);
 
-    // Logic Filter: Mulai nyari kalau user udah ngetik minimal 2 huruf
-    const filteredResults = searchQuery.length >= 2
-        ? searchResources.filter(item =>
-            item.name.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-        : [];
+    useEffect(() => {
+        const saved = localStorage.getItem('locale') || 'id';
+        setActiveLocale(saved);
+
+        const handleScroll = () => {
+            const currentY = window.scrollY
+            setIsScrolled(currentY > 50)
+            setIsHidden(currentY > lastScrollY.current && currentY > 100)
+            lastScrollY.current = currentY
+        }
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     return (
-        <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 ${isScrolled ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}>
+        <nav className={`fixed top-0 w-full z-[100] transition-all duration-500 ${isScrolled ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent py-8'} ${isHidden ? '-translate-y-full' : 'translate-y-0'}`}>
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
 
                 {/* LOGO SECTION */}
@@ -164,13 +158,6 @@ export default function Navbar() {
 
                 {/* RIGHT SECTION (Lang & Inquiry Action) */}
                 <div className="flex items-center gap-6">
-                    {/* Icon Search */}
-                    <button
-                        onClick={() => setIsSearchOpen(true)}
-                        className="text-white/70 hover:text-red-600 transition-all p-2"
-                    >
-                        <Search size={20} />
-                    </button>
                     {/* Language Switcher */}
                     <div className="hidden md:flex gap-2 items-center text-[10px] font-bold tracking-widest border-r border-white/20 pr-6 mr-2">
                         <button onClick={() => handleLanguageChange('id')} className={`${activeLocale === 'id' ? 'text-red-600' : 'text-white/50'} hover:text-white transition-colors`}>ID</button>
@@ -345,113 +332,6 @@ export default function Navbar() {
                             </div>
                         </motion.div>
                     </>
-                )}
-            </AnimatePresence>
-
-            {/* Search Overlay with Background Image */}
-            <AnimatePresence>
-                {isSearchOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[200] flex flex-col items-center justify-start overflow-y-auto h-[100dvh] bg-[#1a1a1a] pt-20 px-6 custom-scrollbar"
-                    >
-                        {/* Background Image Wrapper - Fixed */}
-                        <div className="fixed inset-0 z-0">
-                            <Image
-                                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070"
-                                alt="Search Background"
-                                fill
-                                priority
-                                className="object-cover opacity-40"
-                            />
-                            {/* Overlay Gelap */}
-                            <div className="absolute inset-0 bg-black/90 backdrop-blur-xl"></div>
-                        </div>
-
-                        {/* Close Button - Fixed */}
-                        <button
-                            onClick={() => setIsSearchOpen(false)}
-                            className="fixed top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-red-600 transition-all z-[250] p-2"
-                        >
-                            <X strokeWidth={1} className="w-8 h-8 md:w-12 md:h-12" />
-                        </button>
-
-                        {/* Content Container */}
-                        <motion.div
-                            initial={{ scale: 0.95, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                            className="w-full max-w-5xl relative z-10 pb-24"
-                        >
-                            {/* Branding Small */}
-                            <p className="text-red-600 font-black tracking-[0.3em] uppercase text-[10px] md:text-xs mb-8 text-center">
-                                Search Wifa Nusantara
-                            </p>
-
-                            {/* Input Search Area */}
-                            <div className="relative group mb-12">
-                                <input
-                                    autoFocus
-                                    type="text"
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    placeholder="What are you looking for?"
-                                    className="w-full bg-transparent border-b-2 border-white/20 py-6 md:py-10 text-2xl md:text-7xl font-bold text-white placeholder:text-white/10 focus:outline-none focus:border-red-600 transition-all capitalize tracking-tighter"
-                                />
-                                <Search
-                                    className="absolute right-0 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-red-600 transition-all w-8 h-8 md:w-12 md:h-12"
-                                />
-                            </div>
-
-                            {/* Results Section */}
-                            <div className="w-full max-w-4xl mx-auto">
-                                {filteredResults.length > 0 ? (
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        {filteredResults.map((result, idx) => (
-                                            <Link
-                                                key={idx}
-                                                href={result.href}
-                                                onClick={() => {
-                                                    setIsSearchOpen(false);
-                                                    setSearchQuery("");
-                                                }}
-                                                className="group p-6 bg-white/5 hover:bg-red-600 transition-all rounded-2xl border border-white/10 flex items-center justify-between"
-                                            >
-                                                <div className="flex flex-col">
-                                                    <span className="text-white font-bold text-lg md:text-xl capitalize">{result.name}</span>
-                                                    <span className="text-white/30 text-[10px] uppercase tracking-widest group-hover:text-white/70">Navigate to Page</span>
-                                                </div>
-                                                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-red-600 transition-all shrink-0">
-                                                    <ChevronDown size={20} className="-rotate-90" />
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                ) : searchQuery.length >= 2 ? (
-                                    <div className="text-center py-20">
-                                        <p className="text-white/30 text-xl italic font-light">
-                                            No results found for "<span className="text-white">{searchQuery}</span>"
-                                        </p>
-                                    </div>
-                                ) : (
-                                    <div className="text-center py-20 text-white/10 uppercase tracking-[0.4em] text-[10px] font-black">
-                                        Start typing to explore...
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Popular Quick Links */}
-                            <div className="mt-20 flex flex-wrap justify-center gap-6 md:gap-10 text-white/30 font-bold italic capitalize text-xs md:text-sm border-t border-white/5 pt-10">
-                                <span className="text-white/60 not-italic uppercase tracking-widest font-black text-[10px]">Quick Access:</span>
-                                <Link href="/business?type=konstruksi" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">Construction</Link>
-                                <Link href="/business?type=agrobisnis" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">Agribusiness</Link>
-                                <Link href="/about" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">About Us</Link>
-                                <Link href="/partners" onClick={() => setIsSearchOpen(false)} className="hover:text-red-600 transition-all">Partners</Link>
-                            </div>
-                        </motion.div>
-                    </motion.div>
                 )}
             </AnimatePresence>
         </nav>
