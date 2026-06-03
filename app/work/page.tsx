@@ -67,60 +67,6 @@ export default function WorkHistory() {
             company: "PT. Bakti Timah Medika",
             location: "Bangka Belitung, Kota Pangkalpinang"
         },
-        {
-            year: "2023",
-            title: "Jasa Pekerjaan Perbaikan Asrama / Mess 1 UPLB di Belinyu",
-            company: "PT. Timah, Tbk",
-            location: "Bangka Belitung, Kab. Bangka"
-        },
-        {
-            year: "2022",
-            title: "Material Pembangunan Workshop",
-            company: "PT. DAK",
-            location: "Bangka Belitung, Kota Pangkalpinang"
-        },
-        {
-            year: "2021",
-            title: "Jasa Sewa 6 Unit Kapal Pompong Kebutuhan Biang Pengamanan Wilayah Laut Bangka",
-            company: "PT. Timah, Tbk",
-            location: "Bangka Belitung"
-        },
-        {
-            year: "2020",
-            title: "Jasa Pekerjaan Perbaikan Stasiun Pengumpul Tempilang & Gemuruh Bidang Pengawasan Tambang & Pengangkutan",
-            company: "PT. Timah, Tbk",
-            location: "Bangka Belitung, Kab. Bangka Barat"
-        },
-        {
-            year: "2019",
-            title: "Jasa Pekerjaan Pembuatan Bangunan Geddung Arsip Corebox Eksplorasi di Merawang",
-            company: "PT. Timah, Tbk",
-            location: "Bangka Belitung, Kab. Bangka"
-        },
-        {
-            year: "2018",
-            title: "Jasa Pekerjaan Renovasi Rumah Dinas Kopel di Unit Metalurgi Mentok",
-            company: "PT. Timah, Tbk",
-            location: "Bangka Belitung, Kab. Bangka Barat"
-        },
-        {
-            year: "2017",
-            title: "Pekerjaan Tambah Gedung Rawat Inap Kelas I Rg. Anggrek RSMS Sungailiat",
-            company: "PT. Timah, Tbk",
-            location: "Bangka Belitung, Kab. Bangka"
-        },
-        {
-            year: "2016",
-            title: "Lanjutan Jasa Pekerjaan Pembangunan Gedung Rumah Sakit Medika Stania di Sungailiat",
-            company: "PT. Timah, Tbk",
-            location: "Bangka Belitung, Kab. Bangka"
-        },
-        {
-            year: "2015",
-            title: "Jasa pembangunan Fasilitas Pendukung untuk Proyek Tanur 3 di PT. Timah, Tbk di kepulauan Riau dan Wilayah Riau",
-            company: "PT. Timah, Tbk",
-            location: "Riau"
-        }
     ]
 
     return (
@@ -144,9 +90,6 @@ export default function WorkHistory() {
                     <h1 className="text-white text-6xl md:text-8xl font-black italic tracking-tighter capitalize">
                         Work History
                     </h1>
-                    <p className="text-white/80 text-xl md:text-2xl mt-4 font-light tracking-widest italic capitalize">
-                        Beyond Construction
-                    </p>
                 </div>
             </section>
 
@@ -180,146 +123,10 @@ export default function WorkHistory() {
                                         {project.title}
                                     </h3>
 
-                                    {/* Detail Table-Style */}
-                                    <div className="space-y-4 border-t border-slate-200 pt-6">
-                                        <div className="flex justify-between items-start gap-4">
-                                            <span className="text-[10px] capitalize font-black text-slate-400 tracking-wider mt-1">Perusahaan</span>
-                                            <span className="text-sm font-bold text-slate-700 text-right leading-tight">{project.company}</span>
-                                        </div>
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-[10px] capitalize font-black text-slate-400 tracking-wider">Lokasi</span>
-                                            <span className="text-sm font-bold text-slate-700">{project.location}</span>
-                                        </div>
-                                    </div>
-
                                     {/* Hover Decor */}
                                     <div className="absolute bottom-0 left-0 h-1 w-0 bg-red-600 group-hover:w-full transition-all duration-500"></div>
                                 </div>
                             ))}
-                        </div>
-
-                        {/* SECTION DATABASE PROYEK LENGKAP */}
-                        <div className="mt-20 pt-20 border-t border-slate-100 text-center">
-                            {!showAll && (
-                                <button
-                                    onClick={() => setShowAll(true)}
-                                    className="group relative inline-flex items-center justify-center px-12 py-5 font-black text-white bg-red-600 rounded-full overflow-hidden transition-all hover:bg-black shadow-xl shadow-red-600/20"
-                                >
-                                    <span className="relative capitalize tracking-widest text-sm">View Full Project Database</span>
-                                </button>
-                            )}
-
-                            {showAll && (
-                                <div className="animate-in fade-in slide-in-from-top-10 duration-700 text-left">
-                                    {/* HEADER & CONTROLS */}
-                                    <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-10 gap-6">
-                                        <div>
-                                            <h2 className="text-3xl font-black text-slate-900 capitalize italic tracking-tighter">
-                                                Complete Project <span className="text-red-600">Database</span>
-                                            </h2>
-                                            <p className="text-slate-500 mt-2 text-sm font-medium">Ditemukan {filteredProjects.length} data proyek.</p>
-                                        </div>
-
-                                        {/* SEARCH & FILTER BOX */}
-                                        <div className="flex flex-col md:flex-row gap-4 w-full lg:w-auto">
-                                            {/* Search Input */}
-                                            <div className="relative group">
-                                                <input
-                                                    type="text"
-                                                    placeholder="Cari proyek atau klien..."
-                                                    value={searchTerm}
-                                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                                    className="w-full md:w-80 px-6 py-3 bg-white border-2 border-slate-200 rounded-2xl focus:border-red-600 outline-none transition-all font-bold text-sm"
-                                                />
-                                                <div className="absolute right-4 top-3.5 text-slate-300 group-focus-within:text-red-600">
-                                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                                                </div>
-                                            </div>
-
-                                            {/* Year Filter */}
-                                            <select
-                                                value={selectedYear}
-                                                onChange={(e) => setSelectedYear(e.target.value)}
-                                                className="px-6 py-3 bg-white border-2 border-slate-200 rounded-2xl focus:border-red-600 outline-none transition-all font-black text-xs capitalize tracking-widest cursor-pointer"
-                                            >
-                                                {availableYears.map(year => (
-                                                    <option key={year} value={year}>{year === "All" ? "Semua Tahun" : `Tahun ${year}`}</option>
-                                                ))}
-                                            </select>
-
-                                            <button onClick={() => setShowAll(false)} className="px-6 py-3 text-slate-400 hover:text-red-600 font-bold capitalize text-[10px] tracking-widest border-2 border-transparent hover:border-red-600 rounded-2xl transition-all">
-                                                Close
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    {/* TABEL (Pake data filteredProjects) */}
-                                    <div className="overflow-x-auto rounded-[2.5rem] border border-slate-200 bg-slate-50 shadow-2xl shadow-slate-200/50">
-                                        <table className="w-full text-left border-collapse min-w-[1000px]">
-                                            {/* ... existing thread ... */}
-                                            <tbody className="text-sm">
-                                                {currentItems.length > 0 ? (
-                                                    currentItems.map((project, idx) => (
-                                                        <tr key={idx} className="border-b border-slate-200/60 hover:bg-white transition-all group">
-                                                            <td className="p-6 font-bold text-slate-300 group-hover:text-red-600">
-                                                                {indexOfFirstItem + idx + 1}
-                                                            </td>
-                                                            <td className="p-6 font-black text-slate-900 uppercase text-[11px] leading-relaxed max-w-md">
-                                                                {project.title}
-                                                            </td>
-                                                            <td className="p-6 text-slate-600 font-bold">{project.company}</td>
-                                                            <td className="p-6 text-slate-500 font-medium italic text-center">{project.location}</td>
-                                                            <td className="p-6 text-right font-black text-red-600 tracking-tighter text-base">{project.year}</td>
-                                                        </tr>
-                                                    ))
-                                                ) : (
-                                                    <tr>
-                                                        <td colSpan={5} className="p-20 text-center text-slate-400 capitalize font-black">
-                                                            Data Tidak Ditemukan..
-                                                        </td>
-                                                    </tr>
-                                                )}
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    {/* PAGINATION CONTROLS */}
-                                    {filteredProjects.length > itemsPerPage && (
-                                        <div className="mt-8 flex items-center justify-center gap-2">
-                                            <button
-                                                disabled={currentPage === 1}
-                                                onClick={() => setCurrentPage(prev => prev - 1)}
-                                                className="p-3 rounded-xl border border-slate-200 hover:bg-red-600 hover:text-white disabled:opacity-30 transition-all"
-                                            >
-                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-                                            </button>
-
-                                            <div className="flex gap-2">
-                                                {[...Array(totalPages)].map((_, i) => (
-                                                    <button
-                                                        key={i}
-                                                        onClick={() => setCurrentPage(i + 1)}
-                                                        className={`w-10 h-10 rounded-xl font-bold text-xs transition-all ${currentPage === i + 1
-                                                            ? 'bg-red-600 text-white shadow-lg shadow-red-600/20'
-                                                            : 'bg-white border border-slate-200 text-slate-400 hover:border-red-600'
-                                                            }`}
-                                                    >
-                                                        {i + 1}
-                                                    </button>
-                                                ))}
-                                            </div>
-
-                                            <button
-                                                disabled={currentPage === totalPages}
-                                                onClick={() => setCurrentPage(prev => prev + 1)}
-                                                className="p-3 rounded-xl border border-slate-200 hover:bg-red-600 hover:text-white disabled:opacity-30 transition-all"
-                                            >
-                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
