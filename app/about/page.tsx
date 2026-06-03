@@ -195,14 +195,14 @@ export default function AboutPage() {
                             {/* 4. TEAM & UNIT BISNIS */}
                             {activeTab === 'team' && (
                                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 text-center max-w-5xl mx-auto">
-                                    <h2 className="text-3xl font-black text-gray-900 mb-6 capitalize italic">Tim & Unit Bisnis</h2>
-                                    <p className="text-gray-600 font-medium mb-12 max-w-2xl mx-auto">Wifa Corp didukung oleh para profesional ahli dan unit bisnis strategis yang berdedikasi untuk memberikan solusi unggul di semua sektor industri.</p>
+                                    <h2 className="text-3xl font-black text-gray-900 mb-6 capitalize italic">Unit Bisnis</h2>
+                                    <p className="text-gray-600 font-medium mb-12 max-w-2xl mx-auto">WIFACORP didukung oleh para profesional ahli dan unit bisnis strategis yang berdedikasi untuk memberikan solusi unggul di semua sektor industri.</p>
 
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                                         {[
                                             { name: "PT. Andika Karya Sejahtera", div: "Divisi Konstruksi & Pengadaan Barang", color: "bg-red-50 text-red-600 hover:bg-red-600" },
                                             { name: "CV. Ilham Nusantara", div: "Divisi Konstruksi & Perdagangan Umum", color: "bg-red-50 text-red-600 hover:bg-red-600" },
-                                            { name: "Wifa Medistra Nusantara", div: "Divisi Kesehatan", color: "bg-blue-50 text-blue-600 hover:bg-blue-600" }
+                                            { name: "PT WIFA Medistra Nusantara", div: "Divisi Kesehatan", color: "bg-blue-50 text-blue-600 hover:bg-blue-600" }
                                         ].map((unit, i) => (
                                             <div key={i} className="group p-6 md:p-8 border border-gray-100 rounded-[2.5rem] shadow-sm bg-white hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                                                 <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl transition-colors duration-300 group-hover:text-white ${unit.color}`}>
@@ -210,13 +210,13 @@ export default function AboutPage() {
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                                     </svg>
                                                 </div>
-                                                <h4 className="text-lg font-black text-gray-900 capitalize italic leading-tight mb-4">{unit.name}</h4>
+                                                <h4 className="text-lg font-black text-gray-900 capitalize leading-tight mb-4">{unit.name}</h4>
                                                 <div className="w-10 h-1 bg-red-600 mx-auto mb-4 opacity-40 group-hover:w-16 transition-all"></div>
                                                 <p className="text-gray-400 text-xs font-bold capitalize italic">{unit.div}</p>
                                             </div>
                                         ))}
                                     </div>
-                                    <p className="text-gray-400 italic text-xs tracking-[0.2em] font-black border-t border-gray-100 pt-8 capitalize">— Profil Jajaran Manajemen Segera Hadir —</p>
+                                    <p className="text-gray-400 text-xs tracking-[0.2em] font-black border-t border-gray-100 pt-8 capitalize">— Profil Jajaran Manajemen Segera Hadir —</p>
                                 </div>
                             )}
 
