@@ -31,24 +31,19 @@ export default function BusinessPage() {
             <Navbar />
 
             {/* BACKGROUND HERO WITH FIXED EFFECT */}
-            <section className="relative w-full overflow-hidden bg-white">
-                <div
-                    className="relative w-full min-h-[450px] md:h-[80vh] bg-cover bg-center bg-fixed flex items-center justify-center text-center"
-                    style={{
-                        backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.3) 30%, rgba(255, 255, 255, 0) 100%), url('https://adhi.co.id/wp-content/uploads/2024/06/ADHI-Tower.png')`
-                    }}
-                >
-                    {/* Overlay Hitam Transparan */}
-                    <div className="absolute inset-0 bg-black/30 z-0"></div>
+            <section className="relative w-full overflow-hidden">
+                <div className="relative w-full min-h-[450px] md:h-[80vh] flex items-center justify-center text-center">
+
+                    {/* Static Background */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0a1128] via-[#0d1a3a] to-[#0a1128]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(227,30,36,0.12)_0%,_transparent_55%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(227,30,36,0.08)_0%,_transparent_55%)]" />
 
                     {/* Teks di Atas Gambar */}
                     <div className="relative z-10 px-6">
                         <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white drop-shadow-2xl capitalize italic">
-                            Bisnis Wifa
+                            Bisnis WIFACORP
                         </h1>
-                        <p className="text-lg md:text-2xl mt-4 font-bold italic tracking-[0.3em] text-gray-200 capitalize">
-                            Beyond Construction
-                        </p>
                     </div>
                 </div>
 
