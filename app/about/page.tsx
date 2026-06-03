@@ -44,11 +44,8 @@ export default function AboutPage() {
 
                     <div className="relative z-10 px-6 pt-20 md:pt-0">
                         <h1 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tighter text-white drop-shadow-2xl capitalize italic">
-                            Tentang Wifa
+                            Tentang WIFACORP
                         </h1>
-                        <p className="text-lg md:text-2xl mt-4 font-bold italic tracking-[0.3em] text-gray-200 capitalize">
-                            Beyond Construction
-                        </p>
                     </div>
                 </div>
 
