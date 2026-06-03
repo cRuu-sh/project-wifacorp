@@ -81,10 +81,10 @@ export default function AboutPage() {
                                         </h2>
                                         <div className="space-y-6 text-gray-600 leading-relaxed text-lg font-medium text-justify md:text-center mt-6">
                                             <p>
-                                                <span className="text-red-600 font-black">Wifa Corp</span> telah berdiri sejak tahun 1992. Perusahaan kami beroperasi di beberapa sektor bisnis, termasuk pengadaan barang dan jasa konstruksi, serta aktif terlibat dalam sektor kesehatan. Dengan pengalaman lebih dari tiga dekade, kami berkomitmen untuk memberikan solusi terbaik bagi mitra kami.
+                                                <span className="text-red-600 font-black">WIFACORP</span> telah berdiri sejak tahun 1992. Perusahaan kami beroperasi di beberapa sektor bisnis, termasuk pengadaan barang dan jasa konstruksi, serta aktif terlibat dalam sektor kesehatan. Dengan pengalaman lebih dari tiga dekade, kami berkomitmen untuk memberikan solusi terbaik bagi mitra kami.
                                             </p>
                                             <p className="bg-gray-50 p-6 rounded-2xl border-l-4 border-gray-900 italic text-sm md:text-base">
-                                                Beberapa mitra bisnis Wifa Corp antara lain PT. Timah Tbk, PT. DAK, PT. Angkasa Pura II, PT. Bakti Timah Medika, Pemerintah Daerah Kota Pangkalpinang, Kantor Pelayanan Pajak Bangka dan Pangkalpinang, Badan Karantina Pertanian Pangkalpinang, Kantor Pelayanan Bea dan Cukai Kota Pangkalpinang, serta Pemerintah Provinsi Kepulauan Bangka Belitung.
+                                                Beberapa mitra bisnis WIFACORP antara lain PT. Timah Tbk, PT. DAK, PT. Angkasa Pura II, PT. Bakti Timah Medika, Pemerintah Daerah Kota Pangkalpinang, Kantor Pelayanan Pajak Bangka dan Pangkalpinang, Badan Karantina Pertanian Pangkalpinang, Kantor Pelayanan Bea dan Cukai Kota Pangkalpinang, serta Pemerintah Provinsi Kepulauan Bangka Belitung.
                                             </p>
                                         </div>
                                     </div>
@@ -103,7 +103,7 @@ export default function AboutPage() {
                                                     { year: '1992', desc: 'PT. Andika Karya Sejahtera telah berdiri sejak tahun 1992 dengan nama CV. Andika. Perusahaan ini bergerak di bidang pengadaan barang dan jasa konstruksi.' },
                                                     { year: '1999', desc: 'CV. Ilham Nusantara didirikan pada tahun 1999. Perusahaan ini bergerak di bidang pengadaan barang dan jasa konstruksi.' },
                                                     { year: '2008', desc: 'CV. Andika berganti nama menjadi PT. Andika Karya Sejahtera dengan Akta Notaris yang dikeluarkan oleh Amorawati, S.H., Nomor 14, tertanggal 19 Januari 2008.' },
-                                                    { year: '2024', desc: 'PT. Wifa Medistra Nusantara didirikan pada tahun 2024 dan beroperasi di sektor kesehatan.' }
+                                                    { year: '2024', desc: 'PT. WIFA Medistra Nusantara didirikan pada tahun 2024 dan beroperasi di sektor kesehatan.' }
                                                 ].map((item, idx) => (
                                                     <div key={idx} className={`relative flex items-center justify-between md:mb-16 w-full ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
 
