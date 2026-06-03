@@ -14,19 +14,142 @@
     "license": "Lisensi Bisnis",
     "construction": "Konstruksi",
     "agribusiness": "Agrobisnis",
-    "trading": "Perdagangan Umum",
+    "trading": "Material Supplier",
     "healthcare": "Kesehatan"
   },
   "Hero": {
-    "title": "PT Wifacorp Tbk",
-    "subtitle": "Melampaui Konstruksi"
+    "title": "PT WIFACORP Media Nusantara",
+    "subtitle": "Membangun Masa Depan Bersama",
+    "cta": "Pelajari Lebih Lanjut",
+    "ctaContact": "Hubungi Kami"
   },
   "About": {
-    "title": "Tentang Kami",
-    "description": "Kami adalah perusahaan konstruksi terkemuka yang berdedikasi untuk membangun masa depan yang lebih baik melalui inovasi dan kualitas tinggi."
+    "title": "Tentang WIFACORP",
+    "subtitle": "Lebih dari Tiga Dekade Pengalaman",
+    "description": "Kami adalah perusahaan yang berkomitmen untuk memberikan layanan terbaik dalam bidang kami. Dengan pengalaman lebih dari satu dekade, kami terus berinovasi dan beradaptasi dengan perkembangan teknologi untuk memenuhi kebutuhan klien secara profesional dan berkelanjutan.",
+    "description2": "Nilai utama kami adalah integritas, kualitas, dan kepuasan pelanggan. Kami percaya bahwa kolaborasi dan kepercayaan adalah fondasi utama untuk membangun hubungan jangka panjang yang sukses.",
+    "cta": "Baca Selengkapnya",
+    "experience": "Tahun Pengalaman",
+    "tabs": {
+      "story": "Cerita Kami",
+      "visionMission": "Visi & Misi",
+      "value": "Nilai Kami",
+      "team": "Tim Kami",
+      "license": "Lisensi Bisnis"
+    },
+    "story": {
+      "title": "Cerita Kami",
+      "content": "PT WIFACORP Media Nusantara telah berdiri dan melayani Indonesia selama lebih dari 34 tahun. Berawal dari tekad kuat untuk memberikan solusi terbaik, kami terus berkembang menjadi perusahaan multibisnis yang dipercaya oleh berbagai klien besar di seluruh nusantara."
+    },
+    "visionMission": {
+      "visionTitle": "Visi",
+      "vision": "Menjadi perusahaan multibisnis terkemuka di Indonesia yang memberikan dampak positif bagi masyarakat dan lingkungan.",
+      "missionTitle": "Misi",
+      "mission1": "Menghadirkan produk dan layanan berkualitas tinggi yang memenuhi kebutuhan pelanggan.",
+      "mission2": "Membangun kemitraan strategis yang saling menguntungkan.",
+      "mission3": "Mendorong inovasi dan pengembangan sumber daya manusia secara berkelanjutan.",
+      "mission4": "Berkontribusi aktif terhadap pembangunan ekonomi dan sosial di Indonesia."
+    },
+    "value": {
+      "title": "Nilai-Nilai Kami",
+      "integrity": "Integritas",
+      "integrityDesc": "Kami menjunjung tinggi kejujuran dan transparansi dalam setiap aspek bisnis kami.",
+      "quality": "Kualitas",
+      "qualityDesc": "Kami berkomitmen untuk selalu menghadirkan hasil kerja terbaik dan terukur.",
+      "collaboration": "Kolaborasi",
+      "collaborationDesc": "Kami percaya bahwa kerja sama adalah kunci untuk mencapai tujuan bersama.",
+      "innovation": "Inovasi",
+      "innovationDesc": "Kami terus beradaptasi dan berinovasi untuk menghadapi tantangan zaman."
+    },
+    "team": {
+      "title": "Tim Kami",
+      "subtitle": "Digerakkan oleh profesional berpengalaman yang berdedikasi."
+    },
+    "license": {
+      "title": "Lisensi Bisnis",
+      "subtitle": "Beroperasi dengan legalitas penuh dan bersertifikat resmi."
+    }
+  },
+  "Business": {
+    "title": "Bisnis WIFACORP",
+    "subtitle": "Solusi Terpadu untuk Berbagai Kebutuhan",
+    "description": "WIFACORP hadir dengan portofolio bisnis yang beragam, memberikan solusi menyeluruh dari konstruksi hingga layanan kesehatan.",
+    "cta": "Lihat Detail",
+    "units": {
+      "construction": {
+        "title": "Konstruksi",
+        "desc": "Berkomitmen menghadirkan hasil terbaik di bidang konstruksi dan infrastruktur modern."
+      },
+      "agribusiness": {
+        "title": "Agrobisnis",
+        "desc": "Menyediakan solusi terpadu untuk kebutuhan pertanian dan hasil bumi yang berkelanjutan."
+      },
+      "trading": {
+        "title": "Material Supplier",
+        "desc": "Menyediakan berbagai material berkualitas untuk memenuhi kebutuhan proyek secara luas."
+      },
+      "healthcare": {
+        "title": "Kesehatan",
+        "desc": "Pelayanan kesehatan terpercaya dengan fasilitas modern dan tenaga ahli profesional."
+      }
+    }
+  },
+  "Work": {
+    "title": "Karir WIFA",
+    "heroTitle": "Work History",
+    "historyTitle": "Riwayat Pekerjaan",
+    "projectLabel": "Project",
+    "noData": "Data Tidak Ditemukan..",
+    "viewDatabase": "View Full Project Database",
+    "searchPlaceholder": "Cari proyek atau klien...",
+    "allYears": "Semua Tahun",
+    "year": "Tahun",
+    "found": "data proyek ditemukan",
+    "close": "Tutup",
+    "company": "Perusahaan",
+    "location": "Lokasi"
+  },
+  "Partners": {
+    "title": "Mitra",
+    "titleHighlight": "Kami",
+    "description": "Kami bangga bekerja sama dengan berbagai perusahaan dan organisasi ternama yang turut mendukung kami dalam memberikan layanan terbaik dan berkelanjutan bagi pelanggan kami.",
+    "cta": "Lihat Selengkapnya",
+    "maintenance": "Informasi mitra akan segera hadir.",
+    "categories": {
+      "materialSuppliers": "Material Suppliers",
+      "healthcare": "Healthcare Network",
+      "trading": "General Trading",
+      "agribusiness": "Agrobisnis Strategic"
+    }
+  },
+  "Contact": {
+    "title": "Hubungi",
+    "titleHighlight": "Kami",
+    "description": "Kami siap membantu Anda! Silakan hubungi kami melalui formulir di bawah ini atau melalui kontak langsung yang tersedia.",
+    "directTitle": "Koneksi Langsung",
+    "directDesc": "Anda juga bisa langsung menghubungi kami melalui detail di bawah ini.",
+    "namePlaceholder": "Masukkan Nama Anda",
+    "emailPlaceholder": "Masukkan Email Anda",
+    "messagePlaceholder": "Tulis pesan Anda...",
+    "nameLabel": "Nama Lengkap",
+    "emailLabel": "Alamat Email",
+    "messageLabel": "Pesan Anda",
+    "submit": "Kirim Pesan",
+    "address": "Jl. Fatmawati, No. 60A, Kota Pangkalpinang, Prov. Kep. Bangka Belitung",
+    "email": "nusantara@wifacorp.com"
   },
   "Footer": {
     "rights": "Hak Cipta Terpelihara",
-    "address": "Jakarta, Indonesia"
+    "address": "Pangkalpinang, Bangka Belitung",
+    "description": "Kami berkomitmen untuk memberikan layanan terbaik dan berkelanjutan kepada pelanggan kami, didukung oleh tim profesional yang terpercaya.",
+    "navigation": "Navigasi",
+    "follow": "Ikuti Kami",
+    "tba": "Segera Hadir",
+    "maintenance": "Informasi akan segera diperbarui."
+  },
+  "Maintenance": {
+    "label": "Maintenance",
+    "title": "Coming Soon",
+    "desc": "To Be Announced — Informasi akan segera hadir."
   }
 }

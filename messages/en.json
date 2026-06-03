@@ -14,19 +14,142 @@
     "license": "Business License",
     "construction": "Construction",
     "agribusiness": "Agribusiness",
-    "trading": "General Trading",
+    "trading": "Material Supplier",
     "healthcare": "Healthcare"
   },
   "Hero": {
-    "title": "PT Wifacorp Tbk",
-    "subtitle": "Beyond Construction"
+    "title": "PT WIFACORP Media Nusantara",
+    "subtitle": "Building the Future Together",
+    "cta": "Learn More",
+    "ctaContact": "Contact Us"
   },
   "About": {
-    "title": "About Us",
-    "description": "We are a leading construction company dedicated to building a better future through innovation and high quality."
+    "title": "About WIFACORP",
+    "subtitle": "Over Three Decades of Excellence",
+    "description": "We are a company committed to delivering the best services in our fields. With over a decade of experience, we continue to innovate and adapt to technological advancements to meet our clients' needs professionally and sustainably.",
+    "description2": "Our core values are integrity, quality, and customer satisfaction. We believe that collaboration and trust are the primary foundations for building long-term successful relationships.",
+    "cta": "Read More",
+    "experience": "Years of Experience",
+    "tabs": {
+      "story": "Our Story",
+      "visionMission": "Vision & Mission",
+      "value": "Our Value",
+      "team": "Our Team",
+      "license": "Business License"
+    },
+    "story": {
+      "title": "Our Story",
+      "content": "PT WIFACORP Media Nusantara has been serving Indonesia for over 34 years. Starting with a strong determination to provide the best solutions, we have grown into a trusted multi-business company by major clients across the archipelago."
+    },
+    "visionMission": {
+      "visionTitle": "Vision",
+      "vision": "To become a leading multi-business company in Indonesia that creates a positive impact for society and the environment.",
+      "missionTitle": "Mission",
+      "mission1": "Delivering high-quality products and services that meet customer needs.",
+      "mission2": "Building mutually beneficial strategic partnerships.",
+      "mission3": "Driving innovation and sustainable human resource development.",
+      "mission4": "Actively contributing to Indonesia's economic and social development."
+    },
+    "value": {
+      "title": "Our Values",
+      "integrity": "Integrity",
+      "integrityDesc": "We uphold honesty and transparency in every aspect of our business.",
+      "quality": "Quality",
+      "qualityDesc": "We are committed to always delivering measurable and outstanding results.",
+      "collaboration": "Collaboration",
+      "collaborationDesc": "We believe that teamwork is the key to achieving shared goals.",
+      "innovation": "Innovation",
+      "innovationDesc": "We continuously adapt and innovate to face the challenges of the times."
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "Driven by experienced professionals dedicated to excellence."
+    },
+    "license": {
+      "title": "Business License",
+      "subtitle": "Fully licensed and officially certified to operate."
+    }
+  },
+  "Business": {
+    "title": "WIFACORP Business",
+    "subtitle": "Integrated Solutions for Diverse Needs",
+    "description": "WIFACORP presents a diverse business portfolio, providing comprehensive solutions from construction to healthcare services.",
+    "cta": "See Details",
+    "units": {
+      "construction": {
+        "title": "Construction",
+        "desc": "Committed to delivering the best results in construction and modern infrastructure."
+      },
+      "agribusiness": {
+        "title": "Agribusiness",
+        "desc": "Providing integrated solutions for agricultural needs and sustainable produce."
+      },
+      "trading": {
+        "title": "Material Supplier",
+        "desc": "Supplying quality materials to meet diverse project needs at scale."
+      },
+      "healthcare": {
+        "title": "Healthcare",
+        "desc": "Trusted healthcare services with modern facilities and professional experts."
+      }
+    }
+  },
+  "Work": {
+    "title": "WIFA Careers",
+    "heroTitle": "Work History",
+    "historyTitle": "Project History",
+    "projectLabel": "Project",
+    "noData": "No Data Found..",
+    "viewDatabase": "View Full Project Database",
+    "searchPlaceholder": "Search project or client...",
+    "allYears": "All Years",
+    "year": "Year",
+    "found": "projects found",
+    "close": "Close",
+    "company": "Company",
+    "location": "Location"
+  },
+  "Partners": {
+    "title": "Our",
+    "titleHighlight": "Partners",
+    "description": "We are proud to collaborate with renowned companies and organizations that support us in delivering the best and most sustainable services to our clients.",
+    "cta": "View All Partners",
+    "maintenance": "Partner information will be available soon.",
+    "categories": {
+      "materialSuppliers": "Material Suppliers",
+      "healthcare": "Healthcare Network",
+      "trading": "General Trading",
+      "agribusiness": "Agribusiness Strategic"
+    }
+  },
+  "Contact": {
+    "title": "Contact",
+    "titleHighlight": "Us",
+    "description": "We are ready to help you! Please reach us through the form below or via the direct contact information available.",
+    "directTitle": "Direct Connection",
+    "directDesc": "You can also reach us directly through the details below.",
+    "namePlaceholder": "Enter Your Name",
+    "emailPlaceholder": "Enter Your Email",
+    "messagePlaceholder": "Write your message...",
+    "nameLabel": "Full Name",
+    "emailLabel": "Email Address",
+    "messageLabel": "Your Message",
+    "submit": "Send Message",
+    "address": "Jl. Fatmawati, No. 60A, Pangkalpinang City, Bangka Belitung Islands Province",
+    "email": "nusantara@wifacorp.com"
   },
   "Footer": {
     "rights": "All Rights Reserved",
-    "address": "Jakarta, Indonesia"
+    "address": "Pangkalpinang, Bangka Belitung",
+    "description": "We are committed to delivering the best and most sustainable services to our clients, supported by a trusted team of professionals.",
+    "navigation": "Navigation",
+    "follow": "Follow Us",
+    "tba": "Coming Soon",
+    "maintenance": "Information will be updated soon."
+  },
+  "Maintenance": {
+    "label": "Maintenance",
+    "title": "Coming Soon",
+    "desc": "To Be Announced — Information will be available soon."
   }
 }
