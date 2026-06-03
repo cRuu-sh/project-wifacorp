@@ -15,7 +15,7 @@ export default function BusinessPage() {
     const businessTabs = [
         { id: 'konstruksi', label: 'Konstruksi' },
         { id: 'agrobisnis', label: 'Agrobisnis' },
-        { id: 'perdagangan', label: 'Perdagangan Umum' },
+        { id: 'perdagangan', label: 'Material Supplier' },
         { id: 'kesehatan', label: 'Kesehatan' },
     ]
 
@@ -81,7 +81,7 @@ export default function BusinessPage() {
                                                 Solusi <span className="text-red-600">Infrastruktur</span> & Konstruksi Terpadu
                                             </h2>
                                             <p className="text-gray-600 leading-relaxed text-lg font-medium text-justify">
-                                                Divisi konstruksi <span className="text-red-600 font-bold">Wifa Corp</span> memiliki spesialisasi dalam pengadaan barang dan jasa konstruksi berkualitas tinggi. Kami mengintegrasikan teknologi terkini dengan manajemen proyek yang disiplin untuk menghasilkan bangunan yang kokoh dan estetis.
+                                                Divisi konstruksi <span className="text-red-600 font-bold">WIFACORP</span> memiliki spesialisasi dalam pengadaan barang dan jasa konstruksi berkualitas tinggi. Kami mengintegrasikan teknologi terkini dengan manajemen proyek yang disiplin untuk menghasilkan bangunan yang kokoh dan estetis.
                                             </p>
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
                                                 {['Pembangunan Gedung', 'Fasilitas Publik', 'Renovasi Skala Besar', 'Manajemen Material'].map((item, idx) => (
@@ -138,7 +138,7 @@ export default function BusinessPage() {
                                 </div>
                             )}
 
-                            {/* 3. PERDAGANGAN UMUM */}
+                            {/* 3. MATERIAL SUPPLIER */}
                             {activeTab === 'perdagangan' && (
                                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 text-center">
                                     <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-8 capitalize italic">
@@ -164,7 +164,7 @@ export default function BusinessPage() {
                                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
                                     <div className="max-w-4xl mx-auto text-center space-y-8">
                                         <h2 className="text-4xl font-black text-gray-900 capitalize italic tracking-tighter">
-                                            Wifa <span className="text-red-600">Medistra</span> Nusantara
+                                            PT <span className="text-red-600">  WIFACORP </span> Medistra Nusantara
                                         </h2>
                                         <p className="text-gray-600 leading-relaxed text-lg font-medium">
                                             Divisi kesehatan kami berfokus pada penyediaan alat kesehatan dan layanan medis yang kredibel. Kami berkomitmen untuk meningkatkan kualitas hidup masyarakat melalui distribusi produk medis yang standar internasional.
