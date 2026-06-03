@@ -75,15 +75,11 @@ export default function WorkHistory() {
 
             {/* HERO SECTION - Background */}
             <section className="relative h-[70vh] w-full overflow-hidden">
-                <Image
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070"
-                    alt="Work History Background"
-                    fill
-                    className="object-cover"
-                    priority
-                />
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/40"></div>
+
+                {/* Static Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0a1128] via-[#0d1a3a] to-[#0a1128]" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(227,30,36,0.12)_0%,_transparent_55%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(227,30,36,0.08)_0%,_transparent_55%)]" />
 
                 {/* Teks Hero Center */}
                 <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
