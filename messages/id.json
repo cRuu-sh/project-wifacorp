@@ -38,7 +38,9 @@
       "license": "Lisensi Bisnis"
     },
     "story": {
-      "title": "Cerita Kami",
+        "title": "Perjalanan Kami",
+        "historyTitle": "Sejarah",
+        "historyHighlight": "Kami",
       "content": "PT WIFACORP Media Nusantara telah berdiri dan melayani Indonesia selama lebih dari 34 tahun. Berawal dari tekad kuat untuk memberikan solusi terbaik, kami terus berkembang menjadi perusahaan multibisnis yang dipercaya oleh berbagai klien besar di seluruh nusantara."
     },
     "visionMission": {

@@ -38,7 +38,9 @@
       "license": "Business License"
     },
     "story": {
-      "title": "Our Story",
+      "title": "Our Journey",
+      "historyTitle": "Our",
+      "historyHighlight": "History",
       "content": "PT WIFACORP Media Nusantara has been serving Indonesia for over 34 years. Starting with a strong determination to provide the best solutions, we have grown into a trusted multi-business company by major clients across the archipelago."
     },
     "visionMission": {
