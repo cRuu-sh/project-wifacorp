@@ -1,7 +1,12 @@
+'use client'
+
 import Link from 'next/link'
-import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 export default function Footer() {
+    const t = useTranslations('Footer')
+    const tNav = useTranslations('Navbar')
+
     return (
         <footer className="w-full">
             {/* Bagian atas: putih */}
@@ -14,23 +19,23 @@ export default function Footer() {
                                 <span className="text-2xl font-black tracking-tighter text-red-700 italic capitalize">WIFACORP</span>
                             </div>
                             <p className="text-gray-500 leading-relaxed font-medium">
-                                Kami berkomitmen untuk memberikan layanan terbaik dan berkelanjutan kepada pelanggan kami, didukung oleh tim profesional yang terpercaya.
+                                {t('description')}
                             </p>
                         </div>
 
                         {/* Kolom 2: Menu Navigasi */}
                         <div className="md:pl-12 lg:pl-24">
                             <h3 className="text-sm font-black capitalize tracking-tight mb-6 text-red-700 italic border-l-4 border-red-600 pl-3">
-                                Navigasi
+                                {t('navigation')}
                             </h3>
                             <ul className="space-y-4">
                                 {[
-                                    { name: 'Beranda', href: '/#home' },
-                                    { name: 'Tentang WIFA', href: '/about' },
-                                    { name: 'Bisnis WIFA', href: '/business' },
-                                    { name: 'Mitra WIFA', href: '/#partner' },
-                                    { name: 'Karir WIFA', href: '/work' },
-                                    { name: 'Kontak', href: '/#contact' },
+                                    { name: tNav('home'), href: '/#home' },
+                                    { name: tNav('about'), href: '/about' },
+                                    { name: tNav('business'), href: '/business' },
+                                    { name: tNav('partners'), href: '/#partner' },
+                                    { name: tNav('careers'), href: '/work' },
+                                    { name: tNav('contact'), href: '/#contact' },
                                 ].map((item) => (
                                     <li key={item.name}>
                                         <Link
@@ -47,7 +52,7 @@ export default function Footer() {
                         {/* Kolom 3: Ikuti Kami */}
                         <div>
                             <h3 className="text-sm font-black capitalize tracking-tight mb-6 text-red-700 italic border-l-4 border-red-600 pl-3">
-                                Ikuti Kami
+                                {t('follow')}
                             </h3>
                             <div className="relative">
                                 {/* Social links tidak diubah */}
@@ -88,7 +93,7 @@ export default function Footer() {
             <div className="bg-red-700 text-white py-8 border-t border-white/10">
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <p className="text-[12px] md:text-sm font-bold tracking-tight capitalize opacity-90">
-                        © {new Date().getFullYear()} WIFACORP Corporation. All rights reserved.
+                        © {new Date().getFullYear()} WIFACORP Corporation. {t('rights')}.
                     </p>
                 </div>
             </div>
