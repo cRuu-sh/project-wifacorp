@@ -11,6 +11,11 @@ export default function Home() {
   const [experience, setExperience] = useState(0)
   const targetYear = 34
   const t = useTranslations('Navbar');
+  const tAbout = useTranslations('About');
+  const tBusiness = useTranslations('Business');
+  const tPartners = useTranslations('Partners');
+  const tContact = useTranslations('Contact');
+  const tMaintenance = useTranslations('Maintenance');
 
   // Efek counter buat angka tahun
   useEffect(() => {
@@ -78,7 +83,7 @@ export default function Home() {
                   <span className="text-3xl md:text-5xl font-black italic">{experience}</span>
                   <div className="flex flex-col leading-none">
                     <span className="text-xl font-bold">+</span>
-                    <span className="text-[10px] capitalize font-black tracking-widest text-white/90">Tahun<br />Pengalaman</span>
+                    <span className="text-[10px] capitalize font-black tracking-widest text-white/90">{tAbout('experience')}</span>
                   </div>
                 </div>
               </div>
@@ -87,21 +92,21 @@ export default function Home() {
             {/* Right: Text Content */}
             <div className="space-y-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 tracking-tighter capitalize italic border-l-8 border-red-600 pl-6 leading-none">
-                Tentang <span className="text-red-600">Kami</span>
+                {tAbout('title')}
               </h2>
 
               <p className="text-gray-600 text-lg leading-relaxed font-medium">
-                Kami adalah perusahaan yang berkomitmen untuk memberikan layanan terbaik dalam bidang kami. Dengan pengalaman lebih dari satu dekade, kami terus berinovasi dan beradaptasi dengan perkembangan teknologi untuk memenuhi kebutuhan klien secara profesional dan berkelanjutan.
+                {tAbout('description')}
               </p>
               <p className="text-gray-600 text-lg leading-relaxed font-medium">
-                Nilai utama kami adalah <span className="text-gray-900 font-bold">integritas, kualitas, dan kepuasan pelanggan</span>. Kami percaya bahwa kolaborasi dan kepercayaan adalah fondasi utama untuk membangun hubungan jangka panjang yang sukses.
+                {tAbout('description2')}
               </p>
 
               <Link
                 href="/about"
                 className="group inline-flex items-center gap-4 bg-gray-900 text-white font-bold px-8 py-4 rounded-xl hover:bg-red-600 transition-all uppercase tracking-widest text-xs"
               >
-                Baca Selengkapnya
+                {tAbout('cta')}
                 <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
               </Link>
             </div>
@@ -121,11 +126,11 @@ export default function Home() {
           {/* Judul Section */}
           <div className="text-center text-white mb-20 space-y-4">
             <h2 className="text-4xl md:text-5xl font-black capitalize italic tracking-tighter">
-              Bisnis <span className="text-white-600">WIFACORP</span>
+              {tBusiness('title')}
             </h2>
             <div className="w-20 h-1.5 bg-red-600 mx-auto"></div>
             <p className="text-gray-300 max-w-lg mx-auto font-medium">
-              Mewujudkan keunggulan di berbagai sektor usaha untuk masa depan yang lebih baik.
+              {tBusiness('description')}
             </p>
           </div>
 
@@ -133,26 +138,26 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
               {
-                title: "Konstruksi",
-                desc: "Berkomitmen menghadirkan hasil terbaik di bidang konstruksi dan infrastruktur modern.",
+                title: tBusiness('units.construction.title'),
+                desc: tBusiness('units.construction.desc'),
                 img: "/konstruksi.png",
                 link: "/business?type=konstruksi"
               },
               {
-                title: "Agrobisnis",
-                desc: "Menyediakan solusi terpadu untuk kebutuhan pertanian dan hasil bumi yang berkelanjutan.",
+                title: tBusiness('units.agribusiness.title'),
+                desc: tBusiness('units.agribusiness.desc'),
                 img: "/agrobisnis.jpg",
                 link: "/business?type=agrobisnis"
               },
               {
-                title: "Perdagangan Umum",
-                desc: "Menyediakan berbagai produk berkualitas untuk memenuhi kebutuhan pasar secara luas.",
+                title: tBusiness('units.trading.title'),
+                desc: tBusiness('units.trading.desc'),
                 img: "/investmen.png",
                 link: "/business?type=perdagangan"
               },
               {
-                title: "Kesehatan",
-                desc: "Pelayanan kesehatan terpercaya dengan fasilitas modern dan tenaga ahli profesional.",
+                title: tBusiness('units.healthcare.title'),
+                desc: tBusiness('units.healthcare.desc'),
                 img: "/rumah_sakit.png",
                 link: "/business?type=kesehatan"
               }
@@ -186,7 +191,7 @@ export default function Home() {
                   <div className="mt-6">
                     <Link href={item.link}>
                       <button className="flex items-center justify-center gap-2 bg-transparent border border-white/40 text-white text-[10px] font-bold px-6 py-2.5 rounded-full hover:bg-red-600 hover:border-red-600 transition-all duration-300 uppercase tracking-widest whitespace-nowrap">
-                        See More
+                        {tBusiness('cta')}
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M7 7h10v10" />
                         </svg>
@@ -270,11 +275,12 @@ export default function Home() {
             {/* Heading Partner */}
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter capitalize italic leading-none mb-6">
-                Partner <span className="text-white-600">Kami</span>
+                {tPartners('title')} <span className="text-white-600">{tPartners('titleHighlight')}</span>
               </h2>
               <div className="h-1.5 bg-red-600 w-24 mx-auto mb-10"></div>
               <p className="text-gray-500 font-medium max-w-2xl mx-auto text-lg leading-relaxed">
-                Kami bangga bekerja sama dengan berbagai perusahaan dan organisasi ternama yang turut mendukung kami dalam memberikan layanan terbaik dan berkelanjutan bagi pelanggan kami.            </p>
+                {tPartners('description')}
+              </p>
             </div>
 
             {/* Partners Grid */}
@@ -300,7 +306,7 @@ export default function Home() {
             <div className="flex justify-center">
               <Link href="/partners">
                 <button className="group relative inline-flex items-center gap-3 bg-gray-900 text-white font-black px-10 py-4 rounded-xl overflow-hidden transition-all duration-300 hover:bg-red-600 uppercase tracking-[0.2em] text-xs">
-                  <span className="relative z-10">Lihat Selengkapnya</span>
+                  <span className="relative z-10">{tPartners('cta')}</span>
                   <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300">→</span>
                 </button>
               </Link>
@@ -314,13 +320,13 @@ export default function Home() {
           <div className="flex flex-col items-center text-center px-6">
             <span className="text-4xl mb-4">🔧</span>
             <span className="text-xs font-black uppercase tracking-[0.25em] text-red-600 mb-2">
-              Maintenance
+              {tMaintenance('label')}
             </span>
             <h3 className="text-2xl md:text-3xl font-black text-gray-900 italic tracking-tighter mb-2">
-              Coming Soon
+              {tMaintenance('title')}
             </h3>
             <p className="text-gray-500 text-sm font-medium">
-              To Be Announced — Informasi partner akan segera hadir.
+              {tMaintenance('desc')}
             </p>
           </div>
         </div>
@@ -328,7 +334,7 @@ export default function Home() {
       </div>
 
       {/* CONTACT SECTION */}
-      <section id="contact" className="relative bg-gradient-to-br from-red-800 via-red-600 to-red-700 py-20 md:py-32 px-6 overflow-hidden">      
+      <section id="contact" className="relative bg-gradient-to-br from-red-800 via-red-600 to-red-700 py-20 md:py-32 px-6 overflow-hidden">
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-black/20 rounded-full blur-3xl"></div>
 
@@ -336,11 +342,11 @@ export default function Home() {
           {/* Heading */}
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter capitalize italic leading-none mb-6">
-              Hubungi <span className="text-white-900/30">Kami</span>
+              {tContact('title')} <span className="text-white-900/30">{tContact('titleHighlight')}</span>
             </h2>
             <div className="h-2 bg-white w-24 mx-auto mb-8"></div>
             <p className="text-white/90 font-bold text-lg max-w-2xl mx-auto leading-relaxed">
-              Kami siap membantu Anda! Silakan hubungi kami melalui formulir di bawah ini atau melalui kontak langsung yang tersedia.
+              {tContact('description')}
             </p>
           </div>
 
@@ -350,31 +356,31 @@ export default function Home() {
               <form className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Nama Lengkap</label>
+                    <label htmlFor="name" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">{tContact('nameLabel')}</label>
                     <input
                       type="text"
                       id="name"
-                      placeholder="Masukkan Nama Anda"
+                      placeholder={tContact('namePlaceholder')}
                       className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Email Address</label>
+                    <label htmlFor="email" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">{tContact('emailLabel')}</label>
                     <input
                       type="email"
                       id="email"
-                      placeholder="Masukkan Email Anda"
+                      placeholder={tContact('emailPlaceholder')}
                       className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="message" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Pesan Anda</label>
+                  <label htmlFor="message" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">{tContact('messageLabel')}</label>
                   <textarea
                     id="message"
                     rows={4}
-                    placeholder="Tulis pesan Anda..."
+                    placeholder={tContact('messagePlaceholder')}
                     className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900 resize-none"
                   ></textarea>
                 </div>
@@ -383,7 +389,7 @@ export default function Home() {
                   type="submit"
                   className="w-full bg-red-600 text-white font-black py-5 rounded-2xl hover:bg-gray-900 transition-all duration-300 shadow-xl capitalize tracking-[0.3em] text-sm group"
                 >
-                  Kirim Pesan
+                  {tContact('submit')}
                   <span className="inline-block ml-3 group-hover:translate-x-2 transition-transform">→</span>
                 </button>
               </form>
@@ -393,10 +399,10 @@ export default function Home() {
             <div className="text-white lg:pt-8 space-y-12">
               <div className="space-y-6">
                 <h3 className="text-3xl md:text-4xl font-black capitalize italic tracking-tighter leading-tight">
-                  Koneksi Langsung
+                  {tContact('directTitle')}
                 </h3>
                 <p className="text-white/80 font-medium text-lg max-w-md">
-                  Anda juga bisa langsung menghubungi kami melalui detail di bawah ini.
+                  {tContact('directDesc')}
                 </p>
               </div>
 
@@ -404,11 +410,11 @@ export default function Home() {
                 {[
                   {
                     icon: <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />,
-                    text: "Jl. Fatmawati, No. 60A, Kota Pangkalpinang, Prov. Kep. Bangka Belitung"
+                    text: tContact('address')
                   },
                   {
                     icon: <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />,
-                    text: "nusantara@wifacorp.com"
+                    text: tContact('email')
                   }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-6 group cursor-pointer">
