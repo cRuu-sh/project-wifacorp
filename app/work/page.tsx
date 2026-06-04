@@ -10,7 +10,9 @@ import { allProjectsData } from '@/data/projectsData'
 
 export default function WorkHistory() {
     const t = useTranslations('Work');
-
+    const tPartners = useTranslations('Partners')
+    const tContact = useTranslations('Contact')
+    const tMaintenance = useTranslations('Maintenance')
     // --- 1. DEKLARASI STATE DULU (Ini fondasi) ---
     const [showAll, setShowAll] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -84,7 +86,7 @@ export default function WorkHistory() {
                 {/* Teks Hero Center */}
                 <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
                     <h1 className="text-white text-6xl md:text-8xl font-black italic tracking-tighter capitalize">
-                        Work History
+                        {t('heroTitle')}
                     </h1>
                 </div>
             </section>
@@ -97,7 +99,7 @@ export default function WorkHistory() {
                         {/* Header Riwayat - Tetap Center */}
                         <div className="text-center mb-20">
                             <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 capitalize inline-block relative">
-                                Riwayat Pekerjaan
+                                {t('historyTitle')}
                                 <div className="mt-2 h-1.5 bg-red-600 w-full"></div>
                             </h2>
                         </div>
@@ -109,7 +111,7 @@ export default function WorkHistory() {
                                     {/* Badge Tahun */}
                                     <div className="flex justify-between items-center mb-6">
                                         <span className="bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full capitalize tracking-widest">
-                                            Project {project.year}
+                                            {t('projectLabel')} {project.year}
                                         </span>
                                         <span className="text-slate-200 font-black text-2xl italic group-hover:text-red-100 transition-colors">0{idx + 1}</span>
                                     </div>
@@ -138,11 +140,11 @@ export default function WorkHistory() {
                         {/* Heading Partner */}
                         <div className="text-center mb-20">
                             <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter capitalize italic leading-none mb-6">
-                                Partner <span className="text-white-600">Kami</span>
+                                {tPartners('title')} <span>{tPartners('titleHighlight')}</span>
                             </h2>
                             <div className="h-1.5 bg-red-600 w-24 mx-auto mb-10"></div>
                             <p className="text-gray-500 font-medium max-w-2xl mx-auto text-lg leading-relaxed">
-                                Kami bangga bekerja sama dengan berbagai perusahaan dan organisasi ternama yang turut mendukung kami dalam memberikan layanan terbaik dan berkelanjutan bagi pelanggan kami.            </p>
+                                {tPartners('description')}</p>
                         </div>
 
                         {/* Partners Grid */}
@@ -168,7 +170,7 @@ export default function WorkHistory() {
                         <div className="flex justify-center">
                             <Link href="/partners">
                                 <button className="group relative inline-flex items-center gap-3 bg-gray-900 text-white font-black px-10 py-4 rounded-xl overflow-hidden transition-all duration-300 hover:bg-red-600 uppercase tracking-[0.2em] text-xs">
-                                    <span className="relative z-10">Lihat Selengkapnya</span>
+                                    <span className="relative z-10">{tPartners('cta')}</span>
                                     <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300">→</span>
                                 </button>
                             </Link>
@@ -182,13 +184,13 @@ export default function WorkHistory() {
                     <div className="flex flex-col items-center text-center px-6">
                         <span className="text-4xl mb-4">🔧</span>
                         <span className="text-xs font-black uppercase tracking-[0.25em] text-red-600 mb-2">
-                            Maintenance
+                            {tMaintenance('label')}
                         </span>
                         <h3 className="text-2xl md:text-3xl font-black text-gray-900 italic tracking-tighter mb-2">
-                            Coming Soon
+                            {tMaintenance('title')}
                         </h3>
                         <p className="text-gray-500 text-sm font-medium">
-                            To Be Announced — Informasi partner akan segera hadir.
+                            {tMaintenance('desc')}
                         </p>
                     </div>
                 </div>
@@ -204,11 +206,11 @@ export default function WorkHistory() {
                     {/* Heading */}
                     <div className="text-center mb-20">
                         <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter capitalize italic leading-none mb-6">
-                            Hubungi <span className="text-white-900/30">Kami</span>
+                            {tContact('title')} <span>{tContact('titleHighlight')}</span>
                         </h2>
                         <div className="h-2 bg-white w-24 mx-auto mb-8"></div>
                         <p className="text-white/90 font-bold text-lg max-w-2xl mx-auto leading-relaxed">
-                            Kami siap membantu Anda! Silakan hubungi kami melalui formulir di bawah ini atau melalui kontak langsung yang tersedia.
+                            {tContact('description')}
                         </p>
                     </div>
 
@@ -218,31 +220,31 @@ export default function WorkHistory() {
                             <form className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label htmlFor="name" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Nama Lengkap</label>
+                                        <label htmlFor="name" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">{tContact('nameLabel')}</label>
                                         <input
                                             type="text"
                                             id="name"
-                                            placeholder="Masukkan Nama Anda"
+                                            placeholder={tContact('namePlaceholder')}
                                             className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label htmlFor="email" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Email Address</label>
+                                        <label htmlFor="email" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">{tContact('emailLabel')}</label>
                                         <input
                                             type="email"
                                             id="email"
-                                            placeholder="Masukkan Email Anda"
+                                            placeholder={tContact('emailPlaceholder')}
                                             className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="message" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Pesan Anda</label>
+                                    <label htmlFor="message" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">{tContact('messageLabel')}</label>
                                     <textarea
                                         id="message"
                                         rows={4}
-                                        placeholder="Tulis pesan Anda..."
+                                        placeholder={tContact('messagePlaceholder')}
                                         className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900 resize-none"
                                     ></textarea>
                                 </div>
@@ -251,7 +253,7 @@ export default function WorkHistory() {
                                     type="submit"
                                     className="w-full bg-red-600 text-white font-black py-5 rounded-2xl hover:bg-gray-900 transition-all duration-300 shadow-xl capitalize tracking-[0.3em] text-sm group"
                                 >
-                                    Kirim Pesan
+                                    {tContact('submit')}
                                     <span className="inline-block ml-3 group-hover:translate-x-2 transition-transform">→</span>
                                 </button>
                             </form>
@@ -261,10 +263,10 @@ export default function WorkHistory() {
                         <div className="text-white lg:pt-8 space-y-12">
                             <div className="space-y-6">
                                 <h3 className="text-3xl md:text-4xl font-black capitalize italic tracking-tighter leading-tight">
-                                    Koneksi Langsung
+                                    {tContact('directTitle')}
                                 </h3>
                                 <p className="text-white/80 font-medium text-lg max-w-md">
-                                    Anda juga bisa langsung menghubungi kami melalui detail di bawah ini.
+                                    {tContact('directDesc')}
                                 </p>
                             </div>
 
@@ -272,11 +274,11 @@ export default function WorkHistory() {
                                 {[
                                     {
                                         icon: <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />,
-                                        text: "Jl. Fatmawati, No. 60A, Kota Pangkalpinang, Prov. Kep. Bangka Belitung"
+                                        text: tContact('address')
                                     },
                                     {
                                         icon: <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />,
-                                        text: "nusantara@wifacorp.com"
+                                        text: tContact('email')
                                     }
                                 ].map((item, idx) => (
                                     <div key={idx} className="flex items-center gap-6 group cursor-pointer">
