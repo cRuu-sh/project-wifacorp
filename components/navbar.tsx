@@ -168,6 +168,7 @@ export default function Navbar() {
                     {/* Tombol Contact yang sekarang jadi Inquiry Button */}
                     <Link
                         href="/#contact"
+                        scroll={true}
                         className="px-6 py-2 border border-white/20 text-[10px] font-bold tracking-widest capitalize hover:bg-red-600 hover:border-red-600 transition-all text-white"
                     >
                         {t('contact')}
