@@ -80,19 +80,31 @@
     "units": {
       "construction": {
         "title": "Konstruksi",
-        "desc": "Berkomitmen menghadirkan hasil terbaik di bidang konstruksi dan infrastruktur modern."
+        "desc": "Berkomitmen menghadirkan hasil terbaik di bidang konstruksi dan infrastruktur modern.",
+        "heading": "Solusi Infrastruktur & Konstruksi Terpadu",
+        "item1": "Pembangunan Gedung", "item2": "Fasilitas Publik",
+        "item3": "Renovasi Skala Besar", "item4": "Manajemen Material"
       },
       "agribusiness": {
         "title": "Agrobisnis",
-        "desc": "Menyediakan solusi terpadu untuk kebutuhan pertanian dan hasil bumi yang berkelanjutan."
+        "desc": "Menyediakan solusi terpadu untuk kebutuhan pertanian dan hasil bumi yang berkelanjutan.",
+        "imageCaption": "Ketahanan Pangan Berkelanjutan",
+        "heading": "Optimalisasi Sektor Agrobisnis",
+        "coreFocusLabel": "Core Focus:"
       },
       "trading": {
         "title": "Material Supplier",
-        "desc": "Menyediakan berbagai material berkualitas untuk memenuhi kebutuhan proyek secara luas."
+        "desc": "Menyediakan berbagai material berkualitas untuk memenuhi kebutuhan proyek secara luas.",
+        "heading": "General Trading & Supply",
+        "tag1": "Material Alam", "tag2": "Alat Teknik",
+        "tag3": "Suku Cadang", "tag4": "Logistik"
       },
       "healthcare": {
         "title": "Kesehatan",
-        "desc": "Pelayanan kesehatan terpercaya dengan fasilitas modern dan tenaga ahli profesional."
+        "desc": "Pelayanan kesehatan terpercaya dengan fasilitas modern dan tenaga ahli profesional.",
+        "box1Title": "Alkes", "box1Desc": "Pengadaan Alat Kesehatan Rumah Sakit",
+        "box2Title": "Pharma", "box2Desc": "Distribusi Farmasi & Obat-obatan",
+        "box3Title": "Layanan", "box3Desc": "Konsultasi & Manajemen Fasilitas Medis"
       }
     }
   },

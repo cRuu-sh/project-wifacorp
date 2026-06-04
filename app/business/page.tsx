@@ -6,17 +6,22 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 
 export default function BusinessPage() {
     const [activeTab, setActiveTab] = useState('konstruksi')
     const searchParams = useSearchParams()
+    const tBusiness = useTranslations('Business')
+    const tPartners = useTranslations('Partners')
+    const tContact = useTranslations('Contact')
+    const tMaintenance = useTranslations('Maintenance')
 
     const businessTabs = [
-        { id: 'konstruksi', label: 'Konstruksi' },
-        { id: 'agrobisnis', label: 'Agrobisnis' },
-        { id: 'perdagangan', label: 'Material Supplier' },
-        { id: 'kesehatan', label: 'Kesehatan' },
+        { id: 'konstruksi', label: tBusiness('units.construction.title') },
+        { id: 'agrobisnis', label: tBusiness('units.agribusiness.title') },
+        { id: 'perdagangan', label: tBusiness('units.trading.title') },
+        { id: 'kesehatan', label: tBusiness('units.healthcare.title') },
     ]
 
     useEffect(() => {
@@ -42,7 +47,7 @@ export default function BusinessPage() {
                     {/* Teks di Atas Gambar */}
                     <div className="relative z-10 px-6">
                         <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white drop-shadow-2xl capitalize italic">
-                            Bisnis WIFACORP
+                            {tBusiness('title')}
                         </h1>
                     </div>
                 </div>
@@ -78,18 +83,19 @@ export default function BusinessPage() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                                         <div className="space-y-6">
                                             <h2 className="text-3xl md:text-4xl font-black text-gray-900 capitalize italic border-l-8 border-red-600 pl-6 leading-tight">
-                                                Solusi <span className="text-red-600">Infrastruktur</span> & Konstruksi Terpadu
+                                                {tBusiness('konstruksi.heading')}
                                             </h2>
                                             <p className="text-gray-600 leading-relaxed text-lg font-medium text-justify">
                                                 Divisi konstruksi <span className="text-red-600 font-bold">WIFACORP</span> memiliki spesialisasi dalam pengadaan barang dan jasa konstruksi berkualitas tinggi. Kami mengintegrasikan teknologi terkini dengan manajemen proyek yang disiplin untuk menghasilkan bangunan yang kokoh dan estetis.
                                             </p>
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                                                {['Pembangunan Gedung', 'Fasilitas Publik', 'Renovasi Skala Besar', 'Manajemen Material'].map((item, idx) => (
-                                                    <div key={idx} className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border-b-2 border-gray-200">
-                                                        <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-                                                        <span className="font-black text-gray-800 italic text-sm capitalize tracking-tighter">{item}</span>
-                                                    </div>
-                                                ))}
+                                                {[tBusiness('konstruksi.item1'), tBusiness('konstruksi.item2'), tBusiness('konstruksi.item3'), tBusiness('konstruksi.item4')].
+                                                    map((item, idx) => (
+                                                        <div key={idx} className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border-b-2 border-gray-200">
+                                                            <div className="w-2 h-2 bg-red-600 rounded-full"></div>
+                                                            <span className="font-black text-gray-800 italic text-sm capitalize tracking-tighter">{item}</span>
+                                                        </div>
+                                                    ))}
                                             </div>
                                         </div>
                                         <div className="relative group">
@@ -119,18 +125,20 @@ export default function BusinessPage() {
                                                 className="object-cover"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
-                                                <p className="text-white font-black italic text-xl capitalize tracking-widest">Ketahanan Pangan Berkelanjutan</p>
+                                                <p className="text-white font-black italic text-xl capitalize tracking-widest">{tBusiness('agrobisnis.imageCaption')}
+                                                </p>
                                             </div>
                                         </div>
                                         <div className="space-y-6">
                                             <h2 className="text-3xl md:text-4xl font-black text-gray-900 capitalize italic border-l-8 border-red-600 pl-6">
-                                                Optimalisasi <span className="text-red-600">Sektor</span> Agrobisnis
+                                                {tBusiness('agrobisnis.heading')}
                                             </h2>
                                             <p className="text-gray-600 leading-relaxed text-lg font-medium text-justify">
                                                 Melalui pendekatan agrikultur modern, kami mengelola komoditas unggulan yang mendukung ekonomi lokal dan nasional. Fokus kami adalah pada efisiensi rantai pasok dan kualitas hasil bumi yang kompetitif untuk pasar domestik maupun industri.
                                             </p>
                                             <div className="bg-gray-900 p-8 rounded-[2rem] text-white">
-                                                <h4 className="text-red-600 font-black italic mb-2 capitalize tracking-widest">Core Focus:</h4>
+                                                <h4 className="text-red-600 font-black italic mb-2 capitalize tracking-widest">{tBusiness('agrobisnis.coreFocusLabel')}
+                                                </h4>
                                                 <p className="font-medium italic text-gray-300">Pengelolaan Lahan Produktif, Distribusi Komoditas Utama, dan Implementasi Teknologi Tani Modern.</p>
                                             </div>
                                         </div>
@@ -142,18 +150,19 @@ export default function BusinessPage() {
                             {activeTab === 'perdagangan' && (
                                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 text-center">
                                     <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-8 capitalize italic">
-                                        General <span className="text-red-600">Trading</span> & Supply
+                                        {tBusiness('trading.heading')}
                                     </h2>
                                     <div className="max-w-4xl mx-auto bg-gray-50 p-12 rounded-[3rem] border-2 border-dashed border-gray-200">
                                         <p className="text-xl md:text-2xl text-gray-700 leading-relaxed font-bold italic mb-8">
                                             "Menyediakan akses material berkualitas tinggi dan solusi pengadaan barang yang efisien untuk mendukung skala bisnis nasional."
                                         </p>
                                         <div className="flex flex-wrap justify-center gap-6">
-                                            {['Material Alam', 'Alat Teknik', 'Suku Cadang', 'Logistik'].map((tag, i) => (
-                                                <span key={i} className="px-6 py-2 bg-white shadow-md rounded-full text-gray-900 font-black italic text-xs capitalize tracking-tighter border border-gray-100">
-                                                    #{tag}
-                                                </span>
-                                            ))}
+                                            {[tBusiness('trading.tag1'), tBusiness('trading.tag2'), tBusiness('trading.tag3'), tBusiness('trading.tag4')]
+                                                .map((tag, i) => (
+                                                    <span key={i} className="px-6 py-2 bg-white shadow-md rounded-full text-gray-900 font-black italic text-xs capitalize tracking-tighter border border-gray-100">
+                                                        #{tag}
+                                                    </span>
+                                                ))}
                                         </div>
                                     </div>
                                 </div>
@@ -171,9 +180,9 @@ export default function BusinessPage() {
                                         </p>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                                             {[
-                                                { title: 'Alkes', desc: 'Pengadaan Alat Kesehatan Rumah Sakit' },
-                                                { title: 'Pharma', desc: 'Distribusi Farmasi & Obat-obatan' },
-                                                { title: 'Layanan', desc: 'Konsultasi & Manajemen Fasilitas Medis' }
+                                                { title: tBusiness('healthcare.box1Title'), desc: tBusiness('healthcare.box1Desc') },
+                                                { title: tBusiness('healthcare.box2Title'), desc: tBusiness('healthcare.box2Desc') },
+                                                { title: tBusiness('healthcare.box3Title'), desc: tBusiness('healthcare.box3Desc') },
                                             ].map((box, i) => (
                                                 <div key={i} className="p-8 bg-white border-b-4 border-red-600 shadow-xl rounded-2xl hover:-translate-y-2 transition-transform duration-300">
                                                     <h4 className="text-2xl font-black text-gray-900 italic mb-2 capitalize tracking-tighter">{box.title}</h4>
@@ -200,11 +209,11 @@ export default function BusinessPage() {
                         {/* Heading Partner */}
                         <div className="text-center mb-20">
                             <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter capitalize italic leading-none mb-6">
-                                Partner <span className="text-white-600">Kami</span>
+                                {tPartners('title')} <span>{tPartners('titleHighlight')}</span>
                             </h2>
                             <div className="h-1.5 bg-red-600 w-24 mx-auto mb-10"></div>
                             <p className="text-gray-500 font-medium max-w-2xl mx-auto text-lg leading-relaxed">
-                                Kami bangga bekerja sama dengan berbagai perusahaan dan organisasi ternama yang turut mendukung kami dalam memberikan layanan terbaik dan berkelanjutan bagi pelanggan kami.            </p>
+                                {tPartners('description')}</p>
                         </div>
 
                         {/* Partners Grid */}
@@ -230,7 +239,7 @@ export default function BusinessPage() {
                         <div className="flex justify-center">
                             <Link href="/partners">
                                 <button className="group relative inline-flex items-center gap-3 bg-gray-900 text-white font-black px-10 py-4 rounded-xl overflow-hidden transition-all duration-300 hover:bg-red-600 uppercase tracking-[0.2em] text-xs">
-                                    <span className="relative z-10">Lihat Selengkapnya</span>
+                                    <span className="relative z-10">{tPartners('cta')}</span>
                                     <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300">→</span>
                                 </button>
                             </Link>
@@ -244,13 +253,13 @@ export default function BusinessPage() {
                     <div className="flex flex-col items-center text-center px-6">
                         <span className="text-4xl mb-4">🔧</span>
                         <span className="text-xs font-black uppercase tracking-[0.25em] text-red-600 mb-2">
-                            Maintenance
+                            {tMaintenance('label')}
                         </span>
                         <h3 className="text-2xl md:text-3xl font-black text-gray-900 italic tracking-tighter mb-2">
-                            Coming Soon
+                            {tMaintenance('title')}
                         </h3>
                         <p className="text-gray-500 text-sm font-medium">
-                            To Be Announced — Informasi partner akan segera hadir.
+                            {tMaintenance('desc')}
                         </p>
                     </div>
                 </div>
@@ -266,11 +275,11 @@ export default function BusinessPage() {
                     {/* Heading */}
                     <div className="text-center mb-20">
                         <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter capitalize italic leading-none mb-6">
-                            Hubungi <span className="text-white-900/30">Kami</span>
+                            {tContact('title')} <span>{tContact('titleHighlight')}</span>
                         </h2>
                         <div className="h-2 bg-white w-24 mx-auto mb-8"></div>
                         <p className="text-white/90 font-bold text-lg max-w-2xl mx-auto leading-relaxed">
-                            Kami siap membantu Anda! Silakan hubungi kami melalui formulir di bawah ini atau melalui kontak langsung yang tersedia.
+                            {tContact('description')}
                         </p>
                     </div>
 
@@ -280,31 +289,31 @@ export default function BusinessPage() {
                             <form className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label htmlFor="name" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Nama Lengkap</label>
+                                        <label htmlFor="name" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">{tContact('nameLabel')}</label>
                                         <input
                                             type="text"
                                             id="name"
-                                            placeholder="Masukkan Nama Anda"
+                                            placeholder={tContact('namePlaceholder')}
                                             className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label htmlFor="email" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Email Address</label>
+                                        <label htmlFor="email" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">{tContact('emailLabel')}</label>
                                         <input
                                             type="email"
                                             id="email"
-                                            placeholder="Masukkan Email Anda"
+                                            placeholder={tContact('emailPlaceholder')}
                                             className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="message" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">Pesan Anda</label>
+                                    <label htmlFor="message" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">{tContact('messageLabel')}</label>
                                     <textarea
                                         id="message"
                                         rows={4}
-                                        placeholder="Tulis pesan Anda..."
+                                        placeholder={tContact('messagePlaceholder')}
                                         className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900 resize-none"
                                     ></textarea>
                                 </div>
@@ -313,7 +322,7 @@ export default function BusinessPage() {
                                     type="submit"
                                     className="w-full bg-red-600 text-white font-black py-5 rounded-2xl hover:bg-gray-900 transition-all duration-300 shadow-xl capitalize tracking-[0.3em] text-sm group"
                                 >
-                                    Kirim Pesan
+                                    {tContact('submit')}
                                     <span className="inline-block ml-3 group-hover:translate-x-2 transition-transform">→</span>
                                 </button>
                             </form>
@@ -323,10 +332,10 @@ export default function BusinessPage() {
                         <div className="text-white lg:pt-8 space-y-12">
                             <div className="space-y-6">
                                 <h3 className="text-3xl md:text-4xl font-black capitalize italic tracking-tighter leading-tight">
-                                    Koneksi Langsung
+                                    {tContact('directTitle')}
                                 </h3>
                                 <p className="text-white/80 font-medium text-lg max-w-md">
-                                    Anda juga bisa langsung menghubungi kami melalui detail di bawah ini.
+                                    {tContact('directDesc')}
                                 </p>
                             </div>
 
@@ -334,11 +343,11 @@ export default function BusinessPage() {
                                 {[
                                     {
                                         icon: <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />,
-                                        text: "Jl. Fatmawati, No. 60A, Kota Pangkalpinang, Prov. Kep. Bangka Belitung"
+                                        text: tContact('address')
                                     },
                                     {
                                         icon: <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />,
-                                        text: "nusantara@wifacorp.com"
+                                        text: tContact('email')
                                     }
                                 ].map((item, idx) => (
                                     <div key={idx} className="flex items-center gap-6 group cursor-pointer">

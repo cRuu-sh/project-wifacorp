@@ -80,19 +80,31 @@
     "units": {
       "construction": {
         "title": "Construction",
-        "desc": "Committed to delivering the best results in construction and modern infrastructure."
+        "desc": "Committed to delivering the best results in construction and modern infrastructure.",
+        "heading": "Integrated Infrastructure & Construction Solutions",
+        "item1": "Building Construction", "item2": "Public Facilities",
+        "item3": "Large-Scale Renovation", "item4": "Material Management"
       },
       "agribusiness": {
         "title": "Agribusiness",
-        "desc": "Providing integrated solutions for agricultural needs and sustainable produce."
+        "desc": "Providing integrated solutions for agricultural needs and sustainable produce.",
+        "imageCaption": "Sustainable Food Security",
+        "heading": "Agribusiness Sector Optimization",
+        "coreFocusLabel": "Core Focus:"
       },
       "trading": {
         "title": "Material Supplier",
-        "desc": "Supplying quality materials to meet diverse project needs at scale."
+        "desc": "Supplying quality materials to meet diverse project needs at scale.",
+        "heading": "General Trading & Supply",
+        "tag1": "Natural Materials", "tag2": "Technical Equipment",
+        "tag3": "Spare Parts", "tag4": "Logistics"
       },
       "healthcare": {
         "title": "Healthcare",
-        "desc": "Trusted healthcare services with modern facilities and professional experts."
+        "desc": "Trusted healthcare services with modern facilities and professional experts.",
+        "box1Title": "Medical Devices", "box1Desc": "Hospital Equipment Procurement",
+        "box2Title": "Pharma", "box2Desc": "Pharmaceutical & Medicine Distribution",
+        "box3Title": "Services", "box3Desc": "Medical Facility Consulting & Management"
       }
     }
   },
