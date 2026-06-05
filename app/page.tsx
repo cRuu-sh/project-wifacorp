@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Footer from "@/components/footer"
 import Navbar from "@/components/navbar"
 import { useTranslations } from 'next-intl';
+import { sendContact } from '@/lib/contact'
 
 export default function Home() {
   const [experience, setExperience] = useState(0)
@@ -16,6 +17,24 @@ export default function Home() {
   const tPartners = useTranslations('Partners');
   const tContact = useTranslations('Contact');
   const tMaintenance = useTranslations('Maintenance');
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('loading')
+    try {
+      await sendContact(formData)
+      setStatus('success')
+      setFormData({ name: '', email: '', message: '' })
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.id]: e.target.value }))
+  }
 
   // Efek counter buat angka tahun
   useEffect(() => {
@@ -353,13 +372,16 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Formulir Kontak */}
             <div className="bg-white rounded-[2.5rem] shadow-2xl p-10 md:p-12 transform hover:-translate-y-2 transition-all duration-500 border border-white/20">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="name" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">{tContact('nameLabel')}</label>
                     <input
                       type="text"
                       id="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
                       placeholder={tContact('namePlaceholder')}
                       className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
                     />
@@ -369,6 +391,9 @@ export default function Home() {
                     <input
                       type="email"
                       id="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                       placeholder={tContact('emailPlaceholder')}
                       className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900"
                     />
@@ -379,6 +404,9 @@ export default function Home() {
                   <label htmlFor="message" className="block text-gray-900 font-black capitalize text-xs tracking-widest ml-2">{tContact('messageLabel')}</label>
                   <textarea
                     id="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                     rows={4}
                     placeholder={tContact('messagePlaceholder')}
                     className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-red-600 focus:bg-white focus:outline-none transition-all font-medium text-gray-900 resize-none"
@@ -387,11 +415,23 @@ export default function Home() {
 
                 <button
                   type="submit"
-                  className="w-full bg-red-600 text-white font-black py-5 rounded-2xl hover:bg-gray-900 transition-all duration-300 shadow-xl capitalize tracking-[0.3em] text-sm group"
+                  disabled={status === 'loading'}
+                  className="w-full bg-red-600 text-white font-black py-5 rounded-2xl hover:bg-gray-900 transition-all duration-300 shadow-xl capitalize tracking-[0.3em] text-sm group disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {tContact('submit')}
+                  {status === 'loading' ? 'Mengirim...' : tContact('submit')}
                   <span className="inline-block ml-3 group-hover:translate-x-2 transition-transform">→</span>
                 </button>
+
+                {status === 'success' && (
+                  <p className="text-green-600 text-sm font-bold text-center pt-2">
+                    ✓ Pesan terkirim! Kami akan segera menghubungi Anda.
+                  </p>
+                )}
+                {status === 'error' && (
+                  <p className="text-red-500 text-sm font-bold text-center pt-2">
+                    ✗ Gagal mengirim. Silakan coba lagi.
+                  </p>
+                )}
               </form>
             </div>
 
