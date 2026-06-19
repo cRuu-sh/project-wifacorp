@@ -231,7 +231,7 @@ export default function Home() {
           {/* Heading Portfolio */}
           <div className="mb-20 border-l-8 border-red-600 pl-6">
             <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tighter capitalize italic leading-none">
-              Legacy <span className="text-red-600">WIFACORP</span>
+              WIFACORP <span className="text-red-600">Gallery</span>
             </h2>
           </div>
 
@@ -239,18 +239,18 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
               {
-                title: "Pembangunan Karantina",
-                location: "Pangkalbalam, Bangka Belitung",
-                img: "https://images.unsplash.com/photo-1636808458964-c34aef9273ff?q=80&w=800&auto=format&fit=crop"
+                title: "Danau Taman Perumahan PT. Timah Tbk.",
+                location: "Danau Taman Perumahan PT. Timah Tbk.",
+                img: "/portofolio-1.png"
               },
               {
-                title: "Kebut Sawit",
-                location: "Munggu, Bangka Tengah",
-                img: "https://plus.unsplash.com/premium_photo-1697729435258-b7d20023c843?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                title: "Revitalisasi Atap Bandar Udara Depati Amir Pangkalpinang",
+                location: "Revitalisasi Atap Bandar Udara Depati Amir Pangkalpinang",
+                img: "/portofolio-2.png"
               },
               {
-                title: "Pelabuhan Peti Kemas",
-                location: "Operasional Logistik PT",
+                title: "Reparasi Pagar Wiremesh Bandara ",
+                location: "Reparasi Pagar Wiremesh Bandara",
                 img: "https://images.unsplash.com/photo-1769752803898-e7e9a843a120?q=80&w=800&auto=format&fit=crop"
               }
             ].map((project, index) => (
