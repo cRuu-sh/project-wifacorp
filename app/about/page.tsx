@@ -8,12 +8,11 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { sendContact } from '@/lib/contact'
+import { Suspense } from 'react'
 
-
-
-export default function AboutPage() {
-    const [activeTab, setActiveTab] = useState('our-story')
+function AboutContent() {
     const searchParams = useSearchParams()
+    const [activeTab, setActiveTab] = useState('our-story')
     const tAbout = useTranslations('About')
     const tPartners = useTranslations('Partners')
     const tContact = useTranslations('Contact')
@@ -501,5 +500,13 @@ export default function AboutPage() {
 
             <Footer />
         </main>
+    )
+}
+
+export default function AboutPage() {
+    return (
+        <Suspense fallback={null}>
+            <AboutContent />
+        </Suspense>
     )
 }

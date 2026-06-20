@@ -8,8 +8,9 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { sendContact } from '@/lib/contact'
+import { Suspense } from 'react'
 
-export default function BusinessPage() {
+function BusinessContent() {
     const [activeTab, setActiveTab] = useState('konstruksi')
     const searchParams = useSearchParams()
     const tBusiness = useTranslations('Business')
@@ -406,5 +407,13 @@ export default function BusinessPage() {
 
             <Footer />
         </main>
+    )
+}
+
+export default function BusinessPage() {
+    return (
+        <Suspense fallback={null}>
+            <BusinessContent />
+        </Suspense>
     )
 }
