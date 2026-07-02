@@ -102,13 +102,13 @@ function BusinessContent() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                                         <div className="space-y-6">
                                             <h2 className="text-3xl md:text-4xl font-black text-gray-900 capitalize italic border-l-8 border-red-600 pl-6 leading-tight">
-                                                {tBusiness('konstruksi.heading')}
+                                                {tBusiness('units.construction.heading')}
                                             </h2>
                                             <p className="text-gray-600 leading-relaxed text-lg font-medium text-justify">
                                                 Divisi konstruksi <span className="text-red-600 font-bold">WIFACORP</span> memiliki spesialisasi dalam pengadaan barang dan jasa konstruksi berkualitas tinggi. Kami mengintegrasikan teknologi terkini dengan manajemen proyek yang disiplin untuk menghasilkan bangunan yang kokoh dan estetis.
                                             </p>
                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                                                {[tBusiness('konstruksi.item1'), tBusiness('konstruksi.item2'), tBusiness('konstruksi.item3'), tBusiness('konstruksi.item4')].
+                                                {[tBusiness('units.construction.item1'), tBusiness('units.construction.item2'), tBusiness('units.construction.item3'), tBusiness('units.construction.item4')].
                                                     map((item, idx) => (
                                                         <div key={idx} className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border-b-2 border-gray-200">
                                                             <div className="w-2 h-2 bg-red-600 rounded-full"></div>
@@ -144,19 +144,19 @@ function BusinessContent() {
                                                 className="object-cover"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
-                                                <p className="text-white font-black italic text-xl capitalize tracking-widest">{tBusiness('agrobisnis.imageCaption')}
+                                                <p className="text-white font-black italic text-xl capitalize tracking-widest">{tBusiness('units.agribusiness.imageCaption')}
                                                 </p>
                                             </div>
                                         </div>
                                         <div className="space-y-6">
                                             <h2 className="text-3xl md:text-4xl font-black text-gray-900 capitalize italic border-l-8 border-red-600 pl-6">
-                                                {tBusiness('agrobisnis.heading')}
+                                                {tBusiness('units.agribusiness.heading')}
                                             </h2>
                                             <p className="text-gray-600 leading-relaxed text-lg font-medium text-justify">
                                                 Melalui pendekatan agrikultur modern, kami mengelola komoditas unggulan yang mendukung ekonomi lokal dan nasional. Fokus kami adalah pada efisiensi rantai pasok dan kualitas hasil bumi yang kompetitif untuk pasar domestik maupun industri.
                                             </p>
                                             <div className="bg-gray-900 p-8 rounded-[2rem] text-white">
-                                                <h4 className="text-red-600 font-black italic mb-2 capitalize tracking-widest">{tBusiness('agrobisnis.coreFocusLabel')}
+                                                <h4 className="text-red-600 font-black italic mb-2 capitalize tracking-widest">{tBusiness('units.agribusiness.coreFocusLabel')}
                                                 </h4>
                                                 <p className="font-medium italic text-gray-300">Pengelolaan Lahan Produktif, Distribusi Komoditas Utama, dan Implementasi Teknologi Tani Modern.</p>
                                             </div>
@@ -169,14 +169,14 @@ function BusinessContent() {
                             {activeTab === 'perdagangan' && (
                                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 text-center">
                                     <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-8 capitalize italic">
-                                        {tBusiness('trading.heading')}
+                                        {tBusiness('units.trading.heading')}
                                     </h2>
                                     <div className="max-w-4xl mx-auto bg-gray-50 p-12 rounded-[3rem] border-2 border-dashed border-gray-200">
                                         <p className="text-xl md:text-2xl text-gray-700 leading-relaxed font-bold italic mb-8">
                                             "Menyediakan akses material berkualitas tinggi dan solusi pengadaan barang yang efisien untuk mendukung skala bisnis nasional."
                                         </p>
                                         <div className="flex flex-wrap justify-center gap-6">
-                                            {[tBusiness('trading.tag1'), tBusiness('trading.tag2'), tBusiness('trading.tag3'), tBusiness('trading.tag4')]
+                                            {[tBusiness('units.trading.tag1'), tBusiness('units.trading.tag2'), tBusiness('units.trading.tag3'), tBusiness('units.trading.tag4')]
                                                 .map((tag, i) => (
                                                     <span key={i} className="px-6 py-2 bg-white shadow-md rounded-full text-gray-900 font-black italic text-xs capitalize tracking-tighter border border-gray-100">
                                                         #{tag}
@@ -199,9 +199,9 @@ function BusinessContent() {
                                         </p>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                                             {[
-                                                { title: tBusiness('healthcare.box1Title'), desc: tBusiness('healthcare.box1Desc') },
-                                                { title: tBusiness('healthcare.box2Title'), desc: tBusiness('healthcare.box2Desc') },
-                                                { title: tBusiness('healthcare.box3Title'), desc: tBusiness('healthcare.box3Desc') },
+                                                { title: tBusiness('units.healthcare.box1Title'), desc: tBusiness('units.healthcare.box1Desc') },
+                                                { title: tBusiness('units.healthcare.box2Title'), desc: tBusiness('units.healthcare.box2Desc') },
+                                                { title: tBusiness('units.healthcare.box3Title'), desc: tBusiness('units.healthcare.box3Desc') },
                                             ].map((box, i) => (
                                                 <div key={i} className="p-8 bg-white border-b-4 border-red-600 shadow-xl rounded-2xl hover:-translate-y-2 transition-transform duration-300">
                                                     <h4 className="text-2xl font-black text-gray-900 italic mb-2 capitalize tracking-tighter">{box.title}</h4>
